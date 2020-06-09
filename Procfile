@@ -1,1 +1,1 @@
-web: gunicorn alfastaff.engine.wsgi
+web: gunicorn engine.wsgi
