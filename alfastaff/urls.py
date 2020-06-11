@@ -3,13 +3,15 @@ from django.urls import path
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.conf import settings
-from django.http import HttpResponse
+
+from .views import *
 
 
-def test(request):
-    return HttpResponse('test')
+name_apps = 'alfastaff'
 
 
 urlpatterns = [
-    path('', test),
+    path('', login, name='login'),
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

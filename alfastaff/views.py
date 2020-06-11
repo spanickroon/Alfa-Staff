@@ -1,3 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
+from .models import Profile
+from .tokens import *
+from .forms import LoginForm, SignupForm
+
+
+def login(request):
+    return render(request, template_name='alfastaff/account/login.html')
