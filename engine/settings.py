@@ -24,6 +24,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+APPEND_SLASH = False
 
 ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', 'localhost']
 
@@ -37,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'alfastaff.apps.AlfastaffConfig'
+    'alfastaff_account.apps.AlfastaffAccountConfig',
+    'alfastaff_bonuses.apps.AlfastaffBonusesConfig',
+    'alfastaff_shedule.apps.AlfastaffSheduleConfig'
 ]
 
 MIDDLEWARE = [

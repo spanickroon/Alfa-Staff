@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+            Alfastaff
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+    <body>
+        <a class="nav-link" data-target="login" href="#">Login</a>
+        <a class="nav-link" data-target="signup" href="#">Signup</a>
+        <div class="page active" id="login">
+            {% block context %}
+            {% endblock %}
+        </div>
+        <div class="page" id="signup">
+        </div>
+    </body>
+    <script src="{% static "js/spa_controller.js" %}"></script>
+</html>

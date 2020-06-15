@@ -1,0 +1,11 @@
+{% extends 'alfastaff-account/start_template.html' %}
+
+{% block context %}
+<form method="POST">
+    {% csrf_token %}
+    <table>
+    {{ login_form.as_table }}
+    </table>
+    <input type="submit" value="Send" id="submit_login">
+</form>
+{% endblock%}

@@ -6,12 +6,13 @@ from django.conf import settings
 
 from .views import *
 
-
 name_apps = 'alfastaff'
-
 
 urlpatterns = [
     path('', login, name='login'),
+    path('login', login, name='login'),
+    path('signup', signup, name='signup'),
+    path('logout', logout, name='logout'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
