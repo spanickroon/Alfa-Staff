@@ -25,7 +25,7 @@ const app = {
 
         let currentPage = document.querySelector('.active').getAttribute('id');
         if (currentPage != 'login') {
-            fetch(currentPage, 
+            fetch(currentPage + "_insert", 
                 {
                 method: "GET",
                 headers:{"content-type":"application/x-www-form-urlencoded"}
@@ -48,6 +48,11 @@ const app = {
         document.getElementById(hash).classList.add('active');
         document.getElementById(hash).dispatchEvent(app.show);
     }
+}
+
+window.onload=function()
+{
+    history.replaceState({}, '', 'login');
 }
 
 document.addEventListener('DOMContentLoaded', app.init);

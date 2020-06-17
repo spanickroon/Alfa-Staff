@@ -23,9 +23,7 @@ def login_user(request):
             return JsonResponse({"error": True})
     else:
         login_form = LoginForm()
-        return render(
-            request, template_name='alfastaff-account/login.html',
-            context={'login_form': login_form})
+        return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
 
 
 def signup_user(request):
@@ -57,10 +55,13 @@ def signup_user(request):
                 request, template_name='alfastaff-account/signup.html',
                 context={'signup_form': signup_form})
     else:
-        signup_form = SignupForm()
-        return render(
-            request, template_name='alfastaff-account/signup.html',
-            context={'signup_form': signup_form})
+        login_form = LoginForm()
+        return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+
+
+def signup_user_insert(request):
+    signup_form = SignupForm()
+    return render(request, template_name='alfastaff-account/signup.html', context={'signup_form': signup_form})
 
 
 def activate_user(request, uidb64, token):
