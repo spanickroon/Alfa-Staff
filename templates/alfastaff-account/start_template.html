@@ -13,11 +13,19 @@
 </head>
     <body class="body-start">
         <header class="header-login-register">
-            <img src="/static/images/alfa-logo.svg">
+            <img src="{% static "images/alfa-logo.svg" %}">
             <label>Альфа·Персонал</label>
         </header>
-        
-       
+        <div>
+            <a class="nav-link" data-target="login" href="#">Login</a>
+            <a class="nav-link" data-target="signup" href="#">Signup</a>
+            <div class="page active" id="login">
+                {% block context %}
+                {% endblock %}
+            </div>
+            <div class="page" id="signup">
+            </div>
+        </div>
     </body>
     <script src="{% static "js/spa_controller.js" %}"></script>
 </html>
