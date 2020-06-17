@@ -9,11 +9,11 @@ from .views import *
 name_apps = 'alfastaff'
 
 urlpatterns = [
-    path('', login, name='login'),
-    path('login', login, name='login'),
-    path('signup', signup, name='signup'),
-    path('logout', logout, name='logout'),
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', activate, name='activate')
+    path('', login_user, name='login'),
+    path('login', login_user, name='login'),
+    path('signup', signup_user, name='signup'),
+    path('logout', logout_user, name='logout'),
+    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', activate_user, name='activate')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

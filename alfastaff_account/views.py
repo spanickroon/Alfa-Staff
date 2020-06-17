@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
 
 from .models import Profile
@@ -12,7 +13,7 @@ from .tokens import account_activation_token
 from .forms import LoginForm, SignupForm
 
 
-def login(request):
+def login_user(request):
     if request.method == "POST":
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
@@ -27,7 +28,7 @@ def login(request):
             context={'login_form': login_form})
 
 
-def signup(request):
+def signup_user(request):
     if request.method == "POST":
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
@@ -62,7 +63,7 @@ def signup(request):
             context={'signup_form': signup_form})
 
 
-def activate(request, uidb64, token):
+def activate_user(request, uidb64, token):
     try:
         uid = force_text(urlsafe_base64_decode(uidb64))
         user = User.objects.get(pk=uid)
@@ -74,10 +75,10 @@ def activate(request, uidb64, token):
         login(request, user)
         return render(request, template_name='alfastaff-account/confirmation.html')
     else:
-        return render(request, template_name='alfastaff-account/active_error.html')
+        return render(request, template_name='alfastaff-account/activate_error.html')
 
 
-def logout(request):
+def logout_user(request):
     logout(request)
     try:
         del request.session['user_id']
