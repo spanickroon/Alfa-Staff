@@ -1,7 +1,16 @@
 <form method="POST">
-    {% csrf_token %}
-    <table>
-    {{ signup_form.as_table }}
-    </table>
-    <input type="submit" value="Send" id="submit_signup">
+    <form method="POST">
+        <div>
+            <input class="input-login" placeholder="Email" type="email" autofocus="true">
+        </div>
+        <div>
+            <input class="input-login" placeholder="Пароль" type="password">
+        </div>
+        <div>
+            <input class="input-login" placeholder="Повторите пароль" type="password">
+        </div>
+        <a class="link-remind" href="#">Забыли логин или пароль</a>
+        <br>
+        <button class="button-login-register">Регистрация</button>
+    </form>
 </form>

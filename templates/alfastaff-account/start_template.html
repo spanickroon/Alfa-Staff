@@ -16,9 +16,13 @@
             <img src="{% static "images/alfa-logo.svg" %}">
             <label>Альфа·Персонал</label>
         </header>
-        <div>
-            <a class="nav-link" data-target="login" href="#">Login</a>
-            <a class="nav-link" data-target="signup" href="#">Signup</a>
+
+        <div class="form-login-register">
+            <h1>Мой Альфа-день</h1>
+            <div>
+                <a class="nav-link" id="login-link" data-target="login" href="#">Вход</a>
+                <a class="nav-link" id="signup-link" data-target="signup" href="#">Регистрация</a>
+            </div>
             <div class="page active" id="login">
                 {% block context %}
                 {% endblock %}
@@ -26,6 +30,8 @@
             <div class="page" id="signup">
             </div>
         </div>
+
+        
     </body>
     <script src="{% static "js/spa_controller.js" %}"></script>
 </html>

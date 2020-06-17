@@ -2,10 +2,14 @@
 
 {% block context %}
 <form method="POST">
-    {% csrf_token %}
-    <table>
-    {{ login_form.as_table }}
-    </table>
-    <input type="submit" value="Send" id="submit_login">
+    <div>
+        <input class="input-login" placeholder="Email" type="email" autofocus="true">
+    </div>
+    <div>
+        <input class="input-login" placeholder="Пароль" type="password">
+    </div>
+    <a class="link-remind" href="#">Забыли логин или пароль</a>
+    <br>
+    <button class="button-login-register">Войти</button>
 </form>
 {% endblock%}
