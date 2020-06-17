@@ -1,6 +1,47 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+
+* {
+    font-family: Roboto;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+  }
+
 .page {
     display: none;
 }
+
 .active {
     display: block;
+}
+
+.body-start {
+    background-image: url(/static/images/back_login_register.png);
+    background-size: cover;
+}
+
+.header-login-register {
+    display: flex;
+    width: 12.5vw; /* 240 px 240/1920*100 */
+    height: 8.333333vh; /* 90 px 90/1080*100 */
+    position: fixed;
+    
+    margin-left: 19.53125vw; /* 375 px 375/1920*100 */
+    vertical-align: middle;
+   
+    background-color: #F03226;
+    border-radius: 0 0 4px 4px;
+   
+    align-items: center;
+    justify-content: center;
+
+    font-size: 125%;
+    font-weight: bold;
+    color: #FFFFFF;
+}
+
+.header-login-register img {
+    padding: 5%;
 }
