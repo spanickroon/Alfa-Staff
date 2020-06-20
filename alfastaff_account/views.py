@@ -32,8 +32,6 @@ def signup_user(request):
     if request.method == "POST":
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
-            print(signup_form.cleaned_data['email'])
-            print(signup_form.cleaned_data['password1'])
             user = User(
                 username=signup_form.cleaned_data['email'],
                 email=signup_form.cleaned_data['email'],
@@ -54,7 +52,6 @@ def signup_user(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = user.email
-            print(to_email)
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
             return JsonResponse({"confirmation": "ok"})

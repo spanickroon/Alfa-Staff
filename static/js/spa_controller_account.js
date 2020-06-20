@@ -98,7 +98,6 @@ function login(ev) {
         }
     })
     .catch(() => console.log('error'));
-
 }
 
 function signup(ev) {
