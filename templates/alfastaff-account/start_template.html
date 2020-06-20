@@ -24,9 +24,9 @@
 
         <div class="form-login-register">
             <h1>Мой Альфа-день</h1>
-            <div class="nav-link">
-                <a class="login" data-target="login" href="#">Вход</a>
-                <a class="signup" data-target="signup" href="#">Регистрация</a>
+            <div class="nav-link-bar">
+                <a class="nav-link" data-target="login"  href="#">Вход</a>
+                <a class="nav-link" data-target="signup" href="#">Регистрация</a>
             </div>
             <div class="page active" id="login">
                 {% block context %}
@@ -36,6 +36,9 @@
             </div>
         </div>
 
+        <footer class="footer">
+            <label>© 1999–{% now "Y" %} ЗАО «Альфа-Банк»</label>
+        </footer>
         
     </body>
     <script src="{% static "js/spa_controller.js" %}"></script>

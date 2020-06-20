@@ -1,4 +1,7 @@
 @import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+@import "https://fonts.googleapis.com/css?family=Roboto:100";
+@import "https://fonts.googleapis.com/css?family=Roboto:200";
+@import "https://fonts.googleapis.com/css?family=Roboto:300";
 
 * {
     font-family: Roboto;
@@ -17,7 +20,7 @@ h1 {
     color: #FFFFFF;
     margin-bottom: 10px;
 
-    font-weight: 300;
+    font-weight: 100;
 }
 
 .page {
@@ -49,6 +52,21 @@ h1 {
     background-color: #F03226;
     
     border-radius: 0 0 4px 4px;
+}
+
+.footer {
+    position: absolute;
+
+    width: 300px;
+
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    color: #FFFFFF;
+
+    font-weight: 300;
 }
 
 .logo-text {
@@ -119,17 +137,19 @@ h1 {
 
     color: #FFFFFF;
 
+    font-weight: 300;
     text-decoration: none;
 }
 
-.nav-link {
+.nav-link-bar {
     display: flex;
     flex-wrap: wrap;
 
     height: 40px;
+    font-weight: 300;
 }
 
-.nav-link .login {
+.nav-link {
     display: flex;
     align-items: center;
 
@@ -147,22 +167,7 @@ h1 {
 }
 
 
-.nav-link .signup {
-    display: flex;
-    align-items: center;
-
-    padding-left: 10px;
-    padding-right: 10px;
-
-    order: 1;
-    color: #FFFFFF;
-
-    border-radius: 4px 4px 4px 4px;
-    
-    text-decoration: none;
-}
-
-.nav-link :hover {
+.nav-link-active {
     background-color: rgba(192, 192, 192, 0.3);
 }
 
