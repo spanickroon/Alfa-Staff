@@ -12,15 +12,20 @@
     <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
     <body class="body-start">
+
         <header class="header-login-register">
-            <img src="{% static "images/alfa-logo.svg" %}">
-            <label>Альфа·Персонал</label>
+            <span>
+                <img class="logo-img" src="{% static "images/alfa-logo.svg" %}">
+            </span>
+            <span>
+                <label class="logo-text">Альфа·Персонал</label>
+            </span>
         </header>
         <div class="form-login-register">
             <h1>Мой Альфа-день</h1>
-            <div>
-                <a class="nav-link" id="login-link" data-target="login" href="#">Вход</a>
-                <a class="nav-link" id="signup-link" data-target="signup" href="#">Регистрация</a>
+            <div class="nav-link">
+                <a class="login" data-target="login" href="#">Вход</a>
+                <a class="signup" data-target="signup" href="#">Регистрация</a>
             </div>
             <div class="page active" id="login">
                 {% block context %}
@@ -30,5 +35,6 @@
             </div>
         </div>
     </body>
-    <script src="{% static "js/spa_controller.js" %}"></script>
+    <script src="{% static "js/spa_controller_account.js" %}"></script>
+    <script src="{% static "js/visual_effects.js" %}"></script>
 </html>

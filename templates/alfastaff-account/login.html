@@ -2,14 +2,15 @@
 
 {% block context %}
 <form method="POST">
+    {% csrf_token %}
     <div>
-        <input class="input-login" placeholder="Email" type="email" autofocus="true">
+        <input class="input-login" placeholder="Email" type="email" autofocus="true" name="email" id="email_login">
     </div>
     <div>
-        <input class="input-login" placeholder="Пароль" type="password">
+        <input class="input-login" placeholder="Пароль" type="password" name="password" id="password">
     </div>
     <a class="link-remind" href="#">Забыли логин или пароль</a>
     <br>
-    <button class="button-login-register">Войти</button>
+    <button class="button-login-register" id="btn-login">Войти</button>
 </form>
 {% endblock%}

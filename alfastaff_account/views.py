@@ -17,10 +17,12 @@ def login_user(request):
     if request.method == "POST":
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
-            user = User.objects.get(email=userform.cleaned_data["email"])
-            return JsonResponse({"success": True})
+            user = User.objects.get(email=login_form.cleaned_data["email"], password=login_form.cleaned_data["password"])
+            login(request, user)
+            return redirect('profile')
         else:
-            return JsonResponse({"error": True})
+            login_form = LoginForm()
+            return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
     else:
         login_form = LoginForm()
         return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
@@ -30,9 +32,14 @@ def signup_user(request):
     if request.method == "POST":
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
-            user = signup_form.save(commit=False)
-            user.is_active = False
-            user.username = user.email
+            print(signup_form.cleaned_data['email'])
+            print(signup_form.cleaned_data['password1'])
+            user = User(
+                username=signup_form.cleaned_data['email'],
+                email=signup_form.cleaned_data['email'],
+                password=signup_form.cleaned_data['password1']
+            )
+            user.is_active = True
             user.save()
             profile = Profile(
                 user=user
@@ -47,13 +54,13 @@ def signup_user(request):
                 'token': account_activation_token.make_token(user),
             })
             to_email = user.email
+            print(to_email)
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
-            return render(request, template_name='alfastaff-account/confirm_email.html')
+            return JsonResponse({"confirmation": "ok"})
         else:
-            return render(
-                request, template_name='alfastaff-account/signup.html',
-                context={'signup_form': signup_form})
+            login_form = LoginForm()
+            return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
     else:
         login_form = LoginForm()
         return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
@@ -74,7 +81,7 @@ def activate_user(request, uidb64, token):
         user.is_active = True
         user.save()
         login(request, user)
-        return render(request, template_name='alfastaff-account/confirmation.html')
+        return redirect('profile')
     else:
         return render(request, template_name='alfastaff-account/activate_error.html')
 
