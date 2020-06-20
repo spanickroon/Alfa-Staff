@@ -19,7 +19,7 @@ def login_user(request):
         if login_form.is_valid():
             user = User.objects.get(email=login_form.cleaned_data["email"], password=login_form.cleaned_data["password"])
             login(request, user)
-            return redirect('profile')
+            return JsonResponse({"validation": "ok"})
         else:
             login_form = LoginForm()
             return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})

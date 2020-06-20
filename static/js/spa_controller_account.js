@@ -90,7 +90,12 @@ function login(ev) {
             
             return Promise.reject(); 
         }
-        return response
+        return response.json()
+    })
+    .then( response => {
+        if (response['validation'] == "ok") {
+            document.location.href = 'profile'
+        }
     })
     .catch(() => console.log('error'));
 
