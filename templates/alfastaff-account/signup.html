@@ -1,0 +1,15 @@
+<form method="POST">
+    {% csrf_token %}
+    <div>
+        <input class="input-login" placeholder="Email" type="email" autofocus="true" name="email" id="email_signup">
+    </div>
+    <div>
+        <input class="input-login" placeholder="Пароль" type="password" name="password1" id="password1">
+    </div>
+    <div>
+        <input class="input-login" placeholder="Повторите пароль" type="password" name="password2" id="password2">
+    </div>
+    <a class="link-remind" href="#">Забыли логин или пароль</a>
+    <br>
+    <button class="button-login-register" id="btn-signup">Регистрация</button>
+</form>

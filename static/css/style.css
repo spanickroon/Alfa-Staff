@@ -1,0 +1,173 @@
+@import "https://fonts.googleapis.com/css2?family=Roboto&display=swap";
+@import "https://fonts.googleapis.com/css?family=Roboto:100";
+@import "https://fonts.googleapis.com/css?family=Roboto:200";
+@import "https://fonts.googleapis.com/css?family=Roboto:300";
+
+* {
+    font-family: Roboto;
+}
+
+body{
+    margin: 0px;
+    padding: 0px;
+    height:100%
+  }
+
+h1 {
+    margin: 0px;
+    padding: 0px;
+
+    color: #FFFFFF;
+    margin-bottom: 10px;
+
+    font-weight: 100;
+}
+
+.page {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+.body-start {
+    background-image: url(/static/images/back_login_register.png);
+    background-size: cover;
+}
+
+.header-login-register {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    
+    top: 0;
+
+    width: 200px; 
+    height: 80px;
+
+    left: 15%; 
+   
+    background-color: #F03226;
+    
+    border-radius: 0 0 4px 4px;
+}
+
+.footer {
+    position: absolute;
+
+    width: 300px;
+
+    bottom: 30px;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    color: #FFFFFF;
+
+    font-weight: 300;
+}
+
+.logo-text {
+    font-size: 14pt;
+    
+    color: #FFFFFF;
+}
+
+.logo-img {
+    height: 40px; 
+    padding: 5px;
+}
+
+.form-login-register {
+    position: absolute;
+
+    width: 300px;
+    height: 300px;
+    
+    left:0;
+	right:0;
+	top:0;
+    bottom:0;
+    
+    margin:auto;
+}
+
+.input-login {
+    width: 300px;
+    height: 30px;
+
+    margin-top: 10px;
+    margin-bottom: 5px;
+
+    color: #FFFFFF;
+    background-color: transparent;
+    
+    border-color: #C0C0C0;
+
+    border-radius: 4px 4px 4px 4px;
+    border-width: 2px;
+}
+
+.input-login::placeholder {
+    color: #C0C0C0;
+}
+
+.button-login-register {
+    width: 120px;
+    height: 40px;
+
+    margin-top: 10px;
+
+    background-color: #F03226;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 4px 4px 4px 4px;
+
+    box-shadow: 0px 10px 20px rgba(255,0,0, .2);
+}
+
+.link-remind {
+    display: inline-block;
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    color: #FFFFFF;
+
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.nav-link-bar {
+    display: flex;
+    flex-wrap: wrap;
+
+    height: 40px;
+    font-weight: 300;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+
+    margin-right: 10px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+
+    order: 1;
+    color: #FFFFFF;
+
+    border-radius: 4px 4px 4px 4px;
+
+    text-decoration: none;
+}
+
+
+.nav-link-active {
+    background-color: rgba(192, 192, 192, 0.3);
+}
+
