@@ -17,12 +17,14 @@ def login_user(request):
     if request.method == "POST":
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
-            user = User.objects.get(email=login_form.cleaned_data["email"], password=login_form.cleaned_data["password"])
-            login(request, user)
-            return JsonResponse({"validation": "ok"})
+            try:
+                user = User.objects.get(email=login_form.cleaned_data["email"], password=login_form.cleaned_data["password"])
+                login(request, user)
+                return JsonResponse({"validation": "ok"})
+            except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+                return JsonResponse({"validation": "user_not_found"})
         else:
-            login_form = LoginForm()
-            return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+            return JsonResponse({"validation": "error"})
     else:
         login_form = LoginForm()
         return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
@@ -56,8 +58,7 @@ def signup_user(request):
             email.send()
             return JsonResponse({"confirmation": "ok"})
         else:
-            login_form = LoginForm()
-            return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+            return JsonResponse({"confirmation": "error"})
     else:
         login_form = LoginForm()
         return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})

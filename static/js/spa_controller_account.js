@@ -95,6 +95,10 @@ function login(ev) {
     .then( response => {
         if (response['validation'] == "ok") {
             document.location.href = 'profile'
+        } else if (response['validation'] == "error") {
+            document.getElementById("error_login").innerText = "Проверьте введенные вами данные!"
+        } else if (response['validation'] == "user_not_found") {
+            document.getElementById("error_login").innerText = "Пользователь не найден. Проверьте введенные вами данные!"
         }
     })
     .catch(() => console.log('error'));
@@ -103,26 +107,31 @@ function login(ev) {
 function signup(ev) {
     ev.preventDefault();
 
-    fetch('signup', 
-    {
-        method: "POST",
-        body: "email=" + document.getElementById("email_signup").value + "&password1=" + document.getElementById("password1").value+ "&password2=" + document.getElementById("password2").value,
-        headers: {"content-type": "application/x-www-form-urlencoded", "X-CSRFToken": getCookie('csrftoken') },
-    })
-    .then( response => {
-        if (response.status !== 200) {
-            
-            return Promise.reject(); 
-        }
-        return response.json()
-    })
-    .then( response => {
-        if (response['confirmation'] == "ok") {
-            alert("Please confirm your email address to complete the registration.")
-        }
-    })
-    .catch(() => console.log('error'));
-
+    if (document.getElementById("password1").value == document.getElementById("password2").value) {
+        fetch('signup', 
+        {
+            method: "POST",
+            body: "email=" + document.getElementById("email_signup").value + "&password1=" + document.getElementById("password1").value + "&password2=" + document.getElementById("password2").value,
+            headers: {"content-type": "application/x-www-form-urlencoded", "X-CSRFToken": getCookie('csrftoken') },
+        })
+        .then( response => {
+            if (response.status !== 200) {
+                
+                return Promise.reject(); 
+            }
+            return response.json()
+        })
+        .then( response => {
+            if (response['confirmation'] == "ok") {
+                alert("Please confirm your email address to complete the registration.")
+            } else if (response['confirmation'] == "error") {
+                document.getElementById("error_signup").innerText = "Проверьте введенные вами данные!"
+            }
+        })
+        .catch(() => console.log('error'));
+    } else {
+        document.getElementById("error_signup").innerText = "Пароли не совпадают!"
+    }
 }
 
 document.addEventListener('DOMContentLoaded', app.init);
