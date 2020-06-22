@@ -11,7 +11,20 @@
     </title>
     <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
-    <body>
+    <body class="body-profile">
+        <header class="header">
+            <span>
+                <img class="logo-img-red" src="{% static "images/alfa-logo-red.svg" %}">
+            </span>
+            <span>
+                <label class="logo-text-red">Альфа·Персонал</label>
+            </span>
+
+            <a class="nav-panel" href="#">КАТАЛОГ</a>
+            <a class="nav-panel" href="#">РАСПИСАНИЕ</a>
+            <a class="nav-panel nav-admin" href="#">АДМИН ПАНЕЛЬ</a>
+            <a class="nav-panel nav-profile" href="#">ПРОФИЛЬ</a>
+        </header>
         {% block context %}
         {% endblock %}
     </body>
