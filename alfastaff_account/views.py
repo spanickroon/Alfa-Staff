@@ -7,22 +7,28 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import check_password, make_password
+from django.contrib.auth.base_user import BaseUserManager
 
 from .models import Profile
 from .tokens import account_activation_token
-from .forms import LoginForm, SignupForm
+from .forms import LoginForm, SignupForm, ResetPasswordForm
 
 
 def login_user(request):
     if request.method == "POST":
         login_form = LoginForm(request.POST)
         if login_form.is_valid():
-            user = User.objects.get(email=login_form.cleaned_data["email"], password=login_form.cleaned_data["password"])
-            login(request, user)
-            return JsonResponse({"validation": "ok"})
+            try:
+                user = User.objects.get(email=login_form.cleaned_data["email"])
+                if not check_password(login_form.cleaned_data["password"], user.password):
+                    raise ValueError
+                login(request, user)
+                return JsonResponse({"validation": "ok"})
+            except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+                return JsonResponse({"validation": "user_not_found"})
         else:
-            login_form = LoginForm()
-            return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+            return JsonResponse({"validation": "error"})
     else:
         login_form = LoginForm()
         return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
@@ -32,10 +38,15 @@ def signup_user(request):
     if request.method == "POST":
         signup_form = SignupForm(request.POST)
         if signup_form.is_valid():
+            try:
+                user = User.objects.get(email=signup_form.cleaned_data["email"])
+                return JsonResponse({"confirmation": "user_found"})
+            except:
+                pass
             user = User(
                 username=signup_form.cleaned_data['email'],
                 email=signup_form.cleaned_data['email'],
-                password=signup_form.cleaned_data['password1']
+                password=make_password(signup_form.cleaned_data['password1'])
             )
             user.is_active = True
             user.save()
@@ -44,7 +55,7 @@ def signup_user(request):
             )
             profile.save()
             current_site = get_current_site(request)
-            mail_subject = 'Activate your blog account.'
+            mail_subject = 'Activate your account.'
             message = render_to_string('alfastaff-account/email_message.html', {
                 'user': user,
                 'domain': current_site.domain,
@@ -56,8 +67,7 @@ def signup_user(request):
             email.send()
             return JsonResponse({"confirmation": "ok"})
         else:
-            login_form = LoginForm()
-            return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+            return JsonResponse({"confirmation": "error"})
     else:
         login_form = LoginForm()
         return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
@@ -66,6 +76,40 @@ def signup_user(request):
 def signup_user_insert(request):
     signup_form = SignupForm()
     return render(request, template_name='alfastaff-account/signup.html', context={'signup_form': signup_form})
+
+
+def reset_password(request):
+    if request.method == "POST":
+        reset_password_form = ResetPasswordForm(request.POST)
+        if reset_password_form.is_valid():
+            try:
+                user = User.objects.get(email=reset_password_form.cleaned_data["email"])
+            except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+                return JsonResponse({"reseting": "user_not_found"})
+            new_password = BaseUserManager().make_random_password()
+            current_site = get_current_site(request)
+            mail_subject = 'Activate your account.'
+            message = render_to_string('alfastaff-account/reset_message.html', {
+                'user': user,
+                'domain': current_site.domain,
+                'new_password': new_password
+            })
+            to_email = user.email
+            user.password = make_password(new_password)
+            user.save()
+            email = EmailMessage(mail_subject, message, to=[to_email])
+            email.send()
+            return JsonResponse({"reseting": "ok"})
+        else:
+            return JsonResponse({"reseting": "error"})
+    else:
+        login_form = LoginForm()
+        return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+
+
+def reset_password_insert(request):
+    reset_password_form = ResetPasswordForm()
+    return render(request, template_name='alfastaff-account/reset_password.html', context={'reset_password_form': reset_password_form})
 
 
 def activate_user(request, uidb64, token):

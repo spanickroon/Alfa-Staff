@@ -15,3 +15,10 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'password')
+
+
+class ResetPasswordForm(forms.ModelForm):
+    
+    class Meta:
+        model = User
+        fields = ('email', )
