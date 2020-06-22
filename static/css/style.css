@@ -139,6 +139,10 @@ table {
     box-shadow: 0px 10px 20px rgba(255,0,0, .2);
 }
 
+.button-login-register:active {
+    background-color: #780000;
+}
+
 .link-remind {
     display: inline-block;
 
@@ -266,17 +270,11 @@ table {
     background-color: rgba(0, 0, 0, 0.50);
 }
 
-.profile-container {
-    width: 966px;
-
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 180px;
-}
-
 .img-profile {
     width: 300px;
 
+    margin-left: 200px;
+    margin-top: 180px;
     border-radius: 20px 20px 20px 20px;
 }
 
@@ -328,4 +326,56 @@ table {
 
     font-size: 14pt;
     font-weight: 300;
+}
+
+.profile-button-container {
+    display: flex;
+    align-content: center;
+    justify-content: right;
+
+    width: 420px;
+
+    margin-top: 70px;
+    margin-left: auto;
+    margin-right: 200px;   
+}
+
+.button-edit-profile {
+    width: 120px;
+    height: 40px;
+
+    margin-top: 10px;
+    margin-right: 20px;
+
+    background-color: #00B4CD;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 4px 4px 4px 4px;
+
+    box-shadow: 0px 10px 20px rgba(0, 180, 205, .2);
+}
+
+.button-edit-profile:active {
+    background-color: #015C75;
+}
+
+.button-list-purchases {
+    width: 150px;
+    height: 40px;
+
+    margin-top: 10px;
+    margin-right: 20px;
+
+    background-color: #2EB837;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 4px 4px 4px 4px;
+
+    box-shadow: 0px 10px 20px rgba(46, 184, 55, .2);
+}
+
+.button-list-purchases:active {
+    background-color: #004A05;
 }
