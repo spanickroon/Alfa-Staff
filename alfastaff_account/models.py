@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = models.ImageField(null=True, blank=True)
     first_name = models.CharField(max_length=30,  blank=True, null=True)
     second_name = models.CharField(max_length=30,  blank=True, null=True)
     middle_name = models.CharField(max_length=30,  blank=True, null=True)
