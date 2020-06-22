@@ -58,6 +58,10 @@ const app = {
                 if (currentPage == "signup") {
                     document.querySelector('.active').innerHTML = render_html;
                     document.getElementById("btn-signup").addEventListener('click', signup);
+                    console.log(document.getElementById("reset"))
+                    document.querySelectorAll('.nav-link').forEach((link)=>{
+                        link.addEventListener('click', app.nav);
+                    })
                 } else if (currentPage == "reset") {
                     document.querySelector('.active').innerHTML = render_html;
                     document.getElementById("btn-reset").addEventListener('click', reset);
