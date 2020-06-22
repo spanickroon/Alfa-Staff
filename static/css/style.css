@@ -247,7 +247,7 @@ table {
 
     z-index: -1;
 
-    height: 75px;
+    height: 125px;
     
     top: 225px;
     left: 0;
@@ -262,7 +262,7 @@ table {
 
     z-index: -1;
 
-    top: 300px;
+    top: 350px;
     bottom: 0;
     left: 0;
     right: 0;
@@ -271,7 +271,7 @@ table {
 }
 
 .img-profile {
-    width: 300px;
+    width: 350px;
 
     margin-left: 200px;
     margin-top: 180px;
@@ -279,7 +279,7 @@ table {
 }
 
 .profile-info-container {
-    margin-left: 550px; 
+    margin-left: 600px; 
 }
 
 .profile-bonus-container {
