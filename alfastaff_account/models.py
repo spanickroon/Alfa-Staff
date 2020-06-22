@@ -16,7 +16,7 @@ class Profile(models.Model):
         ('Больничный', 'Больничный'),
         ('Уволен', 'Уволен')
     )
-    status = models.PositiveSmallIntegerField(choices=STATUS_CHOICES, blank=True, null=True)
+    status = models.CharField(max_length=15, choices=STATUS_CHOICES, blank=True, null=True)
 
     points = models.IntegerField(blank=True, null=True)
     position = models.CharField(max_length=50,  blank=True, null=True)
