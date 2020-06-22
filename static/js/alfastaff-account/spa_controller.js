@@ -145,7 +145,7 @@ function signup(ev) {
         })
         .then( response => {
             if (response['confirmation'] == "ok") {
-                alert("Пожалуйста, подтвердите вам email адресс для завершения регистрации.")
+                alert("Пожалуйста, подтвердите ваш email адресс для завершения регистрации.")
             } else if (response['confirmation'] == "error") {
                 document.getElementById("error_signup").innerText = "Проверьте введенный вами логин или пароль."
             } else if (response['confirmation'] == "user_found") {
