@@ -11,20 +11,20 @@ def profile(request):
 
 @login_required(login_url='login')
 def edit(request):
-    return render(request, template_name='alfastaff-bonuses/edit.html')
+    return render(request, template_name='alfastaff-bonuses/edit.html', context={'user': request.user})
 
 
 @login_required(login_url='login')
 def logout_user(request):
     logout(request)
-    return render(request, template_name='alfastaff-account/login.html')
+    return render(request, template_name='alfastaff-account/login.html', context={'user': request.user})
 
 
 @login_required(login_url='login')
 def list_purchese(request):
-    return render(request, template_name='alfastaff-bonuses/list_purchese.html')
+    return render(request, template_name='alfastaff-bonuses/list_purchese.html', context={'user': request.user})
 
 
 @login_required(login_url='login')
 def bonuses(request):
-    return render(request, template_name='alfastaff-bonuses/bonuses.html')
+    return render(request, template_name='alfastaff-bonuses/bonuses.html', context={'user': request.user})
