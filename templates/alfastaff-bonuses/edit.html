@@ -2,119 +2,135 @@
 {% load static %}
 
 {% block context %}
-<div class="back-profile-top"></div>
-<div class="back-profile-bottom"></div>
-<img class="img-edit-profile" src="/static/images/pofile_photo.png">
-<div class="change-photo">
-    <button class="button-edit-profile">Загрузить фотографию</button>
-</div>
-<div class="edit-profile">
-    <form method="POST">
-        <table>
-            <tbody>
-                <tr>
-                    <th>
-                        <label class="edit-profile-label">Фамилия</label>
-                    </th>
-                    <th>
-                        <input class="edit-profile-input" type="text">
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <label class="edit-profile-label">Имя</label>
-                    </th>
-                    <th>
-                        <input class="edit-profile-input" type="text">
-                    </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label class="edit-profile-label">Отчество</label>
-                        </th>
-                        <th>
-                            <input class="edit-profile-input" type="text">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label class="edit-profile-label">Email</label>
-                        </th>
-                        <th>
-                            <input class="edit-profile-input" type="text">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label class="edit-profile-label">Должность</label>
-                        </th>
-                        <th>
-                            <input class="edit-profile-input" type="text">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label class="edit-profile-label">Отдел</label>
-                        </th>
-                        <th>
-                            <input class="edit-profile-input" type="text">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label class="edit-profile-label">Телефон</label>
-                        </th>
-                        <th>
-                            <input class="edit-profile-input" type="text">
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                            <label class="edit-profile-label">Статус</label>
-                        </th>
-                        <th>
-                            <input class="edit-profile-input" type="text">
-                        </th>
-                    </tr>
-            </tbody>
-        </table>
-        <button class="button-edit-profile">Сохранить</button>
-    </form>
+<body class="body-profile">
+    <header class="header">
+        <span>
+            <img class="logo-img-red" src="{% static "images/alfa-logo-red.svg" %}">
+        </span>
+        <span>
+            <label class="logo-text-red">Альфа·Персонал</label>
+        </span>
+
+        <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
+        <a class="nav-panel" href="#">РАСПИСАНИЕ</a>
+        <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
+        <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
+    </header>
     
-    <form method="POST">
-        <table>
-            <tbody>
-                <tr>
-                    <th>
-                        <label class="edit-profile-label">Текущий пароль</label>
-                    </th>
-                    <th>
-                        <input class="edit-profile-input" type="password">
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <label class="edit-profile-label">Новый пароль</label>
-                    </th>
-                    <th>
-                        <input class="edit-profile-input" type="password">
-                    </th>
-                </tr>
-                <tr>
-                    <th>
-                        <label class="edit-profile-label">Повторите пароль</label>
-                    </th>
-                    <th>
-                        <input class="edit-profile-input" type="password">
-                    </th>
-                </tr>
-            </tbody>
-        </table>
-        <div style="float: right;">
-            <button class="button-edit-profile">Сменить</button>
-            <button class="button-login-register">Отмена</button>
-        </div>
+    <div class="back-profile-top"></div>
+    <div class="back-profile-bottom"></div>
+    <img class="img-edit-profile" src="/static/images/pofile_photo.png">
+    <div class="change-photo">
+        <button class="button-edit-profile">Загрузить фотографию</button>
+    </div>
+    <div class="edit-profile">
+        <form method="POST">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>
+                            <label class="edit-profile-label">Фамилия</label>
+                        </th>
+                        <th>
+                            <input class="edit-profile-input" type="text">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="edit-profile-label">Имя</label>
+                        </th>
+                        <th>
+                            <input class="edit-profile-input" type="text">
+                        </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="edit-profile-label">Отчество</label>
+                            </th>
+                            <th>
+                                <input class="edit-profile-input" type="text">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="edit-profile-label">Email</label>
+                            </th>
+                            <th>
+                                <input class="edit-profile-input" type="text">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="edit-profile-label">Должность</label>
+                            </th>
+                            <th>
+                                <input class="edit-profile-input" type="text">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="edit-profile-label">Отдел</label>
+                            </th>
+                            <th>
+                                <input class="edit-profile-input" type="text">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="edit-profile-label">Телефон</label>
+                            </th>
+                            <th>
+                                <input class="edit-profile-input" type="text">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label class="edit-profile-label">Статус</label>
+                            </th>
+                            <th>
+                                <input class="edit-profile-input" type="text">
+                            </th>
+                        </tr>
+                </tbody>
+            </table>
+            <button class="button-edit-profile">Сохранить</button>
+        </form>
         
-    </form>
-</div>
+        <form method="POST">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>
+                            <label class="edit-profile-label">Текущий пароль</label>
+                        </th>
+                        <th>
+                            <input class="edit-profile-input" type="password">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="edit-profile-label">Новый пароль</label>
+                        </th>
+                        <th>
+                            <input class="edit-profile-input" type="password">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="edit-profile-label">Повторите пароль</label>
+                        </th>
+                        <th>
+                            <input class="edit-profile-input" type="password">
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="float: right;">
+                <button class="button-edit-profile">Сменить</button>
+                <button class="button-login-register">Отмена</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
 {% endblock%}
