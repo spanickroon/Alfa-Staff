@@ -15,6 +15,7 @@ class Purchase(models.Model):
     cost = models.IntegerField(blank=True, null=True)
     date_buy = models.DateTimeField(blank=True, null=True)
     balance = models.IntegerField(blank=True, null=True)
+    
     STATUS_CHOICES = (
         (1, 'Одобрено'),
         (2, 'Отменено'),

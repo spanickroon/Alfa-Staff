@@ -20,10 +20,10 @@
                 <label class="logo-text-red">Альфа·Персонал</label>
             </span>
 
-            <a class="nav-panel" href="#">КАТАЛОГ</a>
+            <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
             <a class="nav-panel" href="#">РАСПИСАНИЕ</a>
-            <a class="nav-panel nav-admin" href="#">АДМИН ПАНЕЛЬ</a>
-            <a class="nav-panel nav-profile" href="#">ПРОФИЛЬ</a>
+            <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
+            <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
         </header>
         {% block context %}
         {% endblock %}

@@ -125,12 +125,3 @@ def activate_user(request, uidb64, token):
         return redirect('profile')
     else:
         return render(request, template_name='alfastaff-account/activate_error.html')
-
-
-def logout_user(request):
-    logout(request)
-    try:
-        del request.session['user_id']
-    except KeyError:
-        pass
-    return render(request, template_name='alfastaff-account/logout.html')
