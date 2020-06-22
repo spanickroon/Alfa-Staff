@@ -18,6 +18,21 @@ const app = {
     nav: function(ev){
         ev.preventDefault();
         let currentPage = ev.target.getAttribute('data-target');
+
+        if(document.querySelector('.active').getAttribute("id") == "login"){
+            document.getElementById("email_login").value = "";
+            document.getElementById("password").value = "";
+            document.getElementById("error_login").innerText = "";
+        } else if (document.querySelector('.active').getAttribute("id") == "signup") {
+            document.getElementById("email_signup").value = "";
+            document.getElementById("password1").value = "";
+            document.getElementById("password2").value = "";
+            document.getElementById("error_signup").innerText = "";
+        } else if (document.querySelector('.active').getAttribute("id") == "reset") {
+            document.getElementById("email_reset").value = "";
+            document.getElementById("error_reset").innerText = "";
+        }
+
         document.querySelector('.active').classList.remove('active');
         document.getElementById(currentPage).classList.add('active');
         history.pushState({}, currentPage, currentPage);
@@ -126,11 +141,11 @@ function signup(ev) {
         })
         .then( response => {
             if (response['confirmation'] == "ok") {
-                alert("Please confirm your email address to complete the registration.")
+                alert("Пожалуйста, подтвердите вам email адресс для завершения регистрации.")
             } else if (response['confirmation'] == "error") {
-                document.getElementById("error_signup").innerText = "Проверьте введенные вами данные!"
+                document.getElementById("error_signup").innerText = "Проверьте введенный вами логин или пароль."
             } else if (response['confirmation'] == "user_found") {
-                document.getElementById("error_signup").innerText = "Пользователь уже зарегистрирован!"
+                document.getElementById("error_signup").innerText = "Данный пользователь уже зарегистрирован."
             }
         })
         .catch(() => console.log('error'));
@@ -157,11 +172,11 @@ function reset(ev) {
     })
     .then( response => {
         if (response['reseting'] == "ok") {
-            alert('Please check your email address to complete the reseting password.')
+            alert('Пожайлуйста, зайдите на ваш email адресс для полученя нового пароля.')
         } else if (response['reseting'] == "error") {
-            document.getElementById("error_reset").innerText = "Проверьте введенные вами данные!"
+            document.getElementById("error_reset").innerText = "Проверьте введенный вами логин или пароль."
         } else if (response['reseting'] == "user_not_found") {
-            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенные вами данные!"
+            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенный вами логин или пароль."
         }
     })
     .catch(() => console.log('error'));
