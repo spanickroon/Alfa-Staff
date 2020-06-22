@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 
 @login_required(login_url='login')
 def profile(request):
-    return render(request, template_name='alfastaff-bonuses/profile.html')
+    return render(request, template_name='alfastaff-bonuses/profile.html', context={'user': request.user})
 
 
 @login_required(login_url='login')
