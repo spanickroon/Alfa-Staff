@@ -43,6 +43,9 @@ const app = {
                 if (currentPage == "signup") {
                     document.querySelector('.active').innerHTML = render_html;
                     document.getElementById("btn-signup").addEventListener('click', signup);
+                } else if (currentPage == "reset") {
+                    document.querySelector('.active').innerHTML = render_html;
+                    document.getElementById("btn-reset").addEventListener('click', reset);
                 }
             })
             .catch(() => console.log('error'));
@@ -126,12 +129,42 @@ function signup(ev) {
                 alert("Please confirm your email address to complete the registration.")
             } else if (response['confirmation'] == "error") {
                 document.getElementById("error_signup").innerText = "Проверьте введенные вами данные!"
+            } else if (response['confirmation'] == "user_found") {
+                document.getElementById("error_signup").innerText = "Пользователь уже зарегистрирован!"
             }
         })
         .catch(() => console.log('error'));
     } else {
         document.getElementById("error_signup").innerText = "Пароли не совпадают!"
     }
+}
+
+function reset(ev) {
+    ev.preventDefault();
+
+    fetch('reset', 
+    {
+        method: "POST",
+        body: "email=" + document.getElementById("email_reset").value,
+        headers: {"content-type": "application/x-www-form-urlencoded", "X-CSRFToken": getCookie('csrftoken') },
+    })
+    .then( response => {
+        if (response.status !== 200) {
+            
+            return Promise.reject(); 
+        }
+        return response.json()
+    })
+    .then( response => {
+        if (response['reseting'] == "ok") {
+            alert('Please check your email address to complete the reseting password.')
+        } else if (response['reseting'] == "error") {
+            document.getElementById("error_reset").innerText = "Проверьте введенные вами данные!"
+        } else if (response['reseting'] == "user_not_found") {
+            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенные вами данные!"
+        }
+    })
+    .catch(() => console.log('error'));
 }
 
 document.addEventListener('DOMContentLoaded', app.init);
