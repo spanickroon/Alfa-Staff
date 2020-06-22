@@ -44,6 +44,7 @@ table {
 .body-start {
     background-image: url(/static/images/back_login_register.png);
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .header-login-register {
@@ -51,6 +52,7 @@ table {
     align-items: center;
     justify-content: center;
     position: fixed;
+    z-index: 2;
     
     top: 0;
 
@@ -187,12 +189,15 @@ table {
 .body-profile {
     background-image: url(/static/images/back_profile.png);
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .header {
     display: flex;
     align-items: center;
     position: fixed;
+
+    z-index: 2;
     
     top: 0;
 
@@ -242,7 +247,7 @@ table {
     display: flex;
     flex-wrap: wrap;
 
-    position: absolute;
+    position: fixed;
     align-items: center;
 
     z-index: -1;
@@ -258,7 +263,7 @@ table {
 }
 
 .back-profile-bottom {
-    position: absolute;
+    position: fixed;
 
     z-index: -1;
 
@@ -378,4 +383,61 @@ table {
 
 .button-list-purchases:active {
     background-color: #004A05;
+}
+
+.edit-profile {
+    display: flex;
+    align-content: flex-start;
+    justify-content: space-between;
+
+    z-index: -1;
+
+    margin-top: 450px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 0px;
+}
+
+.img-edit-profile {
+    position: absolute;
+    
+    width: 200px;
+    z-index: 1;
+
+    top: 180px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.change-photo {
+    position: absolute;
+    
+    width: 120px;
+    z-index: 1;
+
+    top: 380px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+
+.edit-profile-label {
+    display: block;
+    color: #FFFFFF;
+
+    font-size: 16pt;
+    font-weight: 500;
+
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+.edit-profile-input {
+    margin-bottom: 20px;
+
+    font-size: 16pt;
+
+    border-radius: 10px 10px 10px 10px;
 }
