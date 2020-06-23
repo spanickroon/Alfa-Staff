@@ -11,7 +11,6 @@
 body{
     margin: 0px;
     padding: 0px;
-    height:100%
   }
 
 h1 {
@@ -239,7 +238,7 @@ table {
 }
 
 .nav-profile {
-    margin-left: 0;
+    margin-left: auto;
     margin-right: 200px;
 }
 
@@ -335,15 +334,21 @@ table {
 
 .profile-button-container {
     display: flex;
+    position: absolute;
     align-content: center;
     justify-content: right;
-
+    
     width: 420px;
 
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: 200px;   
+    top: 550px;
+    left: auto;
+    right: 200px;   
 }
+
+.input-edit-photo {
+    
+}
+
 
 .button-edit-profile {
     width: 120px;
@@ -389,39 +394,37 @@ table {
     display: flex;
     align-content: flex-start;
     justify-content: space-between;
-
     z-index: -1;
 
-    margin-top: 450px;
+    margin-top: 50px;
     margin-left: 200px;
     margin-right: 200px;
     margin-bottom: 0px;
 }
 
 .img-edit-profile {
-    position: absolute;
-    
     width: 200px;
-    z-index: 1;
+    z-index: -1;
+    display: block;
 
-    top: 180px;
     left: 0;
     right: 0;
     margin: auto;
+}
+
+.edit-profile-container {
+    width: 100%;
+    margin-top: 200px;
 }
 
 .change-photo {
-    position: absolute;
-    
     width: 120px;
-    z-index: 1;
+    z-index: -1;
 
-    top: 380px;
     left: 0;
     right: 0;
     margin: auto;
 }
-
 
 .edit-profile-label {
     display: block;
@@ -439,5 +442,11 @@ table {
 
     font-size: 16pt;
 
-    border-radius: 10px 10px 10px 10px;
+    color: #FFFFFF;
+    background-color: transparent;
+    
+    border-color: #C0C0C0;
+
+    border-radius: 4px 4px 4px 4px;
+    border-width: 2px;
 }
