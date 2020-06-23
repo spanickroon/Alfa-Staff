@@ -13,7 +13,7 @@
 
         <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
         <a class="nav-panel" href="#">РАСПИСАНИЕ</a>
-        {% if user.pprofile.role == 1 %}
+        {% if user.profile.role == 1 %}
             <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
         {% endif %}
         <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
@@ -28,7 +28,8 @@
         </div>
     </div>
     <div class="edit-profile">
-        <form method="POST">
+        <form method="POST" action="{% url 'edit_profile' %}">
+            {% csrf_token %}
             <table>
                 <tbody>
                     <tr>
@@ -93,23 +94,16 @@
             <button class="button-login-register">Отмена</button>
         </form>
         
-        <form method="POST">
+        <form method="POST" action="{% url 'edit_password' %}">
+            {% csrf_token %}
             <table>
                 <tbody>
-                    <tr>
-                        <th align="left">
-                            <label class="edit-profile-label">Текущий пароль:</label>
-                        </th>
-                        <th align="left">
-                            <input class="edit-profile-input" type="password">
-                        </th>
-                    </tr>
                     <tr>
                         <th align="left">
                             <label class="edit-profile-label">Новый пароль:</label>
                         </th>
                         <th>
-                            <input class="edit-profile-input" type="password">
+                            <input class="edit-profile-input" type="password" name="password1" id="password1">
                         </th align="left">
                     </tr>
                     <tr>
@@ -117,15 +111,17 @@
                             <label class="edit-profile-label">Повторите пароль:</label>
                         </th>
                         <th align="left">
-                            <input class="edit-profile-input" type="password">
+                            <input class="edit-profile-input" type="password" name="password2" id="password2">
                         </th>
                     </tr>
                 </tbody>
             </table>
+            {% if error %}
+                <div><p>Проверьте введенный вами пароль.</p></div>
+            {% endif %}
             <div>
                 <button class="button-edit-profile">Сменить</button>
             </div>
-            
         </form>
     </div>
 </body>
