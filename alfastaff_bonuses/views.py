@@ -41,7 +41,25 @@ def edit_password(request):
 @login_required(login_url='login')
 def edit_profile(request):
     if request.method == "POST":
-        return render(request, template_name='alfastaff-bonuses/edit.html', context={'user': request.user})
+        profile_change_form = ProfileChangeForm(request.POST, request.FILES)
+        if profile_change_form.is_valid():
+            user = User.objects.get(email=request.user.email)
+            user.email = profile_change_form.cleaned_data.get('email')
+            user.profile.avatar = profile_change_form.cleaned_data.get('avatar')
+            user.profile.first_name = profile_change_form.cleaned_data.get('first_name')
+            user.profile.second_name = profile_change_form.cleaned_data.get('second_name')
+            user.profile.middle_name = profile_change_form.cleaned_data.get('middle_name')
+            user.profile.number_phone = profile_change_form.cleaned_data.get('number_phone')
+            user.profile.position = profile_change_form.cleaned_data.get('position')
+            user.profile.department = profile_change_form.cleaned_data.get('department')
+            user.profile.save()
+            user.save()
+            login(request, user)
+            return redirect(to="edit")
+        else:
+            return render(request, template_name='alfastaff-bonuses/edit.html', context={'user': request.user, 'error': True})
+    else:
+        return redirect(to="edit")
 
 
 @login_required(login_url='login')

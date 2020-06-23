@@ -12,7 +12,8 @@ class PasswordChangeForm(UserCreationForm):
 
 
 class ProfileChangeForm(forms.ModelForm):
+    email = forms.EmailField()
     
     class Meta:
         model = Profile
-        fields = ('avatar', 'first_name', 'second_name', 'middle_name', 'number_phone', 'position', 'department',)
+        fields = ('avatar', 'email', 'first_name', 'second_name', 'middle_name', 'number_phone', 'position', 'department',)

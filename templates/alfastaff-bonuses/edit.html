@@ -22,14 +22,14 @@
     <div class="back-profile-top"></div>
     <div class="back-profile-bottom"></div>
     <div class="edit-profile">
-        <form method="POST" action="{% url 'edit_profile' %}">
+        <form method="POST" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="edit-profile-container">
-                <img class="img-edit-profile" src="/static/images/pofile_photo.png">
+                <img class="img-edit-profile" src="{{ user.profile.avatar.url }}">
                 <div class="change-photo">
                     <div class="input-edit-photo">
                         <label>
-                            <input style="display: none;" type="file" name="file">
+                            <input style="display: none;" type="file" name="avatar">
                             Загрузить фотографию
                         </label>
                     </div>
@@ -43,7 +43,7 @@
                             <label class="edit-profile-label">Фамилия:</label>
                         </th>
                         <th align="left">
-                            <input class="edit-profile-input" type="text">
+                            <input class="edit-profile-input" type="text" name="second_name" value="{{ user.profile.second_name }}">
                         </th>
                     </tr>
                     <tr>
@@ -51,7 +51,7 @@
                             <label class="edit-profile-label">Имя:</label>
                         </th>
                         <th align="left">
-                            <input class="edit-profile-input" type="text">
+                            <input class="edit-profile-input" type="text" name="first_name" value="{{ user.profile.first_name }}">
                         </th>
                         </tr>
                         <tr>
@@ -59,7 +59,7 @@
                                 <label class="edit-profile-label">Отчество:</label>
                             </th>
                             <th>
-                                <input class="edit-profile-input" type="text">
+                                <input class="edit-profile-input" type="text" name="middle_name" value="{{ user.profile.middle_name }}">
                             </th>
                         </tr>
                         <tr>
@@ -67,7 +67,7 @@
                                 <label class="edit-profile-label">Email:</label>
                             </th>
                             <th align="left">
-                                <input class="edit-profile-input" type="text">
+                                <input class="edit-profile-input" type="text" name="email" value="{{ user.email }}">
                             </th>
                         </tr>
                         <tr>
@@ -75,7 +75,7 @@
                                 <label class="edit-profile-label">Должность:</label>
                             </th>
                             <th align="left">
-                                <input class="edit-profile-input" type="text">
+                                <input class="edit-profile-input" type="text" name="position" value="{{ user.profile.position }}">
                             </th>
                         </tr>
                         <tr>
@@ -83,7 +83,7 @@
                                 <label class="edit-profile-label">Отдел:</label>
                             </th>
                             <th align="left">
-                                <input class="edit-profile-input" type="text">
+                                <input class="edit-profile-input" type="text" name="department" value="{{ user.profile.department }}">
                             </th>
                         </tr>
                         <tr>
@@ -91,7 +91,7 @@
                                 <label class="edit-profile-label">Телефон:</label>
                             </th>
                             <th align="left">
-                                <input class="edit-profile-input" type="text">
+                                <input class="edit-profile-input" type="text" name="number_phone" value="{{ user.profile.number_phone }}">
                             </th>
                         </tr>
                 </tbody>
