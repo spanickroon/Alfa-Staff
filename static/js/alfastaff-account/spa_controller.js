@@ -98,6 +98,22 @@ function getCookie(name) {
     return cookieValue;
 }
 
+function sendNotification(title, options) {
+    if (!("Notification" in window)) {
+        alert('Ваш браузер не поддерживает HTML Notifications, его необходимо обновить.');
+    } else if (Notification.permission === "granted") {
+        var notification = new Notification(title, options);
+    } else if (Notification.permission !== 'denied') {
+        Notification.requestPermission(function (permission) {
+            if (permission === "granted") {
+                var notification = new Notification(title, options); 
+            }
+        });
+    } else {
+        // Пользователь ранее отклонил наш запрос на показ уведомлений
+    }
+}
+
 function login(ev) {
     ev.preventDefault();
 
@@ -145,7 +161,10 @@ function signup(ev) {
         })
         .then( response => {
             if (response['confirmation'] == "ok") {
-                alert("Пожалуйста, подтвердите ваш email адресс для завершения регистрации.")
+                sendNotification('Регистрация', {
+                    body: 'Пожалуйста, подтвердите ваш email адресс для завершения регистрации.',
+                    dir: 'auto'
+                });
             } else if (response['confirmation'] == "error") {
                 document.getElementById("error_signup").innerText = "Проверьте введенный вами логин или пароль."
             } else if (response['confirmation'] == "user_found") {
@@ -176,7 +195,10 @@ function reset(ev) {
     })
     .then( response => {
         if (response['reseting'] == "ok") {
-            alert('Пожайлуйста, зайдите на ваш email адресс для полученя нового пароля.')
+            sendNotification('Восстановление пароля', {
+                body: 'Пожайлуйста, зайдите на ваш email адресс для полученя нового пароля.',
+                dir: 'auto'
+            });
         } else if (response['reseting'] == "error") {
             document.getElementById("error_reset").innerText = "Проверьте введенный вами логин или пароль."
         } else if (response['reseting'] == "user_not_found") {
