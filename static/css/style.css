@@ -8,7 +8,7 @@
     outline: none;
 }
 
-body{
+body {
     margin: 0px;
     padding: 0px;
   }
@@ -486,4 +486,11 @@ table {
 
 .button-exit-edit:active {
     background-color: #780000;
+}
+
+.error-msg {
+    color: #F03226;
+
+    font-size: 16pt;
+    font-weight: bold;
 }
