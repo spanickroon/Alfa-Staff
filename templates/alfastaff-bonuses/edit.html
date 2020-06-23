@@ -21,15 +21,15 @@
     
     <div class="back-profile-top"></div>
     <div class="back-profile-bottom"></div>
-    <div class="edit-profile-container">
-        <img class="img-edit-profile" src="/static/images/pofile_photo.png">
-        <div class="change-photo">
-            <input class="input-edit-photo" type="file" name="file" accept="image/*">
-        </div>
-    </div>
     <div class="edit-profile">
         <form method="POST" action="{% url 'edit_profile' %}">
             {% csrf_token %}
+            <div class="edit-profile-container">
+                <img class="img-edit-profile" src="/static/images/pofile_photo.png">
+                <div class="change-photo">
+                    <input class="input-edit-photo" type="file" name="file" accept="image/*">
+                </div>
+            </div>
             <table>
                 <tbody>
                     <tr>
@@ -91,12 +91,13 @@
                 </tbody>
             </table>
             <button class="button-edit-profile">Сохранить</button>
-            <button class="button-login-register">Отмена</button>
         </form>
-        
+
         <form method="POST" action="{% url 'edit_password' %}">
             {% csrf_token %}
             <table>
+                <div class="emty-container">
+                </div>
                 <tbody>
                     <tr>
                         <th align="left">
@@ -124,5 +125,7 @@
             </div>
         </form>
     </div>
+    <a href="{% url 'profile' %}"><button class="button-exit-edit">Отмена</button>
+    
 </body>
 {% endblock%}

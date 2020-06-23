@@ -392,11 +392,11 @@ table {
 
 .edit-profile {
     display: flex;
-    align-content: flex-start;
+    align-content: center;
     justify-content: space-between;
     z-index: -1;
 
-    margin-top: 50px;
+    margin-top: 200px;
     margin-left: 200px;
     margin-right: 200px;
     margin-bottom: 0px;
@@ -413,8 +413,7 @@ table {
 }
 
 .edit-profile-container {
-    width: 100%;
-    margin-top: 200px;
+    margin-bottom: 40px;
 }
 
 .change-photo {
@@ -449,4 +448,28 @@ table {
 
     border-radius: 4px 4px 4px 4px;
     border-width: 2px;
+}
+
+.emty-container {
+    height: 240px;
+}
+
+.button-exit-edit {
+    width: 120px;
+    height: 40px;
+
+    margin-left: 200px;
+    margin-top: 10px;
+
+    background-color: #F03226;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 4px 4px 4px 4px;
+
+    box-shadow: 0px 10px 20px rgba(255,0,0, .2);
+}
+
+.button-exit-edit:active {
+    background-color: #780000;
 }
