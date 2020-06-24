@@ -114,7 +114,7 @@
                         </th>
                         <th>
                             <div class="password">
-                                <input class="edit-profile-input" placeholder="Пароль" type="password" name="password1" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
+                                <input class="edit-profile-input" placeholder="Пароль" maxlength="30" type="password" name="password1" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
                                 <a href="#" class="password-control" onclick="return show_hide_password1(this);"></a>
                             </div>
                         </th align="left">
@@ -125,8 +125,8 @@
                         </th>
                         <th align="left">
                             <div class="password">
-                                <input class="edit-profile-input" placeholder="Повторите пароль" type="password" name="password2" id="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
-                                <a href="#" class="password-control" onclick="return show_hide_password2(this);"></a>
+                                <input class="edit-profile-input" placeholder="Повторите пароль" maxlength="30" type="password" name="password2" id="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
+                                <a href="#" class="password-control" onclick="return show_hide_password1(this);"></a>
                             </div>
                         </th>
                     </tr>

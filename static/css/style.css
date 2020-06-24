@@ -119,10 +119,13 @@ table {
 
     border-radius: 4px 4px 4px 4px;
     border-width: 2px;
+    
+    font-size: 16pt;
 }
 
 .input-login::placeholder {
     color: #C0C0C0;
+    font-size: 12pt;
 }
 
 .button-login-register {
@@ -472,7 +475,9 @@ table {
 
 .edit-profile-input {
     margin-bottom: 20px;
+    height: 30px;
 
+    margin-top: 10px;
     font-size: 16pt;
 
     color: #FFFFFF;
@@ -483,6 +488,12 @@ table {
     border-radius: 4px 4px 4px 4px;
     border-width: 2px;
 }
+
+.edit-profile-input::placeholder {
+    font-size: 12pt;
+    color: #C0C0C0;
+}
+
 
 .emty-container {
     height: 285px;
@@ -522,7 +533,7 @@ table {
 .password-control {
     position: absolute;
     
-    top: 6px;
+    top: 18px;
     margin: auto;
 	right: 6px;
 
@@ -537,4 +548,10 @@ table {
 
 .password-control.view {
 	background: url(/static/images/site/no-view-white.svg) 0 0 no-repeat;
+}
+
+.body-bonuses {
+    background-image: url(/static/images/site/back_login_register.png);
+    background-size: cover;
+    background-attachment: fixed;
 }
