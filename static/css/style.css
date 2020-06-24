@@ -549,3 +549,9 @@ table {
 .password-control.view {
 	background: url(/static/images/site/no-view-white.svg) 0 0 no-repeat;
 }
+
+.body-bonuses {
+    background-image: url(/static/images/site/back_login_register.png);
+    background-size: cover;
+    background-attachment: fixed;
+}

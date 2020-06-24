@@ -21,7 +21,7 @@ const app = {
 
         if(document.querySelector('.active').getAttribute("id") == "login"){
             document.getElementById("email_login").value = "";
-            document.getElementById("password1").value = "";
+            document.getElementById("password").value = "";
             document.getElementById("error_login").innerText = "";
         } else if (document.querySelector('.active').getAttribute("id") == "signup") {
             document.getElementById("email_signup").value = "";

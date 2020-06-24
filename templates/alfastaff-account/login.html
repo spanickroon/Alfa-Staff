@@ -7,8 +7,8 @@
         <input class="input-login" placeholder="Email" type="email" autofocus="true" name="email" id="email_login" title="Должен иметь вид user@example.com">
     </div>
     <div class="password">
-        <input class="input-login" placeholder="Пароль" maxlength="30" type="password" name="password1" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
-        <a href="#" class="password-control" onclick="return show_hide_password1(this);"></a>
+        <input class="input-login" placeholder="Пароль" maxlength="30" type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
+        <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
     </div>
     <div class="error-msg"><p id="error_login"></p></div>
     <a class="link-remind nav-link" data-target="reset" href="#">Забыли логин или пароль</a>
