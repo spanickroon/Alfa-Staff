@@ -45,7 +45,8 @@ def edit_profile(request):
         if profile_change_form.is_valid():
             user = User.objects.get(email=request.user.email)
             user.email = profile_change_form.cleaned_data.get('email')
-            user.profile.avatar = profile_change_form.cleaned_data.get('avatar')
+            if profile_change_form.cleaned_data.get('avatar') != "anon_user.png":  #kozinak ne trogai its perfect move 300iq
+                user.profile.avatar = profile_change_form.cleaned_data.get('avatar')
             user.profile.first_name = profile_change_form.cleaned_data.get('first_name')
             user.profile.second_name = profile_change_form.cleaned_data.get('second_name')
             user.profile.middle_name = profile_change_form.cleaned_data.get('middle_name')
