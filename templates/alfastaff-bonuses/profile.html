@@ -68,7 +68,10 @@
     </div>
 </div>
 
-<img class="img-profile" src="{{ user.profile.avatar.url }}">
+<div class="img-profile">
+    <img src="{{ user.profile.avatar.url }}">
+</div>
+
 <div class="profile-button-container">
     <a href="{% url 'list_purchese' %}"><button class="button-list-purchases">Список покупок</button></a>
     <a href="{% url 'edit' %}"><button class="button-edit-profile">Редактировать</button></a>

@@ -25,7 +25,10 @@
         <form method="POST" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="edit-profile-container">
-                <img class="img-edit-profile" src="{{ user.profile.avatar.url }}">
+                <div class="img-edit-profile">
+                    <img  src="{{ user.profile.avatar.url }}">
+                </div>
+                
                 <div class="change-photo">
                     <div class="input-edit-photo">
                         <label>

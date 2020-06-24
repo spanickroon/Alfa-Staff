@@ -273,10 +273,21 @@ table {
 
 .img-profile {
     height: 300px;
+    width: 300px;
 
     margin-left: 200px;
     margin-top: 180px;
     border-radius: 20px 20px 20px 20px;
+
+    overflow: hidden;
+}
+
+.img-profile img {
+    height: 100%;
+    width: 100%;
+
+    object-fit: cover;
+    object-position: 0 0;
 }
 
 .profile-info-container {
@@ -415,12 +426,24 @@ table {
 
 .img-edit-profile {
     height: 200px;
+    width: 200px;
+
     z-index: -1;
     display: block;
 
     left: 0;
     right: 0;
     margin: auto;
+
+    overflow:hidden;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.img-edit-profile img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 0 0;
 }
 
 .edit-profile-container {
