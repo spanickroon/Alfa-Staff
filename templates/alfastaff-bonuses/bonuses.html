@@ -18,6 +18,35 @@
         {% endif %}
         <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
     </header>
+    <button class="sorting-button"> Сортировать по цене </button>
+    <div class="bonuses-container">
+        {% for i in '01234567'|make_list %}
+        <article class="product-article">
+            <div class="img-product">
+                <img src="{% static "images/site/test_product.png" %}">
+            </div>
+            <div class="name-product">
+                <label>Кружка</label>
+            </div>
+            <div class="cost-product">
+                <label>200 бонусов</label>
+            </div>
+            <button class="button-product-buy">Купить</button>
+        </article>
+        {% endfor %}
+    </div>
+    <div class="clip-products-container">
+        <button class="clip-button">
+            <label><<</label>
+        </button>
+        {% for i in '12345'|make_list %}
+        <button class="clip-button">
+            <label>{{i}}</label>
+        </button>
+        {% endfor %}
+        <button class="clip-button">
+            <label>>></label>
+        </button>
+    </div>
 </body>
-<div>Bonuses</div>
 {% endblock%}
