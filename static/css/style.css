@@ -523,7 +523,7 @@ table {
     color: #F03226;
 
     font-size: 16pt;
-    font-weight: bold;
+    font-weight: 300;
 }
 
 .password {
@@ -551,7 +551,19 @@ table {
 }
 
 .body-bonuses {
-    background-image: url(/static/images/site/back_login_register.png);
+    background-image: url(/static/images/site/back_bonuses.png);
     background-size: cover;
     background-attachment: fixed;
+}
+
+.bonuses-container {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+
+    top: 50px;
+    left: 200px;
+    right: 200px;
+
+    background-color: #C0C0C0;
 }
