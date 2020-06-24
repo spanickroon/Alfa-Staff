@@ -18,7 +18,7 @@ The site supported desktop devices.
 
 The template was made in Figma.
 
-![](https://github.com/spanickroon/Alfa-Bank-Bonus-Systen-and-Schedules/blob/master/static/images/web_site/figma_template_screen.png)
+![](https://github.com/spanickroon/Alfa-Bank-Bonus-Systen-and-Schedules/blob/dev/static/images/web_site/figma_template_screen.png)
 
 [LINK](https://www.figma.com/file/IHWD0zS96WtSgZCdzuT4kn/Alfastaff?node-id=0%3A1) on template
 
