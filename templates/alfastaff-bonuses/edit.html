@@ -5,7 +5,7 @@
 <body class="body-profile">
     <header class="header">
         <span>
-            <img class="logo-img-red" src="{% static "images/alfa-logo-red.svg" %}">
+            <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
         </span>
         <span>
             <label class="logo-text-red">Альфа·Персонал</label>
@@ -113,7 +113,10 @@
                             <label class="edit-profile-label">Новый пароль:</label>
                         </th>
                         <th>
-                            <input class="edit-profile-input" type="password" name="password1" id="password1">
+                            <div class="password">
+                                <input class="edit-profile-input" placeholder="Пароль" type="password" name="password1" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
+                                <a href="#" class="password-control" onclick="return show_hide_password1(this);"></a>
+                            </div>
                         </th align="left">
                     </tr>
                     <tr>
@@ -121,7 +124,10 @@
                             <label class="edit-profile-label">Повторите пароль:</label>
                         </th>
                         <th align="left">
-                            <input class="edit-profile-input" type="password" name="password2" id="password2">
+                            <div class="password">
+                                <input class="edit-profile-input" placeholder="Повторите пароль" type="password" name="password2" id="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
+                                <a href="#" class="password-control" onclick="return show_hide_password1(this);"></a>
+                            </div>
                         </th>
                     </tr>
                 </tbody>

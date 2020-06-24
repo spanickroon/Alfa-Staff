@@ -41,7 +41,7 @@ table {
 }
 
 .body-start {
-    background-image: url(/static/images/back_login_register.png);
+    background-image: url(/static/images/site/back_login_register.png);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -183,7 +183,7 @@ table {
 }
 
 .body-profile {
-    background-image: url(/static/images/back_profile.png);
+    background-image: url(/static/images/site/back_profile.png);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -513,4 +513,28 @@ table {
 
     font-size: 16pt;
     font-weight: bold;
+}
+
+.password {
+	position: relative;
+}
+
+.password-control {
+    position: absolute;
+    
+    top: 6px;
+    margin: auto;
+	right: 6px;
+
+    display: inline-block;
+    
+	width: 20px;
+	height: 20px;
+
+    fill: #FFFFFF;
+	background: url(/static/images/site/view-white.svg) 0 0 no-repeat;
+}
+
+.password-control.view {
+	background: url(/static/images/site/no-view-white.svg) 0 0 no-repeat;
 }
