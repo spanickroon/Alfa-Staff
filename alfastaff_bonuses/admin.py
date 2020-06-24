@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import BonusCard, Purchase
 
-# Register your models here.
+
+admin.site.register(BonusCard)
+admin.site.register(Purchase)

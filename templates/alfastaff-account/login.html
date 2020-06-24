@@ -4,13 +4,15 @@
 <form method="POST">
     {% csrf_token %}
     <div>
-        <input class="input-login" placeholder="Email" type="email" autofocus="true" name="email" id="email_login">
+        <input class="input-login" placeholder="Email" type="email" autofocus="true" name="email" id="email_login" title="Должен иметь вид user@example.com">
     </div>
     <div>
-        <input class="input-login" placeholder="Пароль" type="password" name="password" id="password">
+        <input class="input-login" placeholder="Пароль" type="password" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
     </div>
-    <a class="link-remind" href="#">Забыли логин или пароль</a>
+    <div class="error-msg"><p id="error_login"></p></div>
+    <a class="link-remind nav-link" data-target="reset" href="#">Забыли логин или пароль</a>
     <br>
     <button class="button-login-register" id="btn-login">Войти</button>
+    
 </form>
 {% endblock%}
