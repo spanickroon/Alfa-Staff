@@ -5,7 +5,7 @@ from alfastaff_account.models import Profile
 
 
 class PasswordChangeForm(UserCreationForm):
-    
+
     class Meta:
         model = User
         fields = ('password1', 'password2')
@@ -13,7 +13,9 @@ class PasswordChangeForm(UserCreationForm):
 
 class ProfileChangeForm(forms.ModelForm):
     email = forms.EmailField()
-    
+
     class Meta:
         model = Profile
-        fields = ('avatar', 'email', 'first_name', 'second_name', 'middle_name', 'number_phone', 'position', 'department',)
+        fields = (
+            'avatar', 'email', 'first_name', 'second_name', 'middle_name',
+            'number_phone', 'position', 'department',)

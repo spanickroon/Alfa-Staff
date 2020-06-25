@@ -33,7 +33,9 @@ def login_user(request):
         if request.user.is_authenticated:
             return redirect(to='profile')
         login_form = LoginForm()
-        return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+        return render(
+            request, template_name='alfastaff-account/login.html',
+            context={'login_form': login_form})
 
 
 def signup_user(request):
@@ -72,12 +74,16 @@ def signup_user(request):
             return JsonResponse({"confirmation": "error"})
     else:
         login_form = LoginForm()
-        return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+        return render(
+            request, template_name='alfastaff-account/login.html',
+            context={'login_form': login_form})
 
 
 def signup_user_insert(request):
     signup_form = SignupForm()
-    return render(request, template_name='alfastaff-account/signup.html', context={'signup_form': signup_form})
+    return render(
+        request, template_name='alfastaff-account/signup.html',
+        context={'signup_form': signup_form})
 
 
 def reset_password(request):
@@ -106,12 +112,16 @@ def reset_password(request):
             return JsonResponse({"reseting": "error"})
     else:
         login_form = LoginForm()
-        return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
+        return render(
+            request, template_name='alfastaff-account/login.html',
+            context={'login_form': login_form})
 
 
 def reset_password_insert(request):
     reset_password_form = ResetPasswordForm()
-    return render(request, template_name='alfastaff-account/reset_password.html', context={'reset_password_form': reset_password_form})
+    return render(
+        request, template_name='alfastaff-account/reset_password.html',
+        context={'reset_password_form': reset_password_form})
 
 
 def activate_user(request, uidb64, token):
@@ -126,4 +136,5 @@ def activate_user(request, uidb64, token):
         login(request, user)
         return redirect('profile')
     else:
-        return render(request, template_name='alfastaff-account/activate_error.html')
+        return render(
+            request, template_name='alfastaff-account/activate_error.html')

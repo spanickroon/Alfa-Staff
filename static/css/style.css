@@ -46,6 +46,30 @@ table {
     background-attachment: fixed;
 }
 
+.body-profile {
+    background-image: url(/static/images/site/back_profile.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.body-bonuses {
+    background-image: url(/static/images/site/back_bonuses.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.body-list-purchases {
+    background-image: url(/static/images/site/back_list_purcheses.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.body-shedule {
+    background-image: url(/static/images/site/back_shedule.png);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .header-login-register {
     display: flex;
     align-items: center;
@@ -183,12 +207,6 @@ table {
 
 .nav-link-active {
     background-color: rgba(192, 192, 192, 0.3);
-}
-
-.body-profile {
-    background-image: url(/static/images/site/back_profile.png);
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 .header {
@@ -550,12 +568,6 @@ table {
 	background: url(/static/images/site/no-view-white.svg) 0 0 no-repeat;
 }
 
-.body-bonuses {
-    background-image: url(/static/images/site/back_bonuses.png);
-    background-size: cover;
-    background-attachment: fixed;
-}
-
 .bonuses-container {
     display: flex;
     justify-content: space-between;
@@ -815,9 +827,13 @@ table {
 .development-page-info {
     display: block;
 
-    margin: auto;
+    margin-top: 300px;
+    margin-left: 200px;
+    margin-right: 200px;
 
-    font-size: 20pt;
+    text-align: center;
+
+    font-size: 50pt;
 
     color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.15);

@@ -18,7 +18,7 @@ class LoginForm(forms.ModelForm):
 
 
 class ResetPasswordForm(forms.ModelForm):
-    
+
     class Meta:
         model = User
         fields = ('email', )

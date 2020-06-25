@@ -4,7 +4,9 @@ from .models import Profile
 
 @admin.register(Profile)
 class AuthorAdmin(admin.ModelAdmin):
-    list_filter = ('first_name', 'second_name', 'middle_name', 'status', 'points', 'role',)
+    list_filter = (
+        'first_name', 'second_name', 'middle_name',
+        'status', 'points', 'role',)
 
     class Meta:
         app_label = 'Аккаунт'

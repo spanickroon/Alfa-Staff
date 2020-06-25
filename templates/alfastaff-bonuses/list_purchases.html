@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block context %}
-<body class="body-profile">
+<body class="body-list-purchases">
     <header class="header">
         <span>
             <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
@@ -18,6 +18,8 @@
         {% endif %}
         <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
     </header>
+    <div class="development-page-info">
+        <label>Страница в разработке</label>
+    </div>
 </body>
-<div>Purcheses</div>
 {% endblock%}

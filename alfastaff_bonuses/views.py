@@ -11,13 +11,17 @@ from .forms import PasswordChangeForm, ProfileChangeForm
 
 @login_required(login_url='login')
 def profile(request):
-    return render(request, template_name='alfastaff-bonuses/profile.html', context={'user': request.user})
+    return render(
+        request, template_name='alfastaff-bonuses/profile.html',
+        context={'user': request.user})
 
 
 @login_required(login_url='login')
 def edit(request):
     if request.method == "GET":
-        return render(request, template_name='alfastaff-bonuses/edit.html', context={'user': request.user})
+        return render(
+            request, template_name='alfastaff-bonuses/edit.html',
+            context={'user': request.user})
 
 
 @login_required(login_url='login')
@@ -28,14 +32,20 @@ def edit_password(request):
             user = User.objects.get(email=request.user.email)
             password1 = password_change_form.cleaned_data.get("password1")
             password2 = password_change_form.cleaned_data.get("password2")
+
             if password1 and password2 and password1 != password2:
-                return render(request, template_name='alfastaff-bonuses/edit.html', context={'user': request.user, 'error': True})
+                return render(
+                    request, template_name='alfastaff-bonuses/edit.html',
+                    context={'user': request.user, 'error': True})
+
             user.password = make_password(password2)
             user.save()
             login(request, user)
             return redirect(to="edit")
         else:
-            return render(request, template_name='alfastaff-bonuses/edit.html', context={'user': request.user, 'error': True})
+            return render(
+                request, template_name='alfastaff-bonuses/edit.html',
+                context={'user': request.user, 'error': True})
     else:
         return redirect(to="edit")
 
@@ -47,8 +57,10 @@ def edit_profile(request):
         if profile_change_form.is_valid():
             user = User.objects.get(email=request.user.email)
             user.email = profile_change_form.cleaned_data.get('email')
-            if profile_change_form.cleaned_data.get('avatar') != "anon_user.png":  #kozinak ne trogai its perfect move 300iq
+
+            if profile_change_form.cleaned_data.get('avatar') != "anon_user.png":
                 user.profile.avatar = profile_change_form.cleaned_data.get('avatar')
+
             user.profile.first_name = profile_change_form.cleaned_data.get('first_name')
             user.profile.second_name = profile_change_form.cleaned_data.get('second_name')
             user.profile.middle_name = profile_change_form.cleaned_data.get('middle_name')
@@ -56,11 +68,14 @@ def edit_profile(request):
             user.profile.position = profile_change_form.cleaned_data.get('position')
             user.profile.department = profile_change_form.cleaned_data.get('department')
             user.profile.save()
+
             user.save()
             login(request, user)
             return redirect(to="edit")
         else:
-            return render(request, template_name='alfastaff-bonuses/edit.html', context={'user': request.user, 'error': True})
+            return render(
+                request, template_name='alfastaff-bonuses/edit.html',
+                context={'user': request.user, 'error': True})
     else:
         return redirect(to="edit")
 
@@ -68,12 +83,16 @@ def edit_profile(request):
 @login_required(login_url='login')
 def logout_user(request):
     logout(request)
-    return render(request, template_name='alfastaff-account/login.html', context={'user': request.user})
+    return render(
+        request, template_name='alfastaff-account/login.html',
+        context={'user': request.user})
 
 
 @login_required(login_url='login')
-def list_purchese(request):
-    return render(request, template_name='alfastaff-bonuses/list_purchese.html', context={'user': request.user})
+def list_purchases(request):
+    return render(
+        request, template_name='alfastaff-bonuses/list_purchases.html',
+        context={'user': request.user})
 
 
 @login_required(login_url='login')
@@ -81,8 +100,10 @@ def bonuses(request):
     if request.method == "GET":
         count_page = len(BonusCard.objects.all()) / 8
         if count_page > int(count_page):
-            count_page = "".join(map(str ,list(range(1, int(count_page) + 2))))
-        return render(request, template_name='alfastaff-bonuses/catalog.html', context={'user': request.user, 'count_page': count_page})
+            count_page = "".join(map(str, list(range(1, int(count_page) + 2))))
+        return render(
+            request, template_name='alfastaff-bonuses/catalog.html',
+            context={'user': request.user, 'count_page': count_page})
 
 
 @login_required(login_url='login')
@@ -94,13 +115,15 @@ def bonuses_page(request, page=1, sort='sort_alphabet'):
             bonuses = BonusCard.objects.all()
 
         if (page * 8) - 8 >= len(bonuses):
-            bonuses = bonuses[(len(bonuses) //  8) * 8:len(bonuses)]
+            bonuses = bonuses[(len(bonuses) // 8) * 8:len(bonuses)]
         else:
             if len(bonuses) > 8 and len(bonuses) % 8 == 0:
                 bonuses = bonuses[(8 * page) - 8:(8 * page)]
-            elif len(bonuses) > 8 and len(bonuses)  % 8 != 0:
+            elif len(bonuses) > 8 and len(bonuses) % 8 != 0:
                 if (8 * page) < len(bonuses):
                     bonuses = bonuses[(8 * page) - 8:(8 * page)]
                 else:
                     bonuses = bonuses[(8 * page) - 8:len(bonuses)]
-        return render(request, template_name='alfastaff-bonuses/list_bonuses.html', context={'bonuses': bonuses})
+        return render(
+            request, template_name='alfastaff-bonuses/list_bonuses.html',
+            context={'bonuses': bonuses})

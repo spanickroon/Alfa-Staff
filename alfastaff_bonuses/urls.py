@@ -13,7 +13,7 @@ urlpatterns = [
     path('edit', edit, name='edit'),
     path('edit_profile', edit_profile, name='edit_profile'),
     path('edit_password', edit_password, name='edit_password'),
-    path('list_purchese', list_purchese, name='list_purchese'),
+    path('list_purchases', list_purchases, name='list_purchases'),
     path('bonuses', bonuses, name='bonuses'),
     path('bonuses/<int:page>/<str:sort>', bonuses_page, name='bonuses_page'),
 ]

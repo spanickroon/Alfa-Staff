@@ -11,7 +11,7 @@
         </title>
         <link rel="stylesheet" href="{% static "css/style.css" %}">
     </head>
-    <body class="body-profile">
+    <body class="body-shedule">
         <header class="header">
             <span>
                 <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
@@ -27,7 +27,9 @@
             {% endif %}
             <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
         </header>
+    <div class="development-page-info">
+        <label>Страница в разработке</label>
+    </div>
     </body>
-    <div>Timetable</div>
     <script src="{% static "js/alfastaff-bonuses/visual_effects.js" %}"></script>
 </html>
