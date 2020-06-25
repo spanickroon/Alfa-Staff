@@ -26,7 +26,7 @@ The template was made in Figma.
 
 ## Technology
 
-Programming language: Python v3.7.5, JavaScript, HTML5, CSS3
+Programming language: Python v3.8.1, JavaScript, HTML5, CSS3
 
 Framework: Django v3
 
@@ -43,6 +43,6 @@ The site was deployed on a free Heroku host
 ## More...
 
 ### Developers:
-[Nikita Koznev](https://www.figma.com/file/IHWD0zS96WtSgZCdzuT4kn/Alfastaff?node-id=0%3A1)
+[Nikita Koznev](https://www.linkedin.com/in/spanickroon/)
 
-[Vlad Bubeniuk](https://www.figma.com/file/IHWD0zS96WtSgZCdzuT4kn/Alfastaff?node-id=0%3A1) 
+[Vlad Bubeniuk](https://www.linkedin.com/in/vlad-bubeniuk/) 
