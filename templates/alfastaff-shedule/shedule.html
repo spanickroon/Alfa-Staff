@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            {% block title %}
+                Alfastaff
+            {% endblock %}
+        </title>
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+    </head>
+    <body class="body-profile">
+        <header class="header">
+            <span>
+                <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
+            </span>
+            <span>
+                <label class="logo-text-red">Альфа·Персонал</label>
+            </span>
+
+            <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
+            <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
+            {% if user.profile.role == 1 %}
+                <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
+            {% endif %}
+            <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
+        </header>
+    </body>
+    <div>Timetable</div>
+    <script src="{% static "js/alfastaff-bonuses/visual_effects.js" %}"></script>
+</html>

@@ -9,9 +9,9 @@ class BonusCard(models.Model):
     image = models.ImageField(default="bonuses/product.jpg", upload_to='bonuses', null=True, blank=True)
 
     class Meta:
-        db_table = 'Бонусы'
-        verbose_name = 'Бонусы'
-        verbose_name_plural = 'Бонусы'
+        db_table = 'Товары'
+        verbose_name = 'Товары'
+        verbose_name_plural = 'Товары'
 
     def __str__(self):
         return self.name

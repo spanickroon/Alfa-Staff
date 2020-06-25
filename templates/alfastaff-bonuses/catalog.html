@@ -12,7 +12,7 @@
         </span>
 
         <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
-        <a class="nav-panel" href="#">РАСПИСАНИЕ</a>
+        <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
         {% if user.profile.role == 1 %}
             <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
         {% endif %}
