@@ -5,7 +5,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.decorators import login_required
 
+from .models import BonusCard
 from .forms import PasswordChangeForm, ProfileChangeForm
+
 
 @login_required(login_url='login')
 def profile(request):
@@ -76,4 +78,22 @@ def list_purchese(request):
 
 @login_required(login_url='login')
 def bonuses(request):
-    return render(request, template_name='alfastaff-bonuses/bonuses.html', context={'user': request.user})
+    if request.method == "GET":
+        return render(request, template_name='alfastaff-bonuses/catalog.html', context={'user': request.user})
+
+
+@login_required(login_url='login')
+def bonuses_page(request, page=1):
+    if request.method == "GET":
+        bonuses = BonusCard.objects.all()
+        if (page * 8) - 8 >= len(bonuses):
+            return HttpResponse("error")
+        else:
+            if len(bonuses) > 8 and len(bonuses) % 8 == 0:
+                bonuses = bonuses[(8 * page) - 8:(8 * page)]
+            elif len(bonuses) > 8 and len(bonuses)  % 8 != 0:
+                if (8 * page) < len(bonuses):
+                    bonuses = bonuses[(8 * page) - 8:(8 * page)]
+                else:
+                    bonuses = bonuses[(8 * page) - 8:len(bonuses)]
+        return render(request, template_name='alfastaff-bonuses/list_bonuses.html', context={'bonuses': bonuses})

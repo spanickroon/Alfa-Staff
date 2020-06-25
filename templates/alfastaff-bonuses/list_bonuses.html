@@ -1,0 +1,14 @@
+{% for bonus in bonuses %}
+    <article class="product-article">
+        <div class="img-product">
+            <img src="{{ bonus.image.url }}">
+        </div>
+        <div class="name-product">
+            <label>{{ bonus.name }}</label>
+        </div>
+        <div class="cost-product">
+            <label>{{ bonus.cost }}</label>
+        </div>
+        <button class="button-product-buy">Купить</button>
+    </article>
+{% endfor %}
