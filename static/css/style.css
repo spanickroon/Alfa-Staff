@@ -814,3 +814,7 @@ table {
     color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.15);
 }
+
+.activated {
+    color: #FC3164;
+}

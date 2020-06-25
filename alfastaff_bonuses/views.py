@@ -86,9 +86,13 @@ def bonuses(request):
 
 
 @login_required(login_url='login')
-def bonuses_page(request, page=1):
+def bonuses_page(request, page=1, sort='sort_alphabet'):
     if request.method == "GET":
-        bonuses = BonusCard.objects.all()
+        if sort == "sort_cost":
+            bonuses = BonusCard.objects.order_by("-cost")
+        else:
+            bonuses = BonusCard.objects.all()
+
         if (page * 8) - 8 >= len(bonuses):
             bonuses = bonuses[(len(bonuses) //  8) * 8:len(bonuses)]
         else:

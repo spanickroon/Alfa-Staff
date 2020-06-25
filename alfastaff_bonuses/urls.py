@@ -15,7 +15,7 @@ urlpatterns = [
     path('edit_password', edit_password, name='edit_password'),
     path('list_purchese', list_purchese, name='list_purchese'),
     path('bonuses', bonuses, name='bonuses'),
-    path('bonuses/<int:page>', bonuses_page, name='bonuses_page'),
+    path('bonuses/<int:page>/<str:sort>', bonuses_page, name='bonuses_page'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

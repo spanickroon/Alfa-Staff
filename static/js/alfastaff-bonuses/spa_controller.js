@@ -13,7 +13,15 @@ function init(ev){
 function show_first_page(){    
     document.getElementById('bonuses_container').innerHTML = animation;
 
-    fetch("bonuses/1", 
+    var request = "bonuses/1/sort_alphabet"
+
+    if(document.getElementById('sorting_button').classList.contains("activated")){
+        request = "bonuses/1/sort_cost"
+    }
+
+    console.log(request)
+
+    fetch(request, 
     {
         method: "GET",
         headers:{"content-type":"application/x-www-form-urlencoded"}
@@ -39,7 +47,15 @@ function change_page(ev){
 
     document.getElementById('bonuses_container').innerHTML = animation;
 
-    fetch("bonuses/" + ev.target.id, 
+    var request = "bonuses/" + ev.target.id + "/sort_alphabet"
+
+    if(document.getElementById('sorting_button').classList.contains("activated")){
+        request = "bonuses/" + ev.target.id + "/sort_cost"
+    }
+
+    console.log(request)
+
+    fetch(request, 
     {
         method: "GET",
         headers:{"content-type":"application/x-www-form-urlencoded"}
@@ -67,10 +83,16 @@ function buy(){
 }
 
 function sort(){
-    sendNotification('Сортировка', {
-        body: 'Сортировка',
-        dir: 'auto'
-    });
+    var element = document.getElementById("sorting_button")
+    if (element.classList.contains("activated")){
+        element.classList.remove("activated")
+        element.innerText = "Сортировать по цене"
+        show_first_page()
+    } else {
+        element.classList.add("activated")
+        element.innerText = "Сортировать по алфавиту"
+        show_first_page()
+    }
 }
 
 function sendNotification(title, options) {

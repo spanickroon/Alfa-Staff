@@ -12,9 +12,11 @@ class BonusCard(models.Model):
         db_table = 'Товары'
         verbose_name = 'Товары'
         verbose_name_plural = 'Товары'
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
+
 
 class Purchase(models.Model):
     user = models.ForeignKey(User, on_delete = models.CASCADE)
