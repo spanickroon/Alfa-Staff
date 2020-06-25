@@ -701,6 +701,14 @@ table {
     border-radius: 4px 4px 4px 4px;
 }
 
+.sorting-button.activated {
+    color: #FC3164;
+}
+
+.sorting-button:active {
+    background-color: rgba(255, 255, 255, 0.50);
+}
+
 .background {
     -webkit-filter: url("#goo");
             filter: url("#goo");
@@ -813,8 +821,4 @@ table {
 
     color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.15);
-}
-
-.activated {
-    color: #FC3164;
 }
