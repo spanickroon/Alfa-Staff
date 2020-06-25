@@ -5,14 +5,14 @@
 <body class="body-profile">
     <header class="header">
         <span>
-            <img class="logo-img-red" src="{% static "images/alfa-logo-red.svg" %}">
+            <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
         </span>
         <span>
             <label class="logo-text-red">Альфа·Персонал</label>
         </span>
 
         <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
-        <a class="nav-panel" href="#">РАСПИСАНИЕ</a>
+        <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
         {% if user.profile.role == 1 %}
             <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
         {% endif %}
@@ -68,9 +68,12 @@
     </div>
 </div>
 
-<img class="img-profile" src="{{ user.profile.avatar.url }}">
+<div class="img-profile">
+    <img src="{{ user.profile.avatar.url }}">
+</div>
+
 <div class="profile-button-container">
-    <a href="{% url 'list_purchese' %}"><button class="button-list-purchases">Список покупок</button></a>
+    <a href="{% url 'list_purchases' %}"><button class="button-list-purchases">Список покупок</button></a>
     <a href="{% url 'edit' %}"><button class="button-edit-profile">Редактировать</button></a>
     <a href="{% url 'logout' %}"><button class="button-login-register">Выйти</button></a>
 </div>

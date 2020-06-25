@@ -11,6 +11,7 @@ const app = {
         })
 
         document.getElementById("btn-login").addEventListener('click', login);
+        document.getElementById("p_c").addEventListener('click', show_hide_password);
 
         history.replaceState({}, '', 'login');
         window.addEventListener('popstate', app.poppin);
@@ -206,6 +207,43 @@ function reset(ev) {
         }
     })
     .catch(() => console.log('error'));
+}
+
+
+function show_hide_password(target){
+    var input = document.getElementById('password');
+	if (input.getAttribute('type') == 'password') {
+		target.classList.add('view');
+		input.setAttribute('type', 'text');
+	} else {
+		target.classList.remove('view');
+		input.setAttribute('type', 'password');
+	}
+	return false;
+}
+
+function show_hide_password1(target){
+    var input = document.getElementById('password1');
+	if (input.getAttribute('type') == 'password') {
+		target.classList.add('view');
+		input.setAttribute('type', 'text');
+	} else {
+		target.classList.remove('view');
+		input.setAttribute('type', 'password');
+	}
+	return false;
+}
+
+function show_hide_password2(target){
+    var input = document.getElementById('password2');
+	if (input.getAttribute('type') == 'password') {
+		target.classList.add('view');
+		input.setAttribute('type', 'text');
+	} else {
+		target.classList.remove('view');
+		input.setAttribute('type', 'password');
+	}
+	return false;
 }
 
 document.addEventListener('DOMContentLoaded', app.init);
