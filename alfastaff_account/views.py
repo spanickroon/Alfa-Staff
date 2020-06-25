@@ -30,6 +30,8 @@ def login_user(request):
         else:
             return JsonResponse({"validation": "error"})
     else:
+        if request.user.is_authenticated:
+            return redirect(to='profile')
         login_form = LoginForm()
         return render(request, template_name='alfastaff-account/login.html', context={'login_form': login_form})
 
