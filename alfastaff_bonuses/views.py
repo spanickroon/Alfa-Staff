@@ -79,7 +79,10 @@ def list_purchese(request):
 @login_required(login_url='login')
 def bonuses(request):
     if request.method == "GET":
-        return render(request, template_name='alfastaff-bonuses/catalog.html', context={'user': request.user})
+        count_page = len(BonusCard.objects.all()) / 8
+        if count_page > int(count_page):
+            count_page = "".join(map(str ,list(range(1, int(count_page) + 2))))
+        return render(request, template_name='alfastaff-bonuses/catalog.html', context={'user': request.user, 'count_page': count_page})
 
 
 @login_required(login_url='login')
@@ -87,7 +90,7 @@ def bonuses_page(request, page=1):
     if request.method == "GET":
         bonuses = BonusCard.objects.all()
         if (page * 8) - 8 >= len(bonuses):
-            return HttpResponse("error")
+            bonuses = bonuses[(len(bonuses) //  8) * 8:len(bonuses)]
         else:
             if len(bonuses) > 8 and len(bonuses) % 8 == 0:
                 bonuses = bonuses[(8 * page) - 8:(8 * page)]
