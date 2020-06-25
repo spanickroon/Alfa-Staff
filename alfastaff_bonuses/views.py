@@ -8,6 +8,8 @@ from django.contrib.auth.decorators import login_required
 from .models import BonusCard
 from .forms import PasswordChangeForm, ProfileChangeForm
 
+import math
+
 
 @login_required(login_url='login')
 def profile(request):
@@ -98,9 +100,9 @@ def list_purchases(request):
 @login_required(login_url='login')
 def bonuses(request):
     if request.method == "GET":
-        count_page = len(BonusCard.objects.all()) / 8
-        if count_page > int(count_page):
-            count_page = "".join(map(str, list(range(1, int(count_page) + 2))))
+        count_page = "".join(map(str, list(
+            range(1, math.ceil(len(BonusCard.objects.all()) / 8) + 1))))
+
         return render(
             request, template_name='alfastaff-bonuses/catalog.html',
             context={'user': request.user, 'count_page': count_page})
