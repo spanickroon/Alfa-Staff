@@ -16,6 +16,7 @@ urlpatterns = [
     path('list_purchases', list_purchases, name='list_purchases'),
     path('bonuses', bonuses, name='bonuses'),
     path('bonuses/<int:page>/<str:sort>', bonuses_page, name='bonuses_page'),
+    path('buy/<int:id>', buy, name='buy'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

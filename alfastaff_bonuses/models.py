@@ -40,4 +40,9 @@ class Purchase(models.Model):
         verbose_name_plural = 'Покупки'
 
     def __str__(self):
-        return self.user
+        return "{0} {1} {2} - {3}".format(
+                self.user.profile.first_name,
+                self.user.profile.second_name,
+                self.user.profile.middle_name,
+                self.name
+            )

@@ -19,8 +19,6 @@ function show_first_page(){
         request = "bonuses/1/sort_cost"
     }
 
-    console.log(request)
-
     fetch(request, 
     {
         method: "GET",
@@ -53,8 +51,6 @@ function change_page(ev){
         request = "bonuses/" + ev.target.id + "/sort_cost"
     }
 
-    console.log(request)
-
     fetch(request, 
     {
         method: "GET",
@@ -75,11 +71,33 @@ function change_page(ev){
     .catch(() => console.log('error'));
 }
 
-function buy(){
-    sendNotification('Покупка', {
-        body: 'Ваша покупка отправлена на обработку.',
-        dir: 'auto'
-    });
+function buy(ev){
+    console.log(ev.target.id)
+    fetch("buy/" + ev.target.id, 
+    {
+        method: "GET",
+        headers:{"content-type":"application/x-www-form-urlencoded"}
+    })
+    .then( response => {
+        if (response.status !== 200) {
+            return Promise.reject();
+        }
+        return response.json()
+    })
+    .then( response => {
+        if(response['buy'] == 'ok'){
+            sendNotification('Покупка', {
+                body: 'Ваша покупка отправлена на обработку.',
+                dir: 'auto'
+            });
+        } else {
+            sendNotification('Покупка', {
+                body: 'Возникла ошибка, сообщите о ней администратору.',
+                dir: 'auto'
+            });
+        }
+    })
+    .catch(() => console.log('error'));
 }
 
 function sort(){
