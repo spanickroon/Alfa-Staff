@@ -38,6 +38,7 @@ class Purchase(models.Model):
         db_table = 'Покупки'
         verbose_name = 'Покупки'
         verbose_name_plural = 'Покупки'
+        ordering = ["-id"]
 
     def __str__(self):
         return "{0} {1} {2} - {3}".format(

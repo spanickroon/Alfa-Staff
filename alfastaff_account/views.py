@@ -45,7 +45,7 @@ def signup_user(request):
             try:
                 user = User.objects.get(email=signup_form.cleaned_data["email"])
                 return JsonResponse({"confirmation": "user_found"})
-            except:
+            except Exception:
                 pass
             user = User(
                 username=signup_form.cleaned_data['email'],

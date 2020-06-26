@@ -96,10 +96,37 @@ def logout_user(request):
 
 
 @login_required(login_url='login')
-def list_purchases(request):
-    return render(
-        request, template_name='alfastaff-bonuses/list_purchases.html',
-        context={'user': request.user})
+def purchases(request):
+    if request.method == "GET":
+        count_page = "".join(map(str, list(
+            range(1, math.ceil(len(Purchase.objects.all()) / 10) + 1))))
+
+        return render(
+            request, template_name='alfastaff-bonuses/purchases.html',
+            context={'user': request.user, 'count_page': count_page})
+
+
+@login_required(login_url='login')
+def purchases_page(request, page=1, sort='sort_date'):
+    if request.method == "GET":
+        if sort == "sort_cost":
+            purchases = Purchase.objects.order_by("-cost")
+        else:
+            purchases = Purchase.objects.all()
+
+        if (page * 10) - 10 >= len(purchases):
+            purchases = purchases[(len(purchases) // 10) * 10:len(purchases)]
+        else:
+            if len(purchases) > 10 and len(purchases) % 8 == 0:
+                purchases = purchases[(10 * page) - 10:(10 * page)]
+            elif len(purchases) > 10 and len(purchases) % 10 != 0:
+                if (10 * page) < len(purchases):
+                    purchases = purchases[(10 * page) - 10:(10 * page)]
+                else:
+                    purchases = purchases[(10 * page) - 10:len(purchases)]
+        return render(
+            request, template_name='alfastaff-bonuses/list_purchases.html',
+            context={'purchases': purchases})
 
 
 @login_required(login_url='login')
@@ -142,16 +169,24 @@ def buy(request, id):
         try:
             user = User.objects.get(email=request.user.email)
             bonus = BonusCard.objects.get(id=id)
+
+            if user.profile.points - bonus.cost < 0:
+                return JsonResponse({"buy": "not_points"})
+
+            user.profile.points = user.profile.points - bonus.cost
+            user.save()
+
             purchase = Purchase(
-                user = user,
-                name = bonus.name,
-                description = bonus.description,
-                cost = bonus.cost,
-                date_buy = datetime.datetime.now(),
-                balance = user.profile.points - bonus.cost,
-                status = 3
+                user=user,
+                name=bonus.name,
+                description=bonus.description,
+                cost=bonus.cost,
+                date_buy=datetime.datetime.now(),
+                balance=user.profile.points - bonus.cost,
+                status=3
             )
             purchase.save()
+
             current_site = get_current_site(request)
             mail_subject = 'Buy bonuses.'
             message = render_to_string('alfastaff-bonuses/buy_message.html', {
@@ -164,4 +199,3 @@ def buy(request, id):
             return JsonResponse({"buy": "ok"})
         except(TypeError, ValueError, OverflowError, User.DoesNotExist):
             return JsonResponse({"buy": "error"})
-

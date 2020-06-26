@@ -1,54 +1,17 @@
-{% extends 'alfastaff-bonuses/start_template.html' %}
 {% load static %}
-
-{% block context %}
-<body class="body-list-purchases">
-    <header class="header">
-        <span>
-            <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
-        </span>
-        <span>
-            <label class="logo-text-red">Альфа·Персонал</label>
-        </span>
-
-        <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
-        <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
-        {% if user.profile.role == 1 %}
-            <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
-        {% endif %}
-        <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
-    </header>
-    <button class="sorting-button">Сортировать дате</button>
-
-    <div class="purchase-bar">
-        <label class="purchase-bar__number">№</label>
-        <label class="purchase-bar__name">Название</label>
-        <label>Стоимость</label>
-        <label>Дата</label>
-        <label>Остаток</label>
-        <label>Статус</label>
-    </div>
-
-    <div class="list-purchases-container">
-        {% for i in 987654321|make_list %}
-        <div class="purchase">
-            <label class="round-red-number">{{i}}</label>
-            <label class="purchase-bar__name">Кружка</label>
-            <label>200</label>
-            <label>26.06.2020</label>
-            <label>1300</label>
-            <img src="{% static "images/site/status-ok.svg" %}">
-        </div>
-        
-        {% endfor %}
-    </div>
-    <div class="clip-products-container">
-        {% for i in 123|make_list %}
-            <button class="clip-button num" id="{{i}}">
-                {{i}}
-            </button>
-        {% endfor %}
-    </div>
-   
-</body>
-{% endblock%}
+{% for purchase in purchases %}
+<div class="purchase">
+    <label class="round-red-number">{{ purchase.id }}</label>
+    <label class="purchase-bar__name">{{ purchase.name }}</label>
+    <label>{{ purchase.cost }}</label>
+    <label>{{ purchase.date_buy }}</label>
+    <label>{{ purchase.balance }}</label>
+    {% if purchase.status == 1 %}
+        <img src="{% static "images/site/status-ok.svg" %}">
+    {% elif purchase.status == 2 %}
+        <img src="{% static "images/site/status-canceled.svg" %}">
+    {% else %}
+        <img src="{% static "images/site/status-processing.svg" %}">
+    {% endif %}
+</div>
+{% endfor %}

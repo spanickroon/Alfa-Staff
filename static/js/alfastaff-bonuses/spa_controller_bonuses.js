@@ -90,9 +90,14 @@ function buy(ev){
                 body: 'Ваша покупка отправлена на обработку.',
                 dir: 'auto'
             });
-        } else {
+        } else if (response['buy'] == 'error') {
             sendNotification('Покупка', {
                 body: 'Возникла ошибка, сообщите о ней администратору.',
+                dir: 'auto'
+            });
+        } else if (response['buy'] == 'not_points') {
+            sendNotification('Покупка', {
+                body: 'Недостаточно бонусов для покупки.',
                 dir: 'auto'
             });
         }

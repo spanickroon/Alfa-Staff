@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block context %}
-<body class="body-bonuses">
+<body class="body-list-purchases">
     <header class="header">
         <span>
             <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
@@ -18,9 +18,20 @@
         {% endif %}
         <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
     </header>
-    <button class="sorting-button" id="sorting_button"> Сортировать по цене </button>
-    <div class="bonuses-container" id="bonuses_container">
+    <button class="sorting-button" id="sorting_button">Сортировать по цене</button>
+
+    <div class="purchase-bar">
+        <label class="purchase-bar__number">№</label>
+        <label class="purchase-bar__name">Название</label>
+        <label>Стоимость</label>
+        <label>Дата</label>
+        <label>Остаток</label>
+        <label>Статус</label>
     </div>
+
+    <div class="list-purchases-container" id="list_purchases_container">
+    </div>
+
     <div class="clip-products-container">
         {% for i in count_page|make_list %}
             <button class="clip-button num" id="{{i}}">
@@ -29,5 +40,5 @@
         {% endfor %}
     </div>
 </body>
-<script src="{% static "js/alfastaff-bonuses/spa_controller_bonuses.js" %}"></script>
+<script src="{% static "js/alfastaff-bonuses/spa_controller_purchases.js" %}"></script>
 {% endblock%}
