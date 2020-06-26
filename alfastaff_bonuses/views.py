@@ -4,11 +4,16 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.conf import settings
 
-from .models import BonusCard
+from .models import BonusCard, Purchase
 from .forms import PasswordChangeForm, ProfileChangeForm
 
 import math
+import datetime
 
 
 @login_required(login_url='login')
@@ -129,3 +134,34 @@ def bonuses_page(request, page=1, sort='sort_alphabet'):
         return render(
             request, template_name='alfastaff-bonuses/list_bonuses.html',
             context={'bonuses': bonuses})
+
+
+@login_required(login_url='login')
+def buy(request, id):
+    if request.method == "GET":
+        try:
+            user = User.objects.get(email=request.user.email)
+            bonus = BonusCard.objects.get(id=id)
+            purchase = Purchase(
+                user = user,
+                name = bonus.name,
+                description = bonus.description,
+                cost = bonus.cost,
+                date_buy = datetime.datetime.now(),
+                balance = user.profile.points - bonus.cost,
+                status = 3
+            )
+            purchase.save()
+            current_site = get_current_site(request)
+            mail_subject = 'Buy bonuses.'
+            message = render_to_string('alfastaff-bonuses/buy_message.html', {
+                'user': user,
+                'domain': current_site.domain,
+            })
+            to_email = settings.EMAIL_HOST_USER
+            email = EmailMessage(mail_subject, message, to=[to_email])
+            email.send()
+            return JsonResponse({"buy": "ok"})
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+            return JsonResponse({"buy": "error"})
+
