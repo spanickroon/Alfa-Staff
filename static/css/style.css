@@ -673,6 +673,11 @@ table {
     background-color: #780000;
 }
 
+.button-product-buy.process {
+    background-color: #C0C0C0;
+    box-shadow: 0px 10px 20px rgba(192, 192, 192, .2);
+}
+
 .clip-products-container {
     display: flex;
     justify-content: space-between;
