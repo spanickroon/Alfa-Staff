@@ -201,9 +201,9 @@ function reset(ev) {
                 dir: 'auto'
             });
         } else if (response['reseting'] == "error") {
-            document.getElementById("error_reset").innerText = "Проверьте введенный вами логин или пароль."
+            document.getElementById("error_reset").innerText = "Проверьте введенный вами email"
         } else if (response['reseting'] == "user_not_found") {
-            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенный вами логин или пароль."
+            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенный вами email"
         }
     })
     .catch(() => console.log('error'));

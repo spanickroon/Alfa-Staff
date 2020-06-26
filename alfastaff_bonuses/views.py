@@ -180,7 +180,7 @@ def buy(request, id):
                 name=bonus.name,
                 id_purchase=len(Purchase.objects.filter(user=request.user)) + 1,
                 cost=bonus.cost,
-                balance=user.profile.points - bonus.cost,
+                balance=user.profile.points,
                 status=3
             )
             purchase.save()
@@ -196,5 +196,4 @@ def buy(request, id):
             email.send()
             return JsonResponse({"buy": "ok"})
         except(TypeError, ValueError, OverflowError, User.DoesNotExist) as ex:
-            print(ex)
             return JsonResponse({"buy": "error"})
