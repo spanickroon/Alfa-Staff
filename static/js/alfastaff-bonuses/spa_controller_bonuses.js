@@ -73,6 +73,7 @@ function change_page(ev){
 
 function buy(ev){
     ev.target.classList.add("process")
+    ev.target.classList.remove("button-product-buy")
 
     fetch("buy/" + ev.target.id, 
     {
@@ -86,7 +87,9 @@ function buy(ev){
         return response.json()
     })
     .then( response => {
+        ev.target.classList.add("button-product-buy")
         ev.target.classList.remove("process")
+        
         
         if(response['buy'] == 'ok'){
             sendNotification('Покупка', {
