@@ -110,7 +110,7 @@ def purchases(request):
 def purchases_page(request, page=1, sort='sort_date'):
     if request.method == "GET":
         if sort == "sort_cost":
-            purchases = Purchase.objects.order_by("-cost")
+            purchases = Purchase.objects.filter(user=request.user).order_by("-cost")
         else:
             purchases = Purchase.objects.all()
 
@@ -174,7 +174,7 @@ def buy(request, id):
                 return JsonResponse({"buy": "not_points"})
 
             user.profile.points = user.profile.points - bonus.cost
-            user.save()
+            user.profile.save()
 
             purchase = Purchase(
                 user=user,
