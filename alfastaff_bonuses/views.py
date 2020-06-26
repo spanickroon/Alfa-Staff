@@ -13,7 +13,6 @@ from .models import BonusCard, Purchase
 from .forms import PasswordChangeForm, ProfileChangeForm
 
 import math
-import datetime
 
 
 @login_required(login_url='login')
@@ -179,9 +178,8 @@ def buy(request, id):
             purchase = Purchase(
                 user=user,
                 name=bonus.name,
-                description=bonus.description,
+                id_purchase=len(Purchase.objects.filter(user=request.user)) + 1,
                 cost=bonus.cost,
-                date_buy=datetime.datetime.now(),
                 balance=user.profile.points - bonus.cost,
                 status=3
             )
@@ -197,5 +195,6 @@ def buy(request, id):
             email = EmailMessage(mail_subject, message, to=[to_email])
             email.send()
             return JsonResponse({"buy": "ok"})
-        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        except(TypeError, ValueError, OverflowError, User.DoesNotExist) as ex:
+            print(ex)
             return JsonResponse({"buy": "error"})

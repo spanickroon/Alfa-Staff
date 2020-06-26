@@ -21,9 +21,9 @@ class BonusCard(models.Model):
 class Purchase(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=50,  blank=True, null=True)
-    description = models.CharField(max_length=100,  blank=True, null=True)
+    id_purchase = models.IntegerField(blank=True, null=True)
     cost = models.IntegerField(blank=True, null=True)
-    date_buy = models.DateTimeField(blank=True, null=True)
+    date_buy = models.DateField(auto_now=True, blank=True, null=True)
     balance = models.IntegerField(blank=True, null=True)
 
     STATUS_CHOICES = (

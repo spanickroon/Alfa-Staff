@@ -1,7 +1,7 @@
 {% load static %}
 {% for purchase in purchases %}
 <div class="purchase">
-    <label class="round-red-number">{{ purchase.id }}</label>
+    <label class="round-red-number">{{ purchase.id_purchase }}</label>
     <label class="purchase-bar__name">{{ purchase.name }}</label>
     <label>{{ purchase.cost }}</label>
     <label>{{ purchase.date_buy }}</label>
