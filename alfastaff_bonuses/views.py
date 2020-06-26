@@ -112,7 +112,7 @@ def purchases_page(request, page=1, sort='sort_date'):
         if sort == "sort_cost":
             purchases = Purchase.objects.filter(user=request.user).order_by("-cost")
         else:
-            purchases = Purchase.objects.all()
+            purchases = Purchase.objects.filter(user=request.user)
 
         if (page * 10) - 10 >= len(purchases):
             purchases = purchases[(len(purchases) // 10) * 10:len(purchases)]
