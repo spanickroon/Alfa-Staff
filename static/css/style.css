@@ -738,7 +738,14 @@ table {
     width: 100%;
     height: 100vh;
     position: absolute;
-  }
+}
+
+.background-purchases {
+    -webkit-filter: url("#goo");
+            filter: url("#goo");
+    width: 100%;
+    height: 100%;
+}
   
 .loader {
     -webkit-filter: url("#goo");
