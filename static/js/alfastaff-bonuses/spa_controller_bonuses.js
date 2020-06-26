@@ -72,7 +72,8 @@ function change_page(ev){
 }
 
 function buy(ev){
-    console.log(ev.target.id)
+    ev.target.classList.add("process")
+
     fetch("buy/" + ev.target.id, 
     {
         method: "GET",
@@ -85,6 +86,8 @@ function buy(ev){
         return response.json()
     })
     .then( response => {
+        ev.target.classList.remove("process")
+        
         if(response['buy'] == 'ok'){
             sendNotification('Покупка', {
                 body: 'Ваша покупка отправлена на обработку.',
