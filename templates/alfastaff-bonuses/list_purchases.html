@@ -18,8 +18,37 @@
         {% endif %}
         <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
     </header>
-    <div class="development-page-info">
-        <label>Страница в разработке</label>
+    <button class="sorting-button">Сортировать дате</button>
+
+    <div class="purchase-bar">
+        <label class="purchase-bar__number">№</label>
+        <label class="purchase-bar__name">Название</label>
+        <label>Стоимость</label>
+        <label>Дата</label>
+        <label>Остаток</label>
+        <label>Статус</label>
     </div>
+
+    <div class="list-purchases-container">
+        {% for i in 987654321|make_list %}
+        <div class="purchase">
+            <label class="round-red-number">{{i}}</label>
+            <label class="purchase-bar__name">Кружка</label>
+            <label>200</label>
+            <label>26.06.2020</label>
+            <label>1300</label>
+            <img src="{% static "images/site/status-ok.svg" %}">
+        </div>
+        
+        {% endfor %}
+    </div>
+    <div class="clip-products-container">
+        {% for i in 123|make_list %}
+            <button class="clip-button num" id="{{i}}">
+                {{i}}
+            </button>
+        {% endfor %}
+    </div>
+   
 </body>
 {% endblock%}

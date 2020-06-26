@@ -852,3 +852,79 @@ table {
     color: #FFFFFF;
     background-color: rgba(255, 255, 255, 0.15);
 }
+
+.list-purchases-container {
+    display: grid;
+    flex-direction: column;
+
+    margin-top: 30px;
+
+    margin-left: 200px;
+    margin-right: 200px;
+
+    width: auto;
+    height: auto;
+
+    font-size: 16pt;
+}
+
+.purchase-bar {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+
+    justify-items: center;
+    align-items: center;
+
+    margin-top: 50px;
+    margin-left: 200px;
+    margin-right: 200px;
+
+    width: auto;
+
+    color: #FFFFFF;
+    background-color: rgba(255, 255, 255, 0.15);
+
+    font-size: 16pt;
+
+    border: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.purchase {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-items: center;
+    align-items: center;
+
+    background-color:#FFFFFF;
+    margin-bottom: 20px;
+
+    font-size: 16pt;
+
+    border: none;
+    border-radius: 20px 20px 20px 20px;
+}
+
+.round-red-number {
+    justify-self: left;
+    display: flex;
+
+    border-radius: 20px 20px 20px 20px;
+
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+
+    color: #FFFFFF;
+    background-color: #F03226;
+}
+
+.purchase-bar__number {
+    justify-self: left;
+    margin-left: 10px;
+}
+
+.purchase-bar__name {
+    justify-self: left;
+}
