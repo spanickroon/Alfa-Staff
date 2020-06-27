@@ -25,9 +25,10 @@ def profile(request):
 @login_required(login_url='login')
 def edit(request):
     if request.method == "GET":
+        user = User.objects.get(email=request.user.email)
         return render(
             request, template_name='alfastaff-bonuses/edit.html',
-            context={'user': request.user})
+            context={'user': user})
 
 
 @login_required(login_url='login')
