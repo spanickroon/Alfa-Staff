@@ -65,7 +65,7 @@ def edit_profile(request):
             user = User.objects.get(email=request.user.email)
             user.email = profile_change_form.cleaned_data.get('email')
 
-            if profile_change_form.cleaned_data.get('avatar') != "anon_user.png":
+            if profile_change_form.cleaned_data.get('avatar') != "profiles/anon_user.png":
                 user.profile.avatar = profile_change_form.cleaned_data.get('avatar')
 
             user.profile.first_name = profile_change_form.cleaned_data.get('first_name')
