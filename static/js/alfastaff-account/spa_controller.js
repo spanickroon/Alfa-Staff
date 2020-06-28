@@ -59,7 +59,6 @@ const app = {
                 if (currentPage == "signup") {
                     document.querySelector('.active').innerHTML = render_html;
                     document.getElementById("btn-signup").addEventListener('click', signup);
-                    console.log(document.getElementById("reset"))
                     document.querySelectorAll('.nav-link').forEach((link)=>{
                         link.addEventListener('click', app.nav);
                     })
@@ -99,20 +98,10 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function sendNotification(title, options) {
-    if (!("Notification" in window)) {
-        alert('Ваш браузер не поддерживает HTML Notifications, его необходимо обновить.');
-    } else if (Notification.permission === "granted") {
-        var notification = new Notification(title, options);
-    } else if (Notification.permission !== 'denied') {
-        Notification.requestPermission(function (permission) {
-            if (permission === "granted") {
-                var notification = new Notification(title, options); 
-            }
-        });
-    } else {
-        // Пользователь ранее отклонил наш запрос на показ уведомлений
-    }
+function toggleModal(text) {
+    document.querySelector(".modal").classList.toggle("show-modal");
+    document.querySelector(".close-button").addEventListener("click", toggleModal);
+    document.getElementById("text").innerText = text
 }
 
 function login(ev) {
@@ -164,10 +153,7 @@ function signup(ev) {
         })
         .then( response => {
             if (response['confirmation'] == "ok") {
-                sendNotification('Регистрация', {
-                    body: 'Пожалуйста, подтвердите ваш email адресс для завершения регистрации.',
-                    dir: 'auto'
-                });
+                toggleModal("Сообщение с подтверждением аккаунта отправлено вам на почту.")
             } else if (response['confirmation'] == "error") {
                 document.getElementById("error_signup").innerText = "Проверьте введенный вами логин или пароль."
             } else if (response['confirmation'] == "user_found") {
@@ -198,10 +184,7 @@ function reset(ev) {
     })
     .then( response => {
         if (response['reseting'] == "ok") {
-            sendNotification('Восстановление пароля', {
-                body: 'Пожайлуйста, зайдите на ваш email адресс для полученя нового пароля.',
-                dir: 'auto'
-            });
+            toggleModal("Пожайлуйста, зайдите на ваш email адресс для полученя нового пароля.")
         } else if (response['reseting'] == "error") {
             document.getElementById("error_reset").innerText = "Проверьте введенный вами email."
         } else if (response['reseting'] == "user_not_found") {

@@ -28,6 +28,22 @@
             </button>
         {% endfor %}
     </div>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h1 id="text" style="color: #000000"></h1>
+            <button id="confirm">Подтвердить</button>
+        </div>
+    </div>
+
+    <div class="modal modal-answer">
+        <div class="modal-content">
+            <span class="close-button close-button-answer">&times;</span>
+            <h1 id="text-answer" style="color: #000000"></h1>
+        </div>
+    </div>
+
 </body>
 <script src="{% static "js/alfastaff-bonuses/spa_controller_bonuses.js" %}"></script>
 {% endblock%}

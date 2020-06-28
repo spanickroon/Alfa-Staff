@@ -35,7 +35,7 @@ function show_first_page(){
     .then( render_html => {
         document.getElementById('bonuses_container').innerHTML = render_html;
         document.querySelectorAll('.button-product-buy').forEach((link)=>{
-            link.addEventListener('click', buy);
+            link.addEventListener('click', confirm);
         })
 
     })
@@ -70,17 +70,14 @@ function change_page(ev){
     .then( render_html => {
         document.getElementById('bonuses_container').innerHTML = render_html;
         document.querySelectorAll('.button-product-buy').forEach((link)=>{
-            link.addEventListener('click', buy);
+            link.addEventListener('click', confirm);
         })
     })
     .catch(() => console.log('error'));
 }
 
 function buy(ev){
-    ev.target.classList.add("process")
-    ev.target.classList.remove("button-product-buy")
-
-    fetch("buy/" + ev.target.id, 
+    fetch("buy/" + ev.target.dataset["target"],
     {
         method: "GET",
         headers:{"content-type":"application/x-www-form-urlencoded"}
@@ -91,29 +88,36 @@ function buy(ev){
         }
         return response.json()
     })
-    .then( response => {
-        ev.target.classList.add("button-product-buy")
-        ev.target.classList.remove("process")
-        
-        
+    .then( response => {   
+        document.querySelector(".modal").classList.toggle("show-modal");
+
         if(response['buy'] == 'ok'){
-            sendNotification('Покупка', {
-                body: 'Ваша покупка отправлена на обработку.',
-                dir: 'auto'
-            });
+            toggleModalAnswer('Ваша покупка отправлена на обработку.')
         } else if (response['buy'] == 'error') {
-            sendNotification('Покупка', {
-                body: 'Возникла ошибка, сообщите о ней администратору.',
-                dir: 'auto'
-            });
+            toggleModalAnswer('Возникла ошибка, сообщите о ней администратору.')
         } else if (response['buy'] == 'not_points') {
-            sendNotification('Покупка', {
-                body: 'Недостаточно бонусов для покупки.',
-                dir: 'auto'
-            });
+            toggleModalAnswer('Недостаточно бонусов для покупки.')
         }
     })
     .catch(() => console.log('error'));
+}
+
+function toggleModal(text, ev) {
+    document.querySelector(".modal").classList.toggle("show-modal");
+    document.querySelector(".close-button").addEventListener("click", toggleModal);
+    document.getElementById("confirm").setAttribute("data-target", ev.target.id);
+    document.getElementById("confirm").addEventListener("click", buy);
+    document.getElementById("text").innerText = text
+}
+
+function toggleModalAnswer(text) {
+    document.querySelector(".modal-answer").classList.toggle("show-modal");
+    document.querySelector(".close-button-answer").addEventListener("click", toggleModalAnswer);
+    document.getElementById("text-answer").innerText = text
+}
+
+function confirm(ev){
+    toggleModal("Вы уверены, что хотите купить этот товар?", ev)
 }
 
 function sort(){
@@ -126,22 +130,6 @@ function sort(){
         element.classList.add("activated")
         element.innerText = "Сортировать по алфавиту"
         show_first_page()
-    }
-}
-
-function sendNotification(title, options) {
-    if (!("Notification" in window)) {
-        alert('Ваш браузер не поддерживает HTML Notifications, его необходимо обновить.');
-    } else if (Notification.permission === "granted") {
-        var notification = new Notification(title, options);
-    } else if (Notification.permission !== 'denied') {
-        Notification.requestPermission(function (permission) {
-            if (permission === "granted") {
-                var notification = new Notification(title, options); 
-            }
-        });
-    } else {
-        // Пользователь ранее отклонил наш запрос на показ уведомлений
     }
 }
 

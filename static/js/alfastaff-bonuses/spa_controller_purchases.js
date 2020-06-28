@@ -11,6 +11,8 @@ function init(){
 }
 
 function show_first_page(){
+    document.getElementById('1').classList.add("this-page")
+
     document.getElementById('list_purchases_container').innerHTML = animation
 
     var request = "purchases/1/sort_date"
@@ -38,6 +40,9 @@ function show_first_page(){
 
 function change_page(ev){
     ev.preventDefault();
+
+    document.querySelectorAll('.this-page')[0].classList.remove("this-page")
+    document.getElementById(ev.target.id).classList.add("this-page")
 
     document.getElementById('list_purchases_container').innerHTML = animation;
 
