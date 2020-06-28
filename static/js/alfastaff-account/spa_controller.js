@@ -135,9 +135,11 @@ function login(ev) {
         if (response['validation'] == "ok") {
             document.location.href = 'profile'
         } else if (response['validation'] == "error") {
-            document.getElementById("error_login").innerText = "Проверьте введенные вами данные!"
+            document.getElementById("error_login").innerText = "Проверьте введенные вами данные."
         } else if (response['validation'] == "user_not_found") {
-            document.getElementById("error_login").innerText = "Пользователь не найден. Проверьте введенные вами данные!"
+            document.getElementById("error_login").innerText = "Пользователь не найден. Проверьте введенные вами данны."
+        } else if (response['validation'] == "password_incorrect") {
+            document.getElementById("error_login").innerText = "Проверьте введенный вами пароль."
         }
     })
     .catch(() => console.log('error'));
@@ -201,9 +203,9 @@ function reset(ev) {
                 dir: 'auto'
             });
         } else if (response['reseting'] == "error") {
-            document.getElementById("error_reset").innerText = "Проверьте введенный вами email"
+            document.getElementById("error_reset").innerText = "Проверьте введенный вами email."
         } else if (response['reseting'] == "user_not_found") {
-            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенный вами email"
+            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенный вами email."
         }
     })
     .catch(() => console.log('error'));

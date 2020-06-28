@@ -82,7 +82,7 @@ def edit_profile(request):
         else:
             return render(
                 request, template_name='alfastaff-bonuses/edit.html',
-                context={'user': request.user, 'error': True})
+                context={'user': request.user, 'error_profile': True})
     else:
         return redirect(to="edit")
 

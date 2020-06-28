@@ -22,7 +22,7 @@ def login_user(request):
             try:
                 user = User.objects.get(email=login_form.cleaned_data["email"])
                 if not check_password(login_form.cleaned_data["password"], user.password):
-                    raise ValueError
+                    return JsonResponse({"validation": "password_incorrect"})
                 login(request, user)
                 return JsonResponse({"validation": "ok"})
             except(TypeError, ValueError, OverflowError, User.DoesNotExist):
@@ -46,7 +46,7 @@ def signup_user(request):
                 user = User.objects.get(email=signup_form.cleaned_data["email"])
                 return JsonResponse({"confirmation": "user_found"})
             except Exception:
-                pass
+                return JsonResponse({"confirmation": "error"})
             user = User(
                 username=signup_form.cleaned_data['email'],
                 email=signup_form.cleaned_data['email'],
