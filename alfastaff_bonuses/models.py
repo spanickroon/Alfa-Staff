@@ -1,30 +1,58 @@
+"""This module contain BonusCard and Purchase class."""
+
 from django.db import models
 from django.contrib.auth.models import User
 
 
 class BonusCard(models.Model):
-    name = models.CharField(max_length=50,  blank=True, null=True)
-    description = models.CharField(max_length=100,  blank=True, null=True)
-    cost = models.IntegerField(blank=True, null=True)
-    image = models.ImageField(default="bonuses/product.jpg", upload_to='bonuses', null=True, blank=True)
+    """BonusCard class with function output and meta data."""
+
+    name = models.CharField(
+        max_length=50, blank=True,
+        verbose_name="Название", null=True)
+    description = models.CharField(
+        max_length=100, blank=True,
+        verbose_name="Описание", null=True)
+    cost = models.IntegerField(
+        blank=True, null=True, verbose_name="Стоимость")
+    image = models.ImageField(
+        default="bonuses/product.jpg", upload_to='bonuses',
+        null=True, blank=True, verbose_name="Фотография")
 
     class Meta:
+        """Meta data."""
+
         db_table = 'Товары'
         verbose_name = 'Товары'
         verbose_name_plural = 'Товары'
         ordering = ["name"]
 
     def __str__(self):
+        """Funtion for output info about this bonuses card object."""
         return self.name
 
 
 class Purchase(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.CharField(max_length=50,  blank=True, null=True)
-    id_purchase = models.IntegerField(blank=True, null=True)
-    cost = models.IntegerField(blank=True, null=True)
-    date_buy = models.DateField(auto_now=True, blank=True, null=True, )
-    balance = models.IntegerField(blank=True, null=True)
+    """Purchase class with function output and meta data."""
+
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        verbose_name="Пользоваетль")
+    name = models.CharField(
+        max_length=50, blank=True,
+        verbose_name="Название товара", null=True)
+    id_purchase = models.IntegerField(
+        blank=True, null=True,
+        verbose_name="ID",)
+    cost = models.IntegerField(
+        blank=True, null=True,
+        verbose_name="Стоимость товара")
+    date_buy = models.DateField(
+        auto_now=True, blank=True,
+        verbose_name="Дата покупки", null=True)
+    balance = models.IntegerField(
+        blank=True, null=True,
+        verbose_name="Остаток")
 
     STATUS_CHOICES = (
         (1, 'Одобрено'),
@@ -32,15 +60,19 @@ class Purchase(models.Model):
         (3, 'Ожидание')
     )
     status = models.PositiveSmallIntegerField(
-        choices=STATUS_CHOICES, blank=True, null=True)
+        choices=STATUS_CHOICES, blank=True,
+        verbose_name="Статус", null=True)
 
     class Meta:
+        """Meta data."""
+
         db_table = 'Покупки'
         verbose_name = 'Покупки'
         verbose_name_plural = 'Покупки'
         ordering = ["-id"]
 
     def __str__(self):
+        """Funtion for output info about this purchase object."""
         return "{0} {1} {2} - {3}".format(
                 self.user.profile.first_name,
                 self.user.profile.second_name,
