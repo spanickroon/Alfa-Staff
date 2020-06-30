@@ -1,3 +1,4 @@
+/*---------------Show/hide password---------------*/
 function show_hide_password1(target){
     var input = document.getElementById('password1');
 	if (input.getAttribute('type') == 'password') {

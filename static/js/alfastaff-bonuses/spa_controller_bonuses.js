@@ -1,5 +1,7 @@
+/*---------------Animation html---------------*/
 const animation = '<div class="background"><div class="loader loader-left"></div><div class="loader loader-right"></div><svg xmlns="http://www.w3.org/2000/svg" version="1.1"><defs><filter id="goo"><fegaussianblur in="SourceGraphic" stddeviation="15" result="blur"></fegaussianblur><fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 26 -7" result="goo"></fecolormatrix><feblend in="SourceGraphic" in2="goo"></feblend></filter></defs></svg></div>'
 
+/*---------------SPA function---------------*/
 function init(ev){
     document.querySelectorAll('.num').forEach((link)=>{
         link.addEventListener('click', change_page);
@@ -10,6 +12,7 @@ function init(ev){
     show_first_page();
 }
 
+/*---------------Show page request---------------*/
 function show_first_page(){    
     document.getElementById('1').classList.add("this-page")
 
@@ -42,6 +45,7 @@ function show_first_page(){
     .catch(() => console.log('error'));
 }
 
+/*---------------Change page request---------------*/
 function change_page(ev){
     ev.preventDefault();
 
@@ -76,6 +80,7 @@ function change_page(ev){
     .catch(() => console.log('error'));
 }
 
+/*---------------Buy request---------------*/
 function buy(ev){
     fetch("buy/" + ev.target.dataset["target"],
     {
@@ -102,6 +107,7 @@ function buy(ev){
     .catch(() => console.log('error'));
 }
 
+/*---------------Modal---------------*/
 function toggleModal(text, ev) {
     document.querySelector(".modal").classList.toggle("show-modal");
     document.querySelector(".close-button").addEventListener("click", toggleModal);
@@ -120,6 +126,7 @@ function confirm(ev){
     toggleModal("Вы уверены, что хотите купить этот товар?", ev)
 }
 
+/*---------------Sort---------------*/
 function sort(){
     var element = document.getElementById("sorting_button")
     if (element.classList.contains("activated")){
@@ -133,4 +140,5 @@ function sort(){
     }
 }
 
+/*---------------DOM---------------*/
 document.addEventListener('DOMContentLoaded', init);

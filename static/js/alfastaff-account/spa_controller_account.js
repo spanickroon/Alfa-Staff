@@ -1,3 +1,4 @@
+/*---------------SPA---------------*/
 const app = {
     pages: [],
     show: new Event('show'),
@@ -78,11 +79,13 @@ const app = {
     }
 }
 
+/*---------------Window function---------------*/
 window.onload=function()
 {
     history.replaceState({}, '', 'login');
 }
 
+/*---------------Get Cookie---------------*/
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -98,12 +101,14 @@ function getCookie(name) {
     return cookieValue;
 }
 
+/*---------------Modal---------------*/
 function toggleModal(text) {
     document.querySelector(".modal").classList.toggle("show-modal");
     document.querySelector(".close-button").addEventListener("click", toggleModal);
     document.getElementById("text").innerText = text
 }
 
+/*---------------GET POST request---------------*/
 function login(ev) {
     ev.preventDefault();
 
@@ -194,7 +199,7 @@ function reset(ev) {
     .catch(() => console.log('error'));
 }
 
-
+/*---------------show/hide password---------------*/
 function show_hide_password(target){
     var input = document.getElementById('password');
 	if (input.getAttribute('type') == 'password') {
@@ -231,4 +236,5 @@ function show_hide_password2(target){
 	return false;
 }
 
+/*---------------DOM---------------*/
 document.addEventListener('DOMContentLoaded', app.init);
