@@ -7,7 +7,7 @@ def error_handling(func):
     """Error handling."""
     def inner(*args, **kwargs):
         try:
-            func(*args, **kwargs)
+            return func(*args, **kwargs)
         except Exception as ex:
             return Http404
     return inner
