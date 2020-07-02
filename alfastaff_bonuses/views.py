@@ -15,8 +15,7 @@ from .services.purchases_page_handler import get_purchases
 from .services.bonuses_page_handler import get_bonuses
 from .services.buy_handler import buy_processing
 from .services.error_handling_decorator import error_handling
-
-import math
+from .services.count_page_handler import count_page_bonuses, count_page_purchases
 
 
 @error_handling
@@ -123,8 +122,7 @@ def purchases(request: object):
         return number of page on purchases.html
     """
     if request.method == "GET":
-        count_page = "".join(map(str, list(
-            range(1, math.ceil(len(Purchase.objects.all()) / 10) + 1))))
+        count_page = count_page_purchases()
 
         return render(
             request, template_name='alfastaff-bonuses/purchases.html',
@@ -158,8 +156,7 @@ def bonuses(request: object):
         return number of page on catalog.html
     """
     if request.method == "GET":
-        count_page = "".join(map(str, list(
-            range(1, math.ceil(len(BonusCard.objects.all()) / 8) + 1))))
+        count_page = count_page_bonuses()
 
         return render(
             request, template_name='alfastaff-bonuses/catalog.html',
