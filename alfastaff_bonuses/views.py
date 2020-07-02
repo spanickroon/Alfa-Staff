@@ -14,10 +14,12 @@ from .services.edit_profile_handler import edit_profile_processing
 from .services.purchases_page_handler import get_purchases
 from .services.bonuses_page_handler import get_bonuses
 from .services.buy_handler import buy_processing
+from .services.error_handling_decorator import error_handling
 
 import math
 
 
+@error_handling
 @login_required(login_url='login')
 def profile(request: object):
     """Profile function processes 1 types of request.
@@ -30,6 +32,7 @@ def profile(request: object):
         context={'user': request.user})
 
 
+@error_handling
 @login_required(login_url='login')
 def edit(request: object):
     """Edit function processes 1 types of request.
@@ -45,6 +48,7 @@ def edit(request: object):
             context={'user': user})
 
 
+@error_handling
 @login_required(login_url='login')
 def edit_password(request: object):
     """edit_password function processes 2 types of request post and get.
@@ -70,6 +74,7 @@ def edit_password(request: object):
         return redirect(to="edit")
 
 
+@error_handling
 @login_required(login_url='login')
 def edit_profile(request: object):
     """edit_profile function processes 2 types of request post and get.
@@ -94,6 +99,7 @@ def edit_profile(request: object):
         return redirect(to="edit")
 
 
+@error_handling
 @login_required(login_url='login')
 def logout_user(request: object):
     """logout_user function processes 1 types of request.
@@ -108,6 +114,7 @@ def logout_user(request: object):
             context={'user': request.user})
 
 
+@error_handling
 @login_required(login_url='login')
 def purchases(request: object):
     """Purchases function processes 1 types of request.
@@ -124,6 +131,7 @@ def purchases(request: object):
             context={'user': request.user, 'count_page': count_page})
 
 
+@error_handling
 @login_required(login_url='login')
 def purchases_page(request: object, page: int, sort: str):
     """purchases_page function processes 1 types of request.
@@ -141,6 +149,7 @@ def purchases_page(request: object, page: int, sort: str):
             context={'purchases': purchases})
 
 
+@error_handling
 @login_required(login_url='login')
 def bonuses(request: object):
     """Bonuses function processes 1 types of request.
@@ -157,6 +166,7 @@ def bonuses(request: object):
             context={'user': request.user, 'count_page': count_page})
 
 
+@error_handling
 @login_required(login_url='login')
 def bonuses_page(request: object, page: int, sort: str):
     """bonuses_page function processes 1 types of request.
@@ -174,6 +184,7 @@ def bonuses_page(request: object, page: int, sort: str):
             context={'bonuses': bonuses})
 
 
+@error_handling
 @login_required(login_url='login')
 def buy(request: object, id: int):
     """bonuses_page function processes 1 types of request.

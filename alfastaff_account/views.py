@@ -12,8 +12,10 @@ from .services.login_handler import login_processing
 from .services.signup_handler import signup_processing
 from .services.activate_handler import activate_processing
 from .services.reset_password_handler import reset_password_processing
+from .services.error_handling_decorator import error_handling
 
 
+@error_handling
 def login_user(request: object):
     """login_user function processes 2 types of request post and get.
 
@@ -41,6 +43,7 @@ def login_user(request: object):
             context={'login_form': login_form})
 
 
+@error_handling
 def signup_user(request: object):
     """signup_user function processes 2 types of request post and get.
 
@@ -66,6 +69,7 @@ def signup_user(request: object):
             context={'login_form': login_form})
 
 
+@error_handling
 def signup_user_insert(request: object):
     """signup_user_insert function processes 1 types of request.
 
@@ -78,6 +82,7 @@ def signup_user_insert(request: object):
         context={'signup_form': signup_form})
 
 
+@error_handling
 def reset_password(request: object):
     """reset_password function processes 2 types of request post and get.
 
@@ -103,6 +108,7 @@ def reset_password(request: object):
             context={'login_form': login_form})
 
 
+@error_handling
 def reset_password_insert(request: object):
     """reset_password_insert function processes 1 types of request.
 
@@ -115,6 +121,7 @@ def reset_password_insert(request: object):
         context={'reset_password_form': reset_password_form})
 
 
+@error_handling
 def activate_user(request: object, uidb64: str, token: str):
     """activate_user function processes 1 types of request.
 
