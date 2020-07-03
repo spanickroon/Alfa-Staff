@@ -542,6 +542,9 @@ table {
 
     font-size: 16pt;
     font-weight: 300;
+
+    filter: contrast(100%);
+    -webkit-filter: contrast(70%);
 }
 
 .password {
