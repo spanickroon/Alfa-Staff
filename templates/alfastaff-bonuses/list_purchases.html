@@ -4,7 +4,7 @@
     <label class="round-red-number">{{ purchase.id_purchase }}</label>
     <label class="purchase-bar__name">{{ purchase.name }}</label>
     <label>{{ purchase.cost }}</label>
-    <label>{{ purchase.date_buy|date:"Y m d" }}</label>
+    <label>{{ purchase.date_buy|date:"d.m.Y" }}</label>
     <label>{{ purchase.balance }}</label>
     {% if purchase.status == 1 %}
         <img src="{% static "images/site/status-ok.svg" %}">
