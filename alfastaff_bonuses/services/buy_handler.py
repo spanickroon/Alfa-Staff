@@ -31,6 +31,6 @@ def buy_processing(request: object, id: int) -> object:
         )
         purchase.save()
 
-        return send_message_about_buy(request, user)
+        return send_message_about_buy(request, user, bonus)
     except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         return JsonResponse({"buy": "error"})
