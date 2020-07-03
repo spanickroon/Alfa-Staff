@@ -96,6 +96,8 @@ function buy(ev){
     .then( response => {   
         document.querySelector(".modal").classList.toggle("show-modal");
 
+        document.getElementById("confirm").removeAttribute("disabled");
+
         if(response['buy'] == 'ok'){
             toggleModalAnswer('Ваша покупка отправлена на обработку.')
         } else if (response['buy'] == 'error') {
@@ -123,7 +125,10 @@ function toggleModalAnswer(text) {
 }
 
 function confirm(ev){
-    toggleModal("Вы уверены, что хотите купить этот товар?", ev)
+    toggleModal("Вы уверены, что хотите купить этот товар?", ev);
+    document.getElementById("confirm").onclick = function() {
+        this.disabled = 'disabled';
+    }
 }
 
 /*---------------Sort---------------*/

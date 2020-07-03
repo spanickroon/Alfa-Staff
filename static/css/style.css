@@ -11,7 +11,7 @@
 body {
     margin: 0px;
     padding: 0px;
-  }
+}
 
 h1 {
     margin: 0px;
@@ -167,8 +167,12 @@ table {
     box-shadow: 0px 10px 20px rgba(255,0,0, .2);
 }
 
-.button-login-register:active {
+.button-login-register:hover:active {
     background-color: #780000;
+}
+
+.button-login-register:hover {
+    background-color: #C20000;
 }
 
 .link-remind {
@@ -409,28 +413,12 @@ table {
     box-shadow: 0px 10px 20px rgba(0, 180, 205, .2);
 }
 
-.button-edit-profile:active {
+.button-edit-profile:hover:active {
     background-color: #015C75;
 }
 
-.button-list-purchases {
-    width: 150px;
-    height: 40px;
-
-    margin-top: 10px;
-    margin-right: 20px;
-
-    background-color: #2EB837;
-    color: #FFFFFF;
-
-    border: none;
-    border-radius: 4px 4px 4px 4px;
-
-    box-shadow: 0px 10px 20px rgba(46, 184, 55, .2);
-}
-
-.button-list-purchases:active {
-    background-color: #004A05;
+.button-edit-profile:hover {
+    background-color: #007A9C;
 }
 
 .edit-profile {
@@ -533,8 +521,12 @@ table {
     box-shadow: 0px 10px 20px rgba(255,0,0, .2);
 }
 
-.button-exit-edit:active {
+.button-exit-edit:hover:active {
     background-color: #780000;
+}
+
+.button-exit-edit:hover {
+    background-color: #C20000;
 }
 
 .error-msg {
@@ -672,8 +664,12 @@ table {
     box-shadow: 0px 10px 20px rgba(255,0,0, .2);
 }
 
-.button-product-buy:active {
+.button-product-buy:hover:active {
     background-color: #780000;
+}
+
+.button-product-buy:hover {
+    background-color: #C20000;
 }
 
 .process {
@@ -729,8 +725,12 @@ table {
     border-radius: 4px 4px 4px 4px;
 }
 
-.clip-button:active {
+.clip-button:hover:active {
     background-color: rgba(255, 255, 255, 0.75);
+}
+
+.clip-button:hover {
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 .this-page {
@@ -758,7 +758,11 @@ table {
     border-radius: 4px 4px 4px 4px;
 }
 
-.sorting-button:active {
+.sorting-button:hover:active {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.sorting-button:hover {
     background-color: rgba(255, 255, 255, 0.50);
 }
 
@@ -983,6 +987,11 @@ table {
 
 .modal-content {
     position: absolute;
+    display: grid;
+    
+    grid-template-columns: 80px auto 40px;
+    grid-template-rows: repeat(2, 1fr);
+
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -993,13 +1002,20 @@ table {
 }
 
 .close-button {
-    float: right;
-    width: 1.5rem;
-    line-height: 1.5rem;
+    justify-self: end;
+    align-self: flex-start;
+
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     text-align: center;
     cursor: pointer;
-    border-radius: 0.25rem;
+    border-radius: 4px 4px 4px 4px;
     background-color: lightgray;
+}
+
+.close-button:hover:active {
+    background-color: gray;
 }
 
 .close-button:hover {
@@ -1011,4 +1027,57 @@ table {
     visibility: visible;
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.logo-toggle-modal {
+    height: 80px; 
+    padding-right: 10px;
+}
+
+#text {
+    font-size: 16pt;
+    font-weight: 300;
+
+    color: #000000;
+}
+
+#text-answer {
+    font-size: 16pt;
+    font-weight: 300;
+
+    color: #000000;
+}
+
+#confirm {
+
+    align-self: flex-end;
+
+    height: 30px;
+    width: 120px;
+
+    background-color: #2EB837;
+    color: #FFFFFF;
+
+    border: none;
+    border-radius: 4px 4px 4px 4px;
+}
+
+#confirm:disabled {
+    background-color: #C0C0C0;
+}
+
+#confirm:disabled:hover {
+    background-color: #C0C0C0;
+}
+
+#confirm:disabled:active {
+    background-color: #C0C0C0;
+}
+
+#confirm:hover:active {
+    background-color: #001d02;
+}
+
+#confirm:hover {
+    background-color: #007e08;
 }
