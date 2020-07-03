@@ -730,11 +730,11 @@ table {
 }
 
 .clip-button:hover {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.25);
 }
 
 .this-page {
-    background-color: rgba(255, 255, 255, 0.75) !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
 }
 
 .sorting-button {
