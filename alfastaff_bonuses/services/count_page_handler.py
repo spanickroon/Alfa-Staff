@@ -7,9 +7,9 @@ from ..models import Purchase, BonusCard
 
 def count_page_bonuses() -> str:
     """Calculate count page for bonuses."""
-    return "".join(map(str, list(range(1, math.ceil(len(BonusCard.objects.all()) / 8) + 1))))
+    return list(range(1, math.ceil(len(BonusCard.objects.all()) / 8) + 1))
 
 
-def count_page_purchases() -> str:
+def count_page_purchases(request) -> str:
     """Calculate count page for purchases."""
-    return "".join(map(str, list(range(1, math.ceil(len(Purchase.objects.all()) / 10) + 1))))
+    return list(range(1, math.ceil(len(Purchase.objects.filter(user=request.user)) / 10) + 1))

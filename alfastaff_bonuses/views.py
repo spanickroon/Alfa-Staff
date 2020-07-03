@@ -122,7 +122,7 @@ def purchases(request: object):
         return number of page on purchases.html
     """
     if request.method == "GET":
-        count_page = count_page_purchases()
+        count_page = count_page_purchases(request)
 
         return render(
             request, template_name='alfastaff-bonuses/purchases.html',
