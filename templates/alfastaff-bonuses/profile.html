@@ -20,41 +20,23 @@
         <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
     </header>
 <div class="back-profile-top">
-    <table class="profile-info-container">
-        <tbody>
-            <tr>
-                <th align="left">
-                    <label class="profile-fullname">{{ user.profile.first_name }}</label>
-                </th>
-                <th align="left">
-                    <label class="profile-fullname">{{ user.profile.second_name }}</label>
-                </th>
-                <th align="left">
-                    <label class="profile-fullname">{{ user.profile.middle_name }}</label>
-                </th>
-            </tr>
-            <tr>
-                <th colspan="3" align="left">
-                    <label class="profile-contact">{{ user.email }}</label>
-                </th>
-            </tr>
-        </tbody>
-    </table>
-    
-    <table class="profile-bonus-container">
-        <tbody>
-            <tr>
-                <th align="right">
-                    <label class="profile-bonus">БОНУСЫ</label>
-                </th>
-            </tr>
-            <tr>
-                <th align="center">
-                    <label class="profile-bonus-count">{{ user.profile.points }}</label>
-                </th>
-            </tr>
-        </tbody>
-    </table>
+    <div class="profile-info-container">
+        <div class="profile-main-info">
+            <div>
+                <label class="profile-fullname">{{ user.profile.second_name }}</label>
+                <label class="profile-fullname">{{ user.profile.first_name }}</label>
+            </div>
+
+            <label class="profile-fullname">{{ user.profile.middle_name }}</label>
+            <label class="profile-contact">{{ user.email }}</label>
+        </div>
+    </div>
+    <div class="profile-bonus-container">
+        <div class="profile-bonus-info">
+            <label class="profile-bonus">БОНУСЫ</label>
+            <label class="profile-bonus-count">{{ user.profile.points }}</label>
+        </div>
+    </div>
 </div>
 <div class="back-profile-bottom">
     <div class="profile-info-container">

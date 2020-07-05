@@ -319,6 +319,23 @@ table {
     margin-left: 600px; 
 }
 
+.profile-main-info {
+    display: grid;
+
+    width: 400px;
+    grid-template-columns: repeat(1, auto);
+    grid-template-rows: repeat(3, auto);
+}
+
+.profile-bonus-info {
+    display: grid;
+
+    justify-items: center;
+
+    grid-template-columns: repeat(1, auto);
+    grid-template-rows: repeat(2, auto);
+}
+
 .profile-bonus-container {
     margin-left: auto;
     margin-right: 200px; 
@@ -334,6 +351,7 @@ table {
 .profile-contact {
     font-size: 12pt;
     font-weight: 300;
+    margin-top: 10px;
 }
 
 .profile-bonus {
