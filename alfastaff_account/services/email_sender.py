@@ -25,6 +25,7 @@ def send_message_with_url_for_registration(request: object, user: object) -> Non
     })
     to_email = user.email
     email = EmailMessage(mail_subject, message, to=[to_email])
+    email.content_subtype = 'html'
     email.send()
 
     return JsonResponse({"confirmation": "ok"})
@@ -35,7 +36,7 @@ def send_message_with_new_password(request: object, user: object) -> None:
     new_password = BaseUserManager().make_random_password()
 
     current_site = get_current_site(request)
-    mail_subject = 'Activate your account.'
+    mail_subject = 'Восстановление пароля'
     message = render_to_string('alfastaff-account/reset_message.html', {
         'user': user,
         'domain': current_site.domain,
@@ -47,6 +48,7 @@ def send_message_with_new_password(request: object, user: object) -> None:
     user.save()
 
     email = EmailMessage(mail_subject, message, to=[to_email])
+    email.content_subtype = 'html'
     email.send()
 
     return JsonResponse({"reseting": "ok"})

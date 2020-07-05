@@ -82,7 +82,7 @@ function sort(){
         show_first_page()
     } else {
         element.classList.add("activated")
-        element.innerText = "Сортировать по дату"
+        element.innerText = "Сортировать по дате"
         show_first_page()
     }
 }

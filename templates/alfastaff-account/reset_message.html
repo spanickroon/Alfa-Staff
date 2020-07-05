@@ -1,5 +1,18 @@
-{% autoescape off %}
-    Hi {{ user.email }},
-    Please click on the link to login to web site with this password - {{ new_password }} ,
-    http://{{ domain }}{% url 'login' %}
-{% endautoescape %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div style="font-size: 20pt;">
+        <label>Здравствуйте {{ user.email }}!</label>
+    </div>
+    <div style="font-size: 14pt;">
+        <label>Вы сбросили ваш пароль, новый пароль - <strong>{{ new_password }}</strong>, перейдите по ссылке чтобы зайти на сайт</label>
+    </div>
+    <div style="font-size: 14pt;">
+        <label>http://{{ domain }}{% url 'login' %}</label>
+    </div>
+</body>
+</html>

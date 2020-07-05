@@ -189,7 +189,7 @@ function reset(ev) {
     })
     .then( response => {
         if (response['reseting'] == "ok") {
-            toggleModal("Пожайлуйста, зайдите на ваш email адресс для полученя нового пароля.")
+            toggleModal("Пожайлуйста, зайдите на ваш email адресс для получения нового пароля.")
         } else if (response['reseting'] == "error") {
             document.getElementById("error_reset").innerText = "Проверьте введенный вами email."
         } else if (response['reseting'] == "user_not_found") {
