@@ -564,7 +564,6 @@ table {
 }
 
 .bonuses-container {
-    position: sticky;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);
@@ -576,16 +575,14 @@ table {
     grid-column-gap: 2vw;
     grid-row-gap: 2vw;
 
-    height: 100%;
+    width: auto;
+    height: 100vh;
 }
 
 .product-article {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
-    width: 100%;
-    height: 100%;
 
     margin-left: 0;
     margin-right: 0;
@@ -673,7 +670,6 @@ table {
 }
 
 .process {
-
     color: #FFFFFF;
     background-color: #C0C0C0;
 
@@ -767,11 +763,13 @@ table {
 }
 
 .background {
+    position: absolute;
     -webkit-filter: url("#goo");
             filter: url("#goo");
     width: 100%;
-    height: 100vh;
-    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
 }
 
 .background-purchases {
@@ -904,7 +902,7 @@ table {
     margin-right: 200px;
 
     width: auto;
-    height: auto;
+    height: 105vh;
 
     font-size: 16pt;
 }
