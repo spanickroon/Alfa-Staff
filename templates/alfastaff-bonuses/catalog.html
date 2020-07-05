@@ -13,6 +13,7 @@
 
         <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
         <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
+        <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
         {% if user.profile.role == 1 %}
             <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
         {% endif %}
@@ -22,12 +23,30 @@
     <div class="bonuses-container" id="bonuses_container">
     </div>
     <div class="clip-products-container">
-        {% for i in count_page|make_list %}
+        {% for i in count_page %}
             <button class="clip-button num" id="{{i}}">
                 {{i}}
             </button>
         {% endfor %}
     </div>
+
+    <div class="modal">
+        <div class="modal-content">
+            <img class="logo-toggle-modal" src="{% static "images/site/alfa-logo-red.svg" %}">
+            <label id="text"></label>
+            <span class="close-button">&times;</span>
+            <button id="confirm">Подтвердить</button>
+        </div>
+    </div>
+
+    <div class="modal modal-answer">
+        <div class="modal-content">
+            <img class="logo-toggle-modal" src="{% static "images/site/alfa-logo-red.svg" %}">
+            <label id="text-answer"></label>
+            <span class="close-button close-button-answer">&times;</span>
+        </div>
+    </div>
+
 </body>
-<script src="{% static "js/alfastaff-bonuses/spa_controller.js" %}"></script>
+<script src="{% static "js/alfastaff-bonuses/spa_controller_bonuses.js" %}"></script>
 {% endblock%}

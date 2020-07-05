@@ -1,167 +1,196 @@
+"""This module contain functions for proccesing requests."""
+
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
-from django.contrib.auth import logout, login
+from django.http import JsonResponse
+from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMessage
-from django.template.loader import render_to_string
-from django.contrib.sites.shortcuts import get_current_site
-from django.conf import settings
 
 from .models import BonusCard, Purchase
 from .forms import PasswordChangeForm, ProfileChangeForm
 
-import math
-import datetime
+from .services.edit_password_handler import edit_password_processing
+from .services.edit_profile_handler import edit_profile_processing
+from .services.purchases_page_handler import get_purchases
+from .services.bonuses_page_handler import get_bonuses
+from .services.buy_handler import buy_processing
+from .services.error_handling_decorator import error_handling
+from .services.count_page_handler import count_page_bonuses, count_page_purchases
 
 
+@error_handling
 @login_required(login_url='login')
-def profile(request):
+def profile(request: object):
+    """Profile function processes 1 types of request.
+
+    1. GET
+        Returns the reset profile page.
+    """
     return render(
         request, template_name='alfastaff-bonuses/profile.html',
         context={'user': request.user})
 
 
+@error_handling
 @login_required(login_url='login')
-def edit(request):
+def edit(request: object):
+    """Edit function processes 1 types of request.
+
+    1. GET
+        Returns the edit page.
+    """
     if request.method == "GET":
+        user = User.objects.get(email=request.user.email)
+
         return render(
             request, template_name='alfastaff-bonuses/edit.html',
+            context={'user': user})
+
+
+@error_handling
+@login_required(login_url='login')
+def edit_password(request: object):
+    """edit_password function processes 2 types of request post and get.
+
+    1. GET
+        Redirect to the edit page;
+    2. POST
+        Checks the validity of the data,
+        checks whether the user verifies the passwords for equality;
+        if everything is good, then he changes the password and redirects to the page,
+        if the error returns it to the page.
+    """
+    if request.method == "POST":
+        password_change_form = PasswordChangeForm(request.POST)
+
+        if password_change_form.is_valid():
+            return edit_password_processing(request, password_change_form)
+        else:
+            return render(
+                request, template_name='alfastaff-bonuses/edit.html',
+                context={'user': request.user, 'error': True})
+    else:
+        return redirect(to="edit")
+
+
+@error_handling
+@login_required(login_url='login')
+def edit_profile(request: object):
+    """edit_profile function processes 2 types of request post and get.
+
+    1. GET
+        Redirect to the edit page;
+    2. POST
+        Checks the validity of the data,
+        changes the user’s object fields and checks for the presence of a standard photo,
+        saves the user and authorizes him again and then redirects to editing.
+    """
+    if request.method == "POST":
+        profile_change_form = ProfileChangeForm(request.POST, request.FILES)
+
+        if profile_change_form.is_valid():
+            return edit_profile_processing(request, profile_change_form)
+        else:
+            return render(
+                request, template_name='alfastaff-bonuses/edit.html',
+                context={'user': request.user, 'error_profile': True})
+    else:
+        return redirect(to="edit")
+
+
+@error_handling
+@login_required(login_url='login')
+def logout_user(request: object):
+    """logout_user function processes 1 types of request.
+
+    1. GET
+        Returns the login page and logout user.
+    """
+    if request.method == "GET":
+        logout(request)
+        return render(
+            request, template_name='alfastaff-account/login.html',
             context={'user': request.user})
 
 
+@error_handling
 @login_required(login_url='login')
-def edit_password(request):
-    if request.method == "POST":
-        password_change_form = PasswordChangeForm(request.POST)
-        if password_change_form.is_valid():
-            user = User.objects.get(email=request.user.email)
-            password1 = password_change_form.cleaned_data.get("password1")
-            password2 = password_change_form.cleaned_data.get("password2")
+def purchases(request: object):
+    """Purchases function processes 1 types of request.
 
-            if password1 and password2 and password1 != password2:
-                return render(
-                    request, template_name='alfastaff-bonuses/edit.html',
-                    context={'user': request.user, 'error': True})
-
-            user.password = make_password(password2)
-            user.save()
-            login(request, user)
-            return redirect(to="edit")
-        else:
-            return render(
-                request, template_name='alfastaff-bonuses/edit.html',
-                context={'user': request.user, 'error': True})
-    else:
-        return redirect(to="edit")
-
-
-@login_required(login_url='login')
-def edit_profile(request):
-    if request.method == "POST":
-        profile_change_form = ProfileChangeForm(request.POST, request.FILES)
-        if profile_change_form.is_valid():
-            user = User.objects.get(email=request.user.email)
-            user.email = profile_change_form.cleaned_data.get('email')
-
-            if profile_change_form.cleaned_data.get('avatar') != "anon_user.png":
-                user.profile.avatar = profile_change_form.cleaned_data.get('avatar')
-
-            user.profile.first_name = profile_change_form.cleaned_data.get('first_name')
-            user.profile.second_name = profile_change_form.cleaned_data.get('second_name')
-            user.profile.middle_name = profile_change_form.cleaned_data.get('middle_name')
-            user.profile.number_phone = profile_change_form.cleaned_data.get('number_phone')
-            user.profile.position = profile_change_form.cleaned_data.get('position')
-            user.profile.department = profile_change_form.cleaned_data.get('department')
-            user.profile.save()
-
-            user.save()
-            login(request, user)
-            return redirect(to="edit")
-        else:
-            return render(
-                request, template_name='alfastaff-bonuses/edit.html',
-                context={'user': request.user, 'error': True})
-    else:
-        return redirect(to="edit")
-
-
-@login_required(login_url='login')
-def logout_user(request):
-    logout(request)
-    return render(
-        request, template_name='alfastaff-account/login.html',
-        context={'user': request.user})
-
-
-@login_required(login_url='login')
-def list_purchases(request):
-    return render(
-        request, template_name='alfastaff-bonuses/list_purchases.html',
-        context={'user': request.user})
-
-
-@login_required(login_url='login')
-def bonuses(request):
+    1. GET
+        return number of page on purchases.html
+    """
     if request.method == "GET":
-        count_page = "".join(map(str, list(
-            range(1, math.ceil(len(BonusCard.objects.all()) / 8) + 1))))
+        count_page = count_page_purchases(request)
+
+        return render(
+            request, template_name='alfastaff-bonuses/purchases.html',
+            context={'user': request.user, 'count_page': count_page})
+
+
+@error_handling
+@login_required(login_url='login')
+def purchases_page(request: object, page: int, sort: str):
+    """purchases_page function processes 1 types of request.
+
+    1. GET
+        It takes several arguments from the query string such as the page number and sort name,
+        takes out the elements according to the page and sorts them according to the sort name
+        and returns to the page.
+    """
+    if request.method == "GET":
+        purchases = get_purchases(request, page, sort)
+
+        return render(
+            request, template_name='alfastaff-bonuses/list_purchases.html',
+            context={'purchases': purchases})
+
+
+@error_handling
+@login_required(login_url='login')
+def bonuses(request: object):
+    """Bonuses function processes 1 types of request.
+
+    1. GET
+        return number of page on catalog.html
+    """
+    if request.method == "GET":
+        count_page = count_page_bonuses()
 
         return render(
             request, template_name='alfastaff-bonuses/catalog.html',
             context={'user': request.user, 'count_page': count_page})
 
 
+@error_handling
 @login_required(login_url='login')
-def bonuses_page(request, page=1, sort='sort_alphabet'):
-    if request.method == "GET":
-        if sort == "sort_cost":
-            bonuses = BonusCard.objects.order_by("-cost")
-        else:
-            bonuses = BonusCard.objects.all()
+def bonuses_page(request: object, page: int, sort: str):
+    """bonuses_page function processes 1 types of request.
 
-        if (page * 8) - 8 >= len(bonuses):
-            bonuses = bonuses[(len(bonuses) // 8) * 8:len(bonuses)]
-        else:
-            if len(bonuses) > 8 and len(bonuses) % 8 == 0:
-                bonuses = bonuses[(8 * page) - 8:(8 * page)]
-            elif len(bonuses) > 8 and len(bonuses) % 8 != 0:
-                if (8 * page) < len(bonuses):
-                    bonuses = bonuses[(8 * page) - 8:(8 * page)]
-                else:
-                    bonuses = bonuses[(8 * page) - 8:len(bonuses)]
+    1. GET
+        It takes several arguments from the query string such as the page number and sort name,
+        takes out the elements according to the page and sorts them according to the sort name
+        and returns to the page.
+    """
+    if request.method == "GET":
+        bonuses = get_bonuses(request, page, sort)
+
         return render(
             request, template_name='alfastaff-bonuses/list_bonuses.html',
             context={'bonuses': bonuses})
 
 
+@error_handling
 @login_required(login_url='login')
-def buy(request, id):
-    if request.method == "GET":
-        try:
-            user = User.objects.get(email=request.user.email)
-            bonus = BonusCard.objects.get(id=id)
-            purchase = Purchase(
-                user = user,
-                name = bonus.name,
-                description = bonus.description,
-                cost = bonus.cost,
-                date_buy = datetime.datetime.now(),
-                balance = user.profile.points - bonus.cost,
-                status = 3
-            )
-            purchase.save()
-            current_site = get_current_site(request)
-            mail_subject = 'Buy bonuses.'
-            message = render_to_string('alfastaff-bonuses/buy_message.html', {
-                'user': user,
-                'domain': current_site.domain,
-            })
-            to_email = settings.EMAIL_HOST_USER
-            email = EmailMessage(mail_subject, message, to=[to_email])
-            email.send()
-            return JsonResponse({"buy": "ok"})
-        except(TypeError, ValueError, OverflowError, User.DoesNotExist):
-            return JsonResponse({"buy": "error"})
+def buy(request: object, id: int):
+    """bonuses_page function processes 1 types of request.
 
+    1. GET
+        We get the goods from the user’s database,
+        check whether the purchase is possible and create a new purchase object,
+        then save it, after which we send the message about the purchase to the administrator,
+        otherwise we return an error in JSON format
+    """
+    if request.method == "GET":
+        return buy_processing(request, id)

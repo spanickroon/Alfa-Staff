@@ -1,25 +1,17 @@
-{% extends 'alfastaff-bonuses/start_template.html' %}
 {% load static %}
-
-{% block context %}
-<body class="body-list-purchases">
-    <header class="header">
-        <span>
-            <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
-        </span>
-        <span>
-            <label class="logo-text-red">Альфа·Персонал</label>
-        </span>
-
-        <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
-        <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
-        {% if user.profile.role == 1 %}
-            <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
-        {% endif %}
-        <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
-    </header>
-    <div class="development-page-info">
-        <label>Страница в разработке</label>
-    </div>
-</body>
-{% endblock%}
+{% for purchase in purchases %}
+<div class="purchase">
+    <label class="round-red-number">{{ purchase.id_purchase }}</label>
+    <label class="purchase-bar__name">{{ purchase.name }}</label>
+    <label>{{ purchase.cost }}</label>
+    <label>{{ purchase.date_buy|date:"d.m.Y" }}</label>
+    <label>{{ purchase.balance }}</label>
+    {% if purchase.status == 1 %}
+        <img src="{% static "images/site/status-ok.svg" %}">
+    {% elif purchase.status == 2 %}
+        <img src="{% static "images/site/status-canceled.svg" %}">
+    {% else %}
+        <img src="{% static "images/site/status-processing.svg" %}">
+    {% endif %}
+</div>
+{% endfor %}

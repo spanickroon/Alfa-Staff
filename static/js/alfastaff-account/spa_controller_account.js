@@ -1,3 +1,4 @@
+/*---------------SPA---------------*/
 const app = {
     pages: [],
     show: new Event('show'),
@@ -59,7 +60,6 @@ const app = {
                 if (currentPage == "signup") {
                     document.querySelector('.active').innerHTML = render_html;
                     document.getElementById("btn-signup").addEventListener('click', signup);
-                    console.log(document.getElementById("reset"))
                     document.querySelectorAll('.nav-link').forEach((link)=>{
                         link.addEventListener('click', app.nav);
                     })
@@ -79,11 +79,13 @@ const app = {
     }
 }
 
+/*---------------Window function---------------*/
 window.onload=function()
 {
     history.replaceState({}, '', 'login');
 }
 
+/*---------------Get Cookie---------------*/
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -99,22 +101,14 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function sendNotification(title, options) {
-    if (!("Notification" in window)) {
-        alert('Ваш браузер не поддерживает HTML Notifications, его необходимо обновить.');
-    } else if (Notification.permission === "granted") {
-        var notification = new Notification(title, options);
-    } else if (Notification.permission !== 'denied') {
-        Notification.requestPermission(function (permission) {
-            if (permission === "granted") {
-                var notification = new Notification(title, options); 
-            }
-        });
-    } else {
-        // Пользователь ранее отклонил наш запрос на показ уведомлений
-    }
+/*---------------Modal---------------*/
+function toggleModal(text) {
+    document.querySelector(".modal").classList.toggle("show-modal");
+    document.querySelector(".close-button").addEventListener("click", toggleModal);
+    document.getElementById("text").innerText = text
 }
 
+/*---------------GET POST request---------------*/
 function login(ev) {
     ev.preventDefault();
 
@@ -135,9 +129,11 @@ function login(ev) {
         if (response['validation'] == "ok") {
             document.location.href = 'profile'
         } else if (response['validation'] == "error") {
-            document.getElementById("error_login").innerText = "Проверьте введенные вами данные!"
+            document.getElementById("error_login").innerText = "Проверьте введенные вами данные."
         } else if (response['validation'] == "user_not_found") {
-            document.getElementById("error_login").innerText = "Пользователь не найден. Проверьте введенные вами данные!"
+            document.getElementById("error_login").innerText = "Пользователь не найден. Проверьте введенные вами данны."
+        } else if (response['validation'] == "password_incorrect") {
+            document.getElementById("error_login").innerText = "Проверьте введенный вами пароль."
         }
     })
     .catch(() => console.log('error'));
@@ -162,10 +158,7 @@ function signup(ev) {
         })
         .then( response => {
             if (response['confirmation'] == "ok") {
-                sendNotification('Регистрация', {
-                    body: 'Пожалуйста, подтвердите ваш email адресс для завершения регистрации.',
-                    dir: 'auto'
-                });
+                toggleModal("Сообщение с подтверждением аккаунта отправлено вам на почту.")
             } else if (response['confirmation'] == "error") {
                 document.getElementById("error_signup").innerText = "Проверьте введенный вами логин или пароль."
             } else if (response['confirmation'] == "user_found") {
@@ -196,20 +189,17 @@ function reset(ev) {
     })
     .then( response => {
         if (response['reseting'] == "ok") {
-            sendNotification('Восстановление пароля', {
-                body: 'Пожайлуйста, зайдите на ваш email адресс для полученя нового пароля.',
-                dir: 'auto'
-            });
+            toggleModal("Пожайлуйста, зайдите на ваш email адресс для получения нового пароля.")
         } else if (response['reseting'] == "error") {
-            document.getElementById("error_reset").innerText = "Проверьте введенный вами логин или пароль."
+            document.getElementById("error_reset").innerText = "Проверьте введенный вами email."
         } else if (response['reseting'] == "user_not_found") {
-            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенный вами логин или пароль."
+            document.getElementById("error_reset").innerText = "Пользователь не найден. Проверьте введенный вами email."
         }
     })
     .catch(() => console.log('error'));
 }
 
-
+/*---------------show/hide password---------------*/
 function show_hide_password(target){
     var input = document.getElementById('password');
 	if (input.getAttribute('type') == 'password') {
@@ -246,4 +236,5 @@ function show_hide_password2(target){
 	return false;
 }
 
+/*---------------DOM---------------*/
 document.addEventListener('DOMContentLoaded', app.init);

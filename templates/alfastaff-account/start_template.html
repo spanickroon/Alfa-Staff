@@ -37,11 +37,19 @@
             </div>
         </div>
 
+        <div class="modal">
+            <div class="modal-content">
+                <img class="logo-toggle-modal" src="{% static "images/site/alfa-logo-red.svg" %}">
+                <label id="text"></label>
+                <span class="close-button">&times;</span>
+            </div>
+        </div>
+
         <footer class="footer">
             <label>© 1999–{% now "Y" %} ЗАО «Альфа-Банк»</label>
         </footer>
         
     </body>
-    <script src="{% static "js/alfastaff-account/spa_controller.js" %}"></script>
+    <script src="{% static "js/alfastaff-account/spa_controller_account.js" %}"></script>
     <script src="{% static "js/alfastaff-account/visual_effects.js" %}"></script>
 </html>

@@ -13,6 +13,7 @@
 
         <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
         <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
+        <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
         {% if user.profile.role == 1 %}
             <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
         {% endif %}
@@ -70,7 +71,7 @@
                                 <label class="edit-profile-label">Email:</label>
                             </th>
                             <th align="left">
-                                <input class="edit-profile-input" type="text" name="email" value="{{ user.email }}">
+                                <input class="edit-profile-input" type="email" name="email" value="{{ user.email }}" title="Должен иметь вид user@example.com">
                             </th>
                         </tr>
                         <tr>
@@ -99,6 +100,9 @@
                         </tr>
                 </tbody>
             </table>
+            {% if error_profile %}
+                <div class="error-msg"><p>Проверьте введенный вами данные.</p></div>
+            {% endif %}
             <button class="button-edit-profile">Сохранить</button>
         </form>
 
@@ -126,7 +130,7 @@
                         <th align="left">
                             <div class="password">
                                 <input class="edit-profile-input" placeholder="Повторите пароль" maxlength="30" type="password" name="password2" id="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
-                                <a href="#" class="password-control" onclick="return show_hide_password1(this);"></a>
+                                <a href="#" class="password-control" onclick="return show_hide_password2(this);"></a>
                             </div>
                         </th>
                     </tr>
@@ -140,7 +144,7 @@
             </div>
         </form>
     </div>
-    <a href="{% url 'profile' %}"><button class="button-exit-edit">Отмена</button>
+    <a href="{% url 'profile' %}" draggable="false" style="text-decoration: none;"><button class="button-exit-edit">Отмена</button>
     
 </body>
 {% endblock%}
