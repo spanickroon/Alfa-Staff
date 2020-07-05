@@ -500,17 +500,18 @@ table {
     color: #C0C0C0;
 }
 
-
 .emty-container {
     height: 285px;
 }
 
 .button-exit-edit {
+    display: block;
     width: 120px;
     height: 40px;
 
-    margin-left: 200px;
-    margin-top: 10px;
+    margin-left: 340px;
+    margin-top: -40px;
+    margin-bottom: 50px;
 
     background-color: #F03226;
     color: #FFFFFF;
