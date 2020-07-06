@@ -1,1 +1,1 @@
-web: gunicorn engine.wsgi
+web: python manage.py collectstatic --no-input; gunicorn engine.wsgi --log-file - --log-level debug
