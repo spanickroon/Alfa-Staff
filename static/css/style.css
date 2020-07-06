@@ -312,7 +312,7 @@ table {
     width: 100%;
 
     object-fit: cover;
-    object-position: 0 0;
+    object-position: center;
 }
 
 .profile-info-container {
@@ -470,7 +470,7 @@ table {
     height: 100%;
     width: 100%;
     object-fit: cover;
-    object-position: 0 0;
+    object-position: center;
 }
 
 .edit-profile-container {
