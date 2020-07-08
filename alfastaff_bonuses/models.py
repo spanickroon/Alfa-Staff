@@ -16,7 +16,7 @@ class BonusCard(models.Model):
     cost = models.IntegerField(
         blank=True, null=True, verbose_name="Стоимость")
     image = models.ImageField(
-        default="bonuses/product.jpg", upload_to='bonuses',
+        default="images/bonuses/product.jpg", upload_to='images/bonuses',
         null=True, blank=True, verbose_name="Фотография")
 
     class Meta:

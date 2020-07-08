@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 
 import os
 
+from google.cloud import storage
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -36,9 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'alfastaff_account.apps.AlfastaffAccountConfig',
     'alfastaff_bonuses.apps.AlfastaffBonusesConfig',
-    'alfastaff_shedule.apps.AlfastaffSheduleConfig'
+    'alfastaff_shedule.apps.AlfastaffSheduleConfig',
 ]
 
 MIDDLEWARE = [
@@ -121,21 +124,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
-
-MEDIA_URL = 'images/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
+
+#GCP
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_PROJECT_ID = 'alfastaff'
+GS_BUCKET_NAME = 'alfastaff-storage'
+STATIC_URL = 'https://storage.googleapis.com/alfastaff-storage/'
+MEDIA_URL = 'https://storage.googleapis.com/alfastaff-storage/images/'
