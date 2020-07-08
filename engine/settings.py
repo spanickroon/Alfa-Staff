@@ -10,8 +10,6 @@ For the full list of settings and their values, see
 
 import os
 
-from google.cloud import storage
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -30,7 +28,6 @@ ALLOWED_HOSTS = ['0.0.0.0', '.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -55,7 +52,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
 ROOT_URLCONF = 'engine.urls'
 
 TEMPLATES = [
@@ -79,7 +75,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'engine.wsgi.application'
 
 # Database
-
 DATABASES = {
     'default': {
         'ENGINE': os.environ.get('DATABASE_ENGINE'),
@@ -93,7 +88,6 @@ DATABASES = {
 
 
 # Password validation
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -109,9 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-
 LANGUAGE_CODE = 'ru-RU'
 
 USE_I18N = True
@@ -124,6 +116,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+#EMAIL
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
@@ -133,7 +126,9 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 #GCP
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
 GS_PROJECT_ID = 'alfastaff'
 GS_BUCKET_NAME = 'alfastaff-storage'
+
 STATIC_URL = 'https://storage.googleapis.com/alfastaff-storage/'
 MEDIA_URL = 'https://storage.googleapis.com/alfastaff-storage/images/'
