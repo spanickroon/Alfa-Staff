@@ -116,19 +116,29 @@ USE_L10N = True
 
 USE_TZ = True
 
-#EMAIL
+# EMAIL
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 EMAIL_HOST = os.environ.get('EMAIL_HOST')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = os.environ.get('EMAIL_PORT')
 
-#GCP
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+if DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATIC_URL = '/static/'
 
-GS_PROJECT_ID = 'alfastaff'
-GS_BUCKET_NAME = 'alfastaff-storage'
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
 
-STATIC_URL = 'https://storage.googleapis.com/alfastaff-storage/'
-MEDIA_URL = 'https://storage.googleapis.com/alfastaff-storage/images/'
+    MEDIA_URL = 'images/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+else:
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+    GS_PROJECT_ID = 'alfastaff'
+    GS_BUCKET_NAME = 'alfastaff-storage'
+
+    STATIC_URL = 'https://storage.googleapis.com/alfastaff-storage/'
+    MEDIA_URL = 'https://storage.googleapis.com/alfastaff-storage/images/'
