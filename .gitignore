@@ -130,3 +130,5 @@ dmypy.json
 /staticfiles
 
 .vscode
+script.sh
+alfastaff-gcp.json
