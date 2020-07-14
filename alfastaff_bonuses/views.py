@@ -5,7 +5,6 @@ from django.http import JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ImproperlyConfigured
 
 from .models import BonusCard, Purchase
 from .forms import PasswordChangeForm, ProfileChangeForm
@@ -27,7 +26,7 @@ def profile(request: object):
     """
     try:
         avatar = request.user.profile.avatar.url
-    except (UnboundLocalError, ImproperlyConfigured) as ex:
+    except:
         return render(
             request, template_name='alfastaff-bonuses/profile.html',
             context={'user': request.user, 'avatar': 'static/images/site/anon_user.png'})
@@ -45,10 +44,15 @@ def edit(request: object):
     """
     if request.method == "GET":
         user = User.objects.get(email=request.user.email)
-
+        try:
+            avatar = user.profile.avatar.url
+        except:
+            return render(
+                request, template_name='alfastaff-bonuses/edit.html',
+                context={'user': user, 'avatar': 'static/images/site/anon_user.png'})
         return render(
-            request, template_name='alfastaff-bonuses/edit.html',
-            context={'user': user})
+                request, template_name='alfastaff-bonuses/edit.html',
+                context={'user': user, 'avatar': avatar})
 
 
 @login_required(login_url='login')
