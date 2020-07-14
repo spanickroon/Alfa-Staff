@@ -41,7 +41,7 @@ table {
 }
 
 .body-start {
-    background-image: url(https://storage.cloud.google.com/alfastaff-storage/images/site/back_login_register.png);
+    background-image: url(/static/images/site/back_login_register.png);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -53,19 +53,19 @@ table {
 }
 
 .body-bonuses {
-    background-image: url(https://storage.cloud.google.com/alfastaff-storage/images/site/back_bonuses.png);
+    background-image: url(/static/images/site/back_bonuses.png);
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-list-purchases {
-    background-image: url(https://storage.cloud.google.com/alfastaff-storage/images/site/back_list_purcheses.png);
+    background-image: url(/static/images/site/back_list_purcheses.png);
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-shedule {
-    background-image: url(https://storage.cloud.google.com/alfastaff-storage/images/site/back_shedule.png);
+    background-image: url(/static/images/site/back_shedule.png);
     background-size: cover;
     background-attachment: fixed;
 }
