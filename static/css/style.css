@@ -42,30 +42,35 @@ table {
 
 .body-start {
     background-image: url(/static/images/site/back_login_register.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-profile {
     background-image: url(/static/images/site/back_profile.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-bonuses {
     background-image: url(/static/images/site/back_bonuses.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-list-purchases {
     background-image: url(/static/images/site/back_list_purcheses.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-shedule {
     background-image: url(/static/images/site/back_shedule.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
