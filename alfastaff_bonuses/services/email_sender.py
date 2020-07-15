@@ -9,14 +9,14 @@ from django.conf import settings
 from datetime import datetime
 from email.mime.image import MIMEImage
 from pathlib import Path
+import requests
 
 
 def send_message_about_buy(request: object, user: object, bonus: object) -> None:
     """Send message about buy product on email admin."""
     current_site = get_current_site(request)
     mail_subject = 'Покупка товара'
-
-    bonus_image = Path(f'static/images/{bonus.image}').name
+    bonus_image = Path(bonus.image.name).name
 
     message = render_to_string('alfastaff-bonuses/buy_message.html', {
         'user': user,
@@ -34,10 +34,9 @@ def send_message_about_buy(request: object, user: object, bonus: object) -> None
     email.attach_alternative(message, "text/html")
     email.mixed_subtype = 'related'
 
-    with open(f'static/images/{bonus.image}', mode='rb') as f:
-        image = MIMEImage(f.read())
-        image.add_header('Content-ID', f"<{bonus_image}>")
-        email.attach(image)
+    image = MIMEImage(requests.get(bonus.image.url).content)
+    image.add_header('Content-ID', f"<{bonus_image}>")
+    email.attach(image)
 
     email.send()
     return JsonResponse({"buy": "ok"})
