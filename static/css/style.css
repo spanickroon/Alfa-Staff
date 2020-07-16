@@ -1033,15 +1033,17 @@ table {
     text-align: center;
     cursor: pointer;
     border-radius: 4px 4px 4px 4px;
-    background-color: lightgray;
+    
+    color: #FFFFFF;
+    background-color: #F03226;
 }
 
 .close-button:hover:active {
-    background-color: gray;
+    background-color: #780000;
 }
 
 .close-button:hover {
-    background-color: darkgray;
+    background-color: #C20000;
 }
 
 .show-modal {
