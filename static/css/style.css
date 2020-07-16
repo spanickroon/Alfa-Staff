@@ -42,30 +42,35 @@ table {
 
 .body-start {
     background-image: url(/static/images/site/back_login_register.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-profile {
     background-image: url(/static/images/site/back_profile.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-bonuses {
     background-image: url(/static/images/site/back_bonuses.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-list-purchases {
     background-image: url(/static/images/site/back_list_purcheses.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
 
 .body-shedule {
     background-image: url(/static/images/site/back_shedule.png);
+    background-color: #C0C0C0;
     background-size: cover;
     background-attachment: fixed;
 }
@@ -551,7 +556,7 @@ table {
 .error-msg {
     color: #F03226;
 
-    font-size: 16pt;
+    font-size: 12pt;
     font-weight: 300;
 
     filter: contrast(100%);
@@ -595,7 +600,7 @@ table {
     grid-row-gap: 2vw;
 
     width: auto;
-    height: 100vh;
+    height: auto;
 }
 
 .product-article {
@@ -912,7 +917,7 @@ table {
 }
 
 .list-purchases-container {
-    display: grid;
+    display: flex;
     flex-direction: column;
 
     margin-top: 30px;
@@ -921,7 +926,7 @@ table {
     margin-right: 200px;
 
     width: auto;
-    height: 105vh;
+    height: auto;
 
     font-size: 16pt;
 }
@@ -1028,15 +1033,17 @@ table {
     text-align: center;
     cursor: pointer;
     border-radius: 4px 4px 4px 4px;
-    background-color: lightgray;
+
+    color: #FFFFFF;
+    background-color: #F03226;
 }
 
 .close-button:hover:active {
-    background-color: gray;
+    background-color: #780000;
 }
 
 .close-button:hover {
-    background-color: darkgray;
+    background-color: #C20000;
 }
 
 .show-modal {
@@ -1098,3 +1105,42 @@ table {
 #confirm:hover {
     background-color: #007e08;
 }
+
+.error-container {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    word-wrap: break-word;
+
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    width: 300px;
+    height: 300px;
+}
+
+.error-img {
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.error-status {
+    font-size: 24pt;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    font-size: 18pt;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.error-info-mail {
+    color: #999999;
+    font-size: 10pt;
+}  

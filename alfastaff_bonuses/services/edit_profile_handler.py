@@ -11,15 +11,13 @@ def edit_profile_processing(request: object, profile_change_form: object) -> obj
     user = User.objects.get(email=request.user.email)
     user.email = profile_change_form.cleaned_data.get('email')
 
-    if profile_change_form.cleaned_data.get('avatar') != "profiles/anon_user.png":
+    if profile_change_form.cleaned_data.get('avatar') != "images/profiles/anon_user.png":
         user.profile.avatar = profile_change_form.cleaned_data.get('avatar')
 
     user.profile.first_name = profile_change_form.cleaned_data.get('first_name')
     user.profile.second_name = profile_change_form.cleaned_data.get('second_name')
     user.profile.middle_name = profile_change_form.cleaned_data.get('middle_name')
     user.profile.number_phone = profile_change_form.cleaned_data.get('number_phone')
-    user.profile.position = profile_change_form.cleaned_data.get('position')
-    user.profile.department = profile_change_form.cleaned_data.get('department')
 
     user.profile.save()
     user.save()

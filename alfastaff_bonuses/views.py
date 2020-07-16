@@ -5,7 +5,6 @@ from django.http import JsonResponse
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import ImproperlyConfigured
 
 from .models import BonusCard, Purchase
 from .forms import PasswordChangeForm, ProfileChangeForm
@@ -16,6 +15,7 @@ from .services.purchases_page_handler import get_purchases
 from .services.bonuses_page_handler import get_bonuses
 from .services.buy_handler import buy_processing
 from .services.count_page_handler import count_page_bonuses, count_page_purchases
+from .services.dropbox_handler import get_avatars_from_dropbox
 
 
 @login_required(login_url='login')
@@ -25,13 +25,9 @@ def profile(request: object):
     1. GET
         Returns the reset profile page.
     """
-    try:
-        avatar = request.user.profile.avatar.url
-    except (UnboundLocalError, ImproperlyConfigured) as ex:
+    if request.method == "GET":
+        avatar = get_avatars_from_dropbox(request.user)
         return render(
-            request, template_name='alfastaff-bonuses/profile.html',
-            context={'user': request.user, 'avatar': 'static/images/site/anon_user.png'})
-    return render(
             request, template_name='alfastaff-bonuses/profile.html',
             context={'user': request.user, 'avatar': avatar})
 
@@ -44,11 +40,10 @@ def edit(request: object):
         Returns the edit page.
     """
     if request.method == "GET":
-        user = User.objects.get(email=request.user.email)
-
+        avatar = get_avatars_from_dropbox(request.user)
         return render(
             request, template_name='alfastaff-bonuses/edit.html',
-            context={'user': user})
+            context={'user': request.user, 'avatar': avatar})
 
 
 @login_required(login_url='login')
@@ -69,9 +64,10 @@ def edit_password(request: object):
         if password_change_form.is_valid():
             return edit_password_processing(request, password_change_form)
         else:
+            avatar = get_avatars_from_dropbox(request.user)
             return render(
                 request, template_name='alfastaff-bonuses/edit.html',
-                context={'user': request.user, 'error': True})
+                context={'user': request.user, 'error': True, 'avatar': avatar})
     else:
         return redirect(to="edit")
 

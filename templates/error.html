@@ -12,6 +12,28 @@
     <link rel="stylesheet" href="{% static "css/style.css" %}">
 </head>
     <body>
-        {{ status_code }} test
+        <header class="header">
+            <span>
+                <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
+            </span>
+            <span>
+                <label class="logo-text-red">Альфа·Персонал</label>
+            </span>
+    
+            <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
+            <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
+            <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
+            {% if user.profile.role == 1 %}
+                <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
+            {% endif %}
+            <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
+        </header>
+        <div class="error-container">
+            <img class="error-img" src="{% static "images/site/alfa-logo-red.svg" %}">
+            <label class="error-status">Ошибка {{ status_code }}</label>
+            <label class="error-message">{{ message }}</label>
+            <label class="error-info-mail">{{ info_error_first }}</label>
+            <label class="error-info-mail">{{ info_error_second }}</label>
+        </div>
     </body>
 </html>

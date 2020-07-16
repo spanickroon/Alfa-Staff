@@ -119,6 +119,9 @@ function toggleModal(text, ev) {
 }
 
 function toggleModalAnswer(text) {
+    if (typeof text == 'object') {
+        text = ""
+    }
     document.querySelector(".modal-answer").classList.toggle("show-modal");
     document.querySelector(".close-button-answer").addEventListener("click", toggleModalAnswer);
     document.getElementById("text-answer").innerText = text
