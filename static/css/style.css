@@ -556,7 +556,7 @@ table {
 .error-msg {
     color: #F03226;
 
-    font-size: 16pt;
+    font-size: 12pt;
     font-weight: 300;
 
     filter: contrast(100%);
@@ -600,7 +600,7 @@ table {
     grid-row-gap: 2vw;
 
     width: auto;
-    height: 100vh;
+    height: auto;
 }
 
 .product-article {
@@ -926,7 +926,7 @@ table {
     margin-right: 200px;
 
     width: auto;
-    height: 105vh;
+    height: auto;
 
     font-size: 16pt;
 }
