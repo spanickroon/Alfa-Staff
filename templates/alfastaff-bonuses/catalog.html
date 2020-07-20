@@ -5,10 +5,14 @@
 <body class="body-bonuses">
     <header class="header">
         <span>
-            <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
+            <a class="nav-logo" href="{% url 'bonuses' %}">
+                <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
+            </a>
         </span>
         <span>
-            <label class="logo-text-red">Lorem·ipsum</label>
+            <a class="nav-logo" href="{% url 'bonuses' %}">
+                <label class="logo-text-red">Lorem·ipsum</label>
+            </a>
         </span>
 
         <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
