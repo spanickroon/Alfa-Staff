@@ -15,7 +15,7 @@ from .services.purchases_page_handler import get_purchases
 from .services.bonuses_page_handler import get_bonuses
 from .services.buy_handler import buy_processing
 from .services.count_page_handler import count_page_bonuses, count_page_purchases
-from .services.dropbox_handler import get_avatars_from_dropbox
+from .services.convert_image_handler import get_avatars_from_avatar_binary
 
 
 @login_required(login_url='login')
@@ -26,7 +26,7 @@ def profile(request: object):
         Returns the reset profile page.
     """
     if request.method == "GET":
-        avatar = get_avatars_from_dropbox(request.user)
+        avatar = get_avatars_from_avatar_binary(request.user)
         return render(
             request, template_name='alfastaff-bonuses/profile.html',
             context={'user': request.user, 'avatar': avatar})
@@ -40,7 +40,7 @@ def edit(request: object):
         Returns the edit page.
     """
     if request.method == "GET":
-        avatar = get_avatars_from_dropbox(request.user)
+        avatar = get_avatars_from_avatar_binary(request.user)
         return render(
             request, template_name='alfastaff-bonuses/edit.html',
             context={'user': request.user, 'avatar': avatar})
@@ -64,7 +64,7 @@ def edit_password(request: object):
         if password_change_form.is_valid():
             return edit_password_processing(request, password_change_form)
         else:
-            avatar = get_avatars_from_dropbox(request.user)
+            avatar = get_avatars_from_avatar_binary(request.user)
             return render(
                 request, template_name='alfastaff-bonuses/edit.html',
                 context={'user': request.user, 'error': True, 'avatar': avatar})

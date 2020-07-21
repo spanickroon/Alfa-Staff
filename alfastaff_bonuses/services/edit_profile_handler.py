@@ -12,7 +12,7 @@ def edit_profile_processing(request: object, profile_change_form: object) -> obj
     user.email = profile_change_form.cleaned_data.get('email')
 
     if profile_change_form.cleaned_data.get('avatar') != "images/profiles/anon_user.png":
-        user.profile.avatar = profile_change_form.cleaned_data.get('avatar')
+        user.profile.avatar_binary = profile_change_form.cleaned_data.get('avatar').read()
 
     user.profile.first_name = profile_change_form.cleaned_data.get('first_name')
     user.profile.second_name = profile_change_form.cleaned_data.get('second_name')
