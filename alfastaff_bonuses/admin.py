@@ -14,7 +14,10 @@ class AuthorAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         """Conver image to image_base64."""
-        image_binary = form.cleaned_data.get('image').read()
+        try:
+            image_binary = form.cleaned_data.get('image').read()
+        except:
+            image_binary = open("static/images/site/product.jpg", "rb").read()
         image_base64 = b64encode(image_binary).decode('ascii')
         obj.image_base64 = image_base64
         obj.save()
