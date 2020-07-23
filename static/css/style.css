@@ -590,7 +590,7 @@ table {
 .bonuses-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 50%);
+    grid-template-rows: repeat(2, 1fr);
 
     margin-top: 25px;
     margin-left: 200px;
@@ -616,6 +616,8 @@ table {
     border: none;
     overflow: hidden;
     border-radius: 15px 15px 15px 15px;
+
+    height: 100%;
 }
 
 .img-product {
