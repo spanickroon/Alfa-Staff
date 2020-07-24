@@ -10,9 +10,8 @@ class BonusCard(models.Model):
     name = models.CharField(
         max_length=50, blank=True,
         verbose_name="Название", null=True)
-    image_base64 = models.CharField(
-        max_length=200000, blank=True,
-        verbose_name="Фотография base64", null=True)
+    image_binary = models.BinaryField(
+        verbose_name="Фотография байткод", blank=True, editable=False)
     cost = models.IntegerField(
         blank=True, null=True, verbose_name="Стоимость")
     image = models.ImageField(

@@ -3,8 +3,6 @@
 from django.contrib import admin
 from .models import BonusCard, Purchase
 
-from base64 import b64encode
-
 
 @admin.register(BonusCard)
 class AuthorAdmin(admin.ModelAdmin):
@@ -13,13 +11,11 @@ class AuthorAdmin(admin.ModelAdmin):
     list_filter = ('name', 'cost',)
 
     def save_model(self, request, obj, form, change):
-        """Conver image to image_base64."""
+        """Conver image to image binary."""
         try:
-            image_binary = form.cleaned_data.get('image').read()
+            obj.image_binary = form.cleaned_data.get('image').read()
         except:
-            image_binary = open("static/images/site/product.jpg", "rb").read()
-        image_base64 = b64encode(image_binary).decode('ascii')
-        obj.image_base64 = image_base64
+            obj.image_binary = open("static/images/site/product.jpg", "rb").read()
         obj.save()
 
 

@@ -12,7 +12,7 @@ from .forms import PasswordChangeForm, ProfileChangeForm
 from .services.edit_password_handler import edit_password_processing
 from .services.edit_profile_handler import edit_profile_processing
 from .services.purchases_page_handler import get_purchases
-from .services.bonuses_page_handler import get_bonuses
+from .services.bonuses_page_handler import get_bonuses, dictionary_preparation
 from .services.buy_handler import buy_processing
 from .services.count_page_handler import count_page_bonuses, count_page_purchases
 from .services.convert_image_handler import get_avatars_from_avatar_binary
@@ -169,9 +169,11 @@ def bonuses_page(request: object, page: int, sort: str):
     if request.method == "GET":
         bonuses = get_bonuses(request, page, sort)
 
+        dict_bonuses = dictionary_preparation(bonuses)
+
         return render(
             request, template_name='alfastaff-bonuses/list_bonuses.html',
-            context={'bonuses': bonuses})
+            context={'dict_bonuses': dict_bonuses})
 
 
 @login_required(login_url='login')

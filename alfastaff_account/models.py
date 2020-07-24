@@ -15,7 +15,7 @@ class Profile(models.Model):
         verbose_name="Фотография",
         upload_to='profiles', null=True, blank=True)
     avatar_binary = models.BinaryField(
-        verbose_name="Фотография байткод", blank=True, editable=True)
+        verbose_name="Фотография байткод", blank=True, editable=False)
     first_name = models.CharField(
         default="Имя", max_length=30,
         verbose_name="Имя",
