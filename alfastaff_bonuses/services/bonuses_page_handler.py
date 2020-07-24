@@ -4,6 +4,8 @@ from django.core.paginator import Paginator
 
 from ..models import BonusCard
 
+from base64 import b64encode
+
 
 def get_bonuses(request: object, page_num: int, sort: str) -> list:
     """Calculate bonuses object for page."""
@@ -15,3 +17,11 @@ def get_bonuses(request: object, page_num: int, sort: str) -> list:
     paginator = Paginator(bonuses, 8)
 
     return paginator.page(page_num)
+
+
+def dictionary_preparation(bonuses: list) -> dict:
+    """Generate dict, when key it is image base64 and key it is bonus obj."""
+    dictionary = {}
+    for bonus in bonuses:
+        dictionary[bonus] = str(b64encode(bonus.image_binary).decode('ascii'))
+    return dictionary

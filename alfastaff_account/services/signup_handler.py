@@ -25,7 +25,8 @@ def signup_processing(request: object, signup_form: object) -> object:
     user.save()
 
     profile = Profile(
-        user=user
+        user=user,
+        avatar_binary=open("static/images/site/anon_user.png", "rb").read()
     )
     profile.save()
 

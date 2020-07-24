@@ -6,14 +6,14 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.contrib.auth.hashers import check_password, make_password
 
-from .dropbox_handler import get_avatars_from_dropbox
+from .convert_image_handler import get_avatars_from_avatar_binary
 
 
 def edit_password_processing(request: object, password_change_form: object) -> object:
     """Change user password."""
     user = User.objects.get(email=request.user.email)
 
-    avatar = get_avatars_from_dropbox(user)
+    avatar = get_avatars_from_avatar_binary(user)
 
     password1 = password_change_form.cleaned_data.get("password1")
     password2 = password_change_form.cleaned_data.get("password2")

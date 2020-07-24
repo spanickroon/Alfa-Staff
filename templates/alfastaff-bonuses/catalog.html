@@ -5,10 +5,14 @@
 <body class="body-bonuses">
     <header class="header">
         <span>
-            <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
+            <a class="nav-logo" href="{% url 'bonuses' %}">
+                <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
+            </a>
         </span>
         <span>
-            <label class="logo-text-red">Lorem·ipsum</label>
+            <a class="nav-logo" href="{% url 'bonuses' %}">
+                <label class="logo-text-red">Lorem·ipsum</label>
+            </a>
         </span>
 
         <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
@@ -32,7 +36,7 @@
 
     <div class="modal">
         <div class="modal-content">
-            <img class="logo-toggle-modal" src="{% static "images/site/alfa-logo-red.svg" %}">
+            <img class="logo-toggle-modal" src="{% static "images/site/incognita.png" %}">
             <label id="text"></label>
             <span class="close-button">&times;</span>
             <button id="confirm">Подтвердить</button>
@@ -41,7 +45,7 @@
 
     <div class="modal modal-answer">
         <div class="modal-content">
-            <img class="logo-toggle-modal" src="{% static "images/site/alfa-logo-red.svg" %}">
+            <img class="logo-toggle-modal" src="{% static "images/site/incognita.png" %}">
             <label id="text-answer"></label>
             <span class="close-button close-button-answer">&times;</span>
         </div>

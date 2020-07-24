@@ -5,10 +5,14 @@
 <body class="body-profile">
     <header class="header">
         <span>
-            <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
+            <a class="nav-logo" href="{% url 'bonuses' %}">
+                <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
+            </a>
         </span>
         <span>
-            <label class="logo-text-red">Lorem·ipsum</label>
+            <a class="nav-logo" href="{% url 'bonuses' %}">
+                <label class="logo-text-red">Lorem·ipsum</label>
+            </a>
         </span>
 
         <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
@@ -27,7 +31,7 @@
             {% csrf_token %}
             <div class="edit-profile-container">
                 <div class="img-edit-profile">
-                    <img  src="{{ avatar }}">
+                    <img src="data: image / png; base64, {{ avatar }}">
                 </div>
                 
                 <div class="change-photo">
