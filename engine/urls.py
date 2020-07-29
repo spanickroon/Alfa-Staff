@@ -7,6 +7,9 @@ from django.conf import settings
 from django.conf.urls import handler404, handler500
 from .views import handler_error_404, handler_error_500
 
+
+admin.site.site_header = 'Админ панель Альфа-Персонал'
+
 urlpatterns = [
     path('admin/', admin.site.urls, name="admin"),
     path('', include('alfastaff_account.urls')),

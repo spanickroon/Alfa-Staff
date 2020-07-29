@@ -68,10 +68,15 @@ class Profile(models.Model):
     class Meta:
         """Meta data."""
 
-        db_table = 'Профиль'
         verbose_name = 'Профиль'
-        verbose_name_plural = 'Профиль'
+        verbose_name_plural = 'Профили'
+        ordering = ["user"]
 
     def __str__(self) -> str:
         """Funtion for output info about this profile object."""
-        return self.user.email
+        return "{0} {1} {2} - {3}".format(
+                self.second_name,
+                self.first_name,
+                self.middle_name,
+                self.user.email
+            )

@@ -22,7 +22,7 @@ class BonusCard(models.Model):
         """Meta data."""
 
         db_table = 'Товары'
-        verbose_name = 'Товары'
+        verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
         ordering = ["name"]
 
@@ -65,16 +65,15 @@ class Purchase(models.Model):
     class Meta:
         """Meta data."""
 
-        db_table = 'Покупки'
-        verbose_name = 'Покупки'
+        verbose_name = 'Покупка'
         verbose_name_plural = 'Покупки'
         ordering = ["-id"]
 
     def __str__(self):
         """Funtion for output info about this purchase object."""
         return "{0} {1} {2} - {3}".format(
-                self.user.profile.first_name,
                 self.user.profile.second_name,
+                self.user.profile.first_name,
                 self.user.profile.middle_name,
                 self.name
             )

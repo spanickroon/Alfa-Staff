@@ -1,6 +1,7 @@
 """This module contain class for work with BonusCard and Purchase object in admin panel."""
 
 from django.contrib import admin
+
 from .models import BonusCard, Purchase
 
 

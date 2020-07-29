@@ -7,3 +7,4 @@ class AlfastaffSheduleConfig(AppConfig):
     """AlfastaffSheduleConfig class with data for application."""
 
     name = 'alfastaff_shedule'
+    verbose_name = "Альфа-Расписание"

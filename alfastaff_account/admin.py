@@ -1,6 +1,7 @@
 """This module contain class for work with Profile object in admin panel."""
 
 from django.contrib import admin
+
 from .models import Profile
 
 
