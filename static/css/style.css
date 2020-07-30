@@ -1150,3 +1150,127 @@ table {
 .nav-logo {
     text-decoration: none;
 }
+
+.shedule {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    margin-top: 150px;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 100px;
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-row-gap: 1px;
+    grid-column-gap: 1px;
+
+    border-radius: 10px 10px 10px 10px;
+
+    width: 75%;
+}
+
+.calendar > * {
+    border-radius: 10px 10px 10px 10px;
+    background-color: #FFFFFF;
+}
+
+.week-day {
+    display: flex;
+    justify-content: space-around;
+
+    color: #FFFFFF;
+
+    font-size: 14pt;
+
+    background-color: #424242;
+
+    grid-column-start: 1;
+    grid-column-end: 8;
+}
+
+.free-day {
+    color: #C20000;
+}
+
+.calendar-day {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    flex-direction: column;
+}
+
+.calendar:hover .calendar-day {
+    transition-duration: .5s;
+    
+    filter: blur(1px);
+}
+
+.calendar .calendar-day:hover {
+    transform: scale(1.5);
+    transition-duration: .5s;
+
+    border-radius: 10px;
+    
+    z-index: 1;
+
+    filter: blur(0px);
+}
+
+.calendar-free {
+    background-color: #a5da75;
+}
+
+.number-calendar-day {
+    margin-right: 5px;
+    
+    align-self: flex-end;
+    text-align: end;
+
+    width: 15%;
+
+    color: #8b8b8b;
+}
+
+.working-hours-сontainer {
+    font-size: 12pt;
+}
+
+.working-hours {
+    margin-bottom: 12px;
+    word-wrap: break-word;
+}
+
+.work {
+    border-bottom: solid 1px #8b8b8b;
+}
+
+.dinner {
+    border-bottom: solid 1px #C20000;
+}
+
+.time-break {
+    border-bottom: solid 1px #2EB837;
+}
+
+.info-shedule-panel {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    float: right;
+
+    width: 20%;
+
+    border-radius: 10px;
+
+    background-color: #FFFFFF;
+}
+
+.shedule-button {
+    width: 100%;
+    height: 40px;
+}
