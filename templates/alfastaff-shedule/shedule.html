@@ -34,44 +34,43 @@
             <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
         </header>
     <div class="shedule">
+        <div class="weeks-day-container">
+            {% for i in 12345|make_list %}
+                <label class="work-day">{{ i }}</label>
+            {% endfor %}
+            {% for i in 67|make_list %}
+                <label class="free-day">{{ i }}</label>
+            {% endfor %}
+        </div>
         <div class="calendar">
-            <div class="week-day">
-                {% for i in 12345|make_list %}
-                    <label>{{ i }}</label>
-                {% endfor %}
-                {% for i in 67|make_list %}
-                    <label class="free-day">{{ i }}</label>
-                {% endfor %}
-            </div>
-
             {% for i in 123456712345671234567123456712345|make_list %}
             <div class="calendar-day">
                 <label class="number-calendar-day">{{ i }}</label>
                 <div class="working-hours-container">
                     <div class="circle-shedule circle-shedule-gray"></div>
-                    <div class="working-hours work">08:30 - 17:30</div>
+                    <div class="working-hours">08:30 - 17:30</div>
 
                     <div class="circle-shedule circle-shedule-red"></div>
-                    <div class="working-hours dinner">12:30 - 13:00</div>
+                    <div class="working-hours">12:30 - 13:00</div>
 
                     <div class="circle-shedule circle-shedule-green"></div>
-                    <div class="working-hours time-break">15:00 - 15:15</div>
+                    <div class="working-hours">15:00 - 15:15</div>
                 </div>
                 
             </div>
             {% endfor %}
 
             <div class="calendar-day calendar-free">
-                <label class="number-calendar-day">6</label>
+                <label class="number-calendar-day">{{ 6 }}</label>
                 <div class="working-hours-container">
                     <div class="circle-shedule circle-shedule-gray"></div>
-                    <div class="working-hours work">08:30 - 17:30</div>
+                    <div class="working-hours">08:30 - 17:30</div>
 
                     <div class="circle-shedule circle-shedule-red"></div>
-                    <div class="working-hours dinner">12:30 - 13:00</div>
+                    <div class="working-hours">12:30 - 13:00</div>
 
                     <div class="circle-shedule circle-shedule-green"></div>
-                    <div class="working-hours time-break">15:00 - 15:15</div>
+                    <div class="working-hours">15:00 - 15:15</div>
                 </div>
                 
             </div>
@@ -79,16 +78,7 @@
             <div class="calendar-day calendar-not-this-month">
                 <label class="number-calendar-day">7</label>
                 <div class="working-hours-container">
-                    <div class="circle-shedule circle-shedule-gray"></div>
-                    <div class="working-hours work">08:30 - 17:30</div>
-
-                    <div class="circle-shedule circle-shedule-red"></div>
-                    <div class="working-hours dinner">12:30 - 13:00</div>
-
-                    <div class="circle-shedule circle-shedule-green"></div>
-                    <div class="working-hours time-break">15:00 - 15:15</div>
-                </div>
-                
+                </div> 
             </div>
         </div>
     
