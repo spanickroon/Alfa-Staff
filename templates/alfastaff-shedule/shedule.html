@@ -33,70 +33,79 @@
             {% endif %}
             <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
         </header>
-    <div class="shedule">
-        <div class="weeks-day-container">
-            {% for i in 12345|make_list %}
-                <label class="work-day">{{ i }}</label>
-            {% endfor %}
-            {% for i in 67|make_list %}
-                <label class="free-day">{{ i }}</label>
-            {% endfor %}
-        </div>
-        <div class="calendar">
-            {% for i in 123456712345671234567123456712345|make_list %}
-            <div class="calendar-day">
-                <label class="number-calendar-day">{{ i }}</label>
-                <div class="working-hours-container">
-                    <div class="circle-shedule circle-shedule-gray"></div>
-                    <div class="working-hours">08:30 - 17:30</div>
+        <div class="year-mounth">июнь 2020</div>
 
-                    <div class="circle-shedule circle-shedule-red"></div>
-                    <div class="working-hours">12:30 - 13:00</div>
+        <div class="shedule">
+            <div class="weeks-day-container">
+                {% for i in 12345|make_list %}
+                    <label class="work-day">{{ i }}</label>
+                {% endfor %}
+                {% for i in 67|make_list %}
+                    <label class="free-day">{{ i }}</label>
+                {% endfor %}
+            </div>
+            <div class="calendar">
+                {% for i in 123456712345671234567123456712345|make_list %}
+                <div class="calendar-day">
+                    <label class="number-calendar-day">{{ i }}</label>
+                    <div class="working-hours-container">
+                        <div class="circle-shedule circle-shedule-gray"></div>
+                        <div class="working-hours">08:30 - 17:30</div>
 
-                    <div class="circle-shedule circle-shedule-green"></div>
-                    <div class="working-hours">15:00 - 15:15</div>
+                        <div class="circle-shedule circle-shedule-red"></div>
+                        <div class="working-hours">12:30 - 13:00</div>
+
+                        <div class="circle-shedule circle-shedule-green"></div>
+                        <div class="working-hours">15:00 - 15:15</div>
+                    </div>
+                    
                 </div>
-                
-            </div>
-            {% endfor %}
+                {% endfor %}
 
-            <div class="calendar-day calendar-free">
-                <label class="number-calendar-day">{{ 6 }}</label>
-                <div class="working-hours-container">
-                    <div class="circle-shedule circle-shedule-gray"></div>
-                    <div class="working-hours">08:30 - 17:30</div>
+                <div class="calendar-day calendar-free">
+                    <label class="number-calendar-day">{{ 6 }}</label>
+                    <div class="working-hours-container">
+                        <div class="circle-shedule circle-shedule-gray"></div>
+                        <div class="working-hours">08:30 - 17:30</div>
 
-                    <div class="circle-shedule circle-shedule-red"></div>
-                    <div class="working-hours">12:30 - 13:00</div>
+                        <div class="circle-shedule circle-shedule-red"></div>
+                        <div class="working-hours">12:30 - 13:00</div>
 
-                    <div class="circle-shedule circle-shedule-green"></div>
-                    <div class="working-hours">15:00 - 15:15</div>
+                        <div class="circle-shedule circle-shedule-green"></div>
+                        <div class="working-hours">15:00 - 15:15</div>
+                        <div class="circle-shedule circle-shedule-green"></div>
+                        <div class="working-hours">15:00 - 15:15</div>
+                    </div>
+                    
                 </div>
-                
-            </div>
 
-            <div class="calendar-day calendar-not-this-month">
-                <label class="number-calendar-day">7</label>
-                <div class="working-hours-container">
-                </div> 
+                <div class="calendar-day calendar-not-this-month">
+                    <label class="number-calendar-day">7</label>
+                    <div class="working-hours-container">
+                    </div> 
+                </div>
             </div>
+        
+            <aside class="info-shedule-panel">
+                <div class="info-time-shedule">
+                    <div class="circle-shedule circle-shedule-gray"></div>
+                    <label> - работа</label>
+                    <div class="circle-shedule circle-shedule-red"></div>
+                    <label> - обед</label>
+                    <div class="circle-shedule circle-shedule-green"></div>
+                    <label> - перерыв</label>
+                </div>
+
+                <div class="info-time-shedule">
+                    <div class="square-shedule square-shedule-green"></div>
+                    <label> - выходной</label>
+                </div>
+                <div class="shedule-buttons">
+                    <button class="shedule-button shedule-button-green">Загрузить таблицу</button>
+                    <button class="shedule-button shedule-button-red">Оставить отзыв</button>
+                </div>
+            </aside>
         </div>
-    
-        <aside class="info-shedule-panel">
-            <div class="info-time-shedule">
-                <div class="circle-shedule circle-shedule-gray"></div>
-                <label> - работа</label>
-                <div class="circle-shedule circle-shedule-red"></div>
-                <label> - обед</label>
-                <div class="circle-shedule circle-shedule-green"></div>
-                <label> - перерыв</label>
-            </div>
-            <div class="shedule-buttons">
-                <button class="shedule-button shedule-button-green">Загрузить таблицу</button>
-                <button class="shedule-button shedule-button-red">Оставить отзыв</button>
-            </div>
-        </aside>
-    </div>
     </body>
     <script src="{% static "js/alfastaff-bonuses/visual_effects.js" %}"></script>
 </html>

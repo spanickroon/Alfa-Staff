@@ -1151,6 +1151,14 @@ table {
     text-decoration: none;
 }
 
+.year-mounth {
+    color: #FFFFFF;
+
+    margin-top: 130px;
+    margin-left: 200px;
+
+    font-size: 6vh;
+}
 .shedule {
     display: grid;
 
@@ -1158,7 +1166,6 @@ table {
 
     justify-content: space-between;
 
-    margin-top: 150px;
     margin-left: 200px;
     margin-right: 200px;
     margin-bottom: 200px;
@@ -1173,7 +1180,7 @@ table {
     align-items: center;
     justify-content: center;
 
-    font-size: 14pt;
+    font-size: 2.5vh;
     text-align: center;
 
     color: #FFFFFF;
@@ -1281,12 +1288,10 @@ table {
     grid-template-columns: repeat(2, auto);
 
     column-gap: 3px;
-    row-gap: 2vh;
+    row-gap: 1.3vh;
 
     align-items: center;
     justify-content: center;
-
-    margin-top: 0.5vh;
 }
 
 .working-hours {
@@ -1297,8 +1302,6 @@ table {
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
-    float: right;
 
     width: 100%;
 
@@ -1330,6 +1333,8 @@ table {
 
     font-size: 2.5vh;
     font-weight: 300;
+
+    text-align: start;
 }
 
 .circle-shedule {
@@ -1354,6 +1359,7 @@ table {
     display: flex;
     flex-direction: column;
 
+    margin-top: auto;
     margin-bottom: 20px;
 
     width: 90%;
@@ -1376,18 +1382,20 @@ table {
 
 .shedule-button-green {
     background-color: #2EB837;
+    box-shadow: 0px 10px 20px rgba(46, 184, 55, .5);
 }
 
 .shedule-button-green:hover {
-    background-color :#007e08;
+    background-color: #007e08;
 }
 
 .shedule-button-green:active {
-    background-color:#001d02;
+    background-color: #001d02;
 }
 
 .shedule-button-red {
     background-color: #F03226;
+    box-shadow: 0px 10px 20px rgba(240, 50, 38, .5);
 }
 
 .shedule-button-red:hover {
@@ -1396,4 +1404,13 @@ table {
 
 .shedule-button-red:active {
     background-color: #780000;
+}
+
+.square-shedule {
+    width: 3vh;
+    height: 3vh;
+}
+
+.square-shedule-green {   
+    background-color: #a5da75;
 }
