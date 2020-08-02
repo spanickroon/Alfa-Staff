@@ -11,4 +11,5 @@ whitenoise==5.1.0
 Pillow==7.1.2
 six==1.15.0
 django-storages==1.7.1
-dropbox==10.2.0
+uwsgi==2.0.19.1
+waitress==1.4.4
