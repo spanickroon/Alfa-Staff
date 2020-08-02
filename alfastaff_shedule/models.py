@@ -15,7 +15,7 @@ class PersonnelLoadDocument(models.Model):
         verbose_name="Дата загрузки", null=True)
     file_with_table = models.FileField(
         blank=True, verbose_name="CSV файл с нагрузкой персонала",
-        null=True)
+        null=True, upload_to="documents")
 
     class Meta:
         """Meta data."""

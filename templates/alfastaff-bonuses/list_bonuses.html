@@ -1,7 +1,7 @@
-{% for bonus, image in dict_bonuses.items %}
+{% for bonus in bonuses %}
     <article class="product-article">
         <div class="img-product">
-            <img src="data: image / png; base64, {{ image }}">
+            <img src="{{ bonus.image }}">
         </div>
         <div class="name-product">
             <label>{{ bonus.name }}</label>

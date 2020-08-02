@@ -1,4 +1,4 @@
-"""Serve."""
+"""Waitress."""
 
 from waitress import serve
 from engine import wsgi

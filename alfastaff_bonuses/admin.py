@@ -11,14 +11,6 @@ class AuthorAdmin(admin.ModelAdmin):
 
     list_filter = ('name', 'cost',)
 
-    def save_model(self, request, obj, form, change):
-        """Conver image to image binary."""
-        try:
-            obj.image_binary = form.cleaned_data.get('image').read()
-        except:
-            obj.image_binary = open("static/images/site/product.jpg", "rb").read()
-        obj.save()
-
 
 @admin.register(Purchase)
 class AuthorAdmin(admin.ModelAdmin):

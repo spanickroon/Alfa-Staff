@@ -12,10 +12,9 @@ from .forms import PasswordChangeForm, ProfileChangeForm
 from .services.edit_password_handler import edit_password_processing
 from .services.edit_profile_handler import edit_profile_processing
 from .services.purchases_page_handler import get_purchases
-from .services.bonuses_page_handler import get_bonuses, dictionary_preparation
+from .services.bonuses_page_handler import get_bonuses
 from .services.buy_handler import buy_processing
 from .services.count_page_handler import count_page_bonuses, count_page_purchases
-from .services.convert_image_handler import get_avatars_from_avatar_binary
 
 
 @login_required(login_url='login')
@@ -26,10 +25,9 @@ def profile(request: object):
         Returns the reset profile page.
     """
     if request.method == "GET":
-        avatar = get_avatars_from_avatar_binary(request.user)
         return render(
             request, template_name='alfastaff-bonuses/profile.html',
-            context={'user': request.user, 'avatar': avatar})
+            context={'user': request.user, 'avatar': request.user.profile.avatar.url})
 
 
 @login_required(login_url='login')
@@ -40,10 +38,9 @@ def edit(request: object):
         Returns the edit page.
     """
     if request.method == "GET":
-        avatar = get_avatars_from_avatar_binary(request.user)
         return render(
             request, template_name='alfastaff-bonuses/edit.html',
-            context={'user': request.user, 'avatar': avatar})
+            context={'user': request.user, 'avatar': request.user.profile.avatar.url})
 
 
 @login_required(login_url='login')
@@ -64,10 +61,9 @@ def edit_password(request: object):
         if password_change_form.is_valid():
             return edit_password_processing(request, password_change_form)
         else:
-            avatar = get_avatars_from_avatar_binary(request.user)
             return render(
                 request, template_name='alfastaff-bonuses/edit.html',
-                context={'user': request.user, 'error': True, 'avatar': avatar})
+                context={'user': request.user, 'error': True, 'avatar': request.user.profile.avatar.url})
     else:
         return redirect(to="edit")
 
@@ -169,11 +165,9 @@ def bonuses_page(request: object, page: int, sort: str):
     if request.method == "GET":
         bonuses = get_bonuses(request, page, sort)
 
-        dict_bonuses = dictionary_preparation(bonuses)
-
         return render(
             request, template_name='alfastaff-bonuses/list_bonuses.html',
-            context={'dict_bonuses': dict_bonuses})
+            context={'bonuses': bonuses})
 
 
 @login_required(login_url='login')

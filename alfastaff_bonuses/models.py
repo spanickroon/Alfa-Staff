@@ -10,12 +10,10 @@ class BonusCard(models.Model):
     name = models.CharField(
         max_length=50, blank=True,
         verbose_name="Название", null=True)
-    image_binary = models.BinaryField(
-        verbose_name="Фотография байткод", blank=True, editable=False)
     cost = models.IntegerField(
         blank=True, null=True, verbose_name="Стоимость")
     image = models.ImageField(
-        default="images/bonuses/incognita.png", upload_to='bonuses',
+        default="bonuses/incognita.png", upload_to='bonuses',
         null=True, blank=True, verbose_name="Фотография")
 
     class Meta:
