@@ -29,19 +29,19 @@ http {
   }
 
   server {
-    listen <%= ENV["PORT"] %>;
+    #listen <%= ENV["PORT"] %>;
     server_name _;
     keepalive_timeout 5;
     client_max_body_size <%= ENV['NGINX_CLIENT_MAX_BODY_SIZE'] || 1 %>M;
 
     location /media/  {
-        autoindex on;
-        alias media/;
+      autoindex on;
+      alias media/;
     }
   
     location /static/ {
-        autoindex on;
-        alias staticfiles/;
+      autoindex on;
+      alias staticfiles/;
     }
 
     location / {
