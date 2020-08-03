@@ -34,13 +34,14 @@ http {
     keepalive_timeout 5;
     client_max_body_size <%= ENV['NGINX_CLIENT_MAX_BODY_SIZE'] || 1 %>M;
 
-    location /media  {
-        alias app/media;
+    location /media/  {
+        autoindex on;
+        alias media/;
     }
   
-    location /static {
-        alias app/staticfiles;
-  
+    location /static/ {
+        autoindex on;
+        alias static/;
     }
 
     location / {
