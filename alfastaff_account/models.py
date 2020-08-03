@@ -11,9 +11,9 @@ class Profile(models.Model):
         User, on_delete=models.CASCADE,
         verbose_name="Пользователь")
     avatar = models.ImageField(
-        default="profiles/anon_user.png",
+        default="media/profiles/anon_user.png",
         verbose_name="Фотография",
-        upload_to='profiles', null=True, blank=True)
+        upload_to='media/profiles', null=True, blank=True)
     first_name = models.CharField(
         default="Имя", max_length=30,
         verbose_name="Имя",
