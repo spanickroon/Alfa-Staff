@@ -12,7 +12,7 @@ class Profile(models.Model):
         verbose_name="Пользователь")
     avatar = models.ImageField(
         default="profiles/anon_user.png",
-        verbose_name="Фотография",
+        verbose_name="Аватарка профиля",
         upload_to='profiles', null=True, blank=True)
     first_name = models.CharField(
         default="Имя", max_length=30,
