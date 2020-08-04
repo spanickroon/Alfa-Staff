@@ -1154,10 +1154,10 @@ table {
 .year-mounth {
     color: #FFFFFF;
 
-    margin-top: 130px;
+    margin-top: 100px;
     margin-left: 200px;
 
-    font-size: 6vh;
+    font-size: 4vh;
 }
 .shedule {
     display: grid;
@@ -1187,7 +1187,7 @@ table {
     background-color: #424242;
 
     border: solid 1px #DDDDDD;
-    border-radius: 15px 15px 0 0;
+    border-radius: 10px 10px 0 0;
 }
 
 .work-day {
@@ -1226,8 +1226,7 @@ table {
     align-items: center;
     flex-direction: column;
 
-    padding-bottom: 100%;
-    height: 0;
+    height: 100%;
 }
 
 .calendar-day .circle-shedule {
@@ -1238,45 +1237,46 @@ table {
 
 .calendar:hover .calendar-day {
     transition-duration: .5s;
-    
-    filter: opacity(90%); 
+    filter: contrast(90%);
 }
 
 .calendar .calendar-day:hover {
-    transform: scale(1.5);
+    transform: scale(1.1);
     transition-duration: .5s;
 
     border-radius: 10px;
     
     z-index: 1;
 
-    border: solid 1px #2b2b2b;
+    border: solid 1px #DDDDDD;
 
-    filter: opacity(100%);
-    filter: contrast(150%);
-}
-
-.calendar .calendar-day:hover .working-hours-container {
-    transform: scale(0.9);
-    width: 100%;
+    filter: contrast(110%);
 }
 
 .calendar-free {
-    background-color: #a5da75;
+    background-color: #C2FFD3;
 }
 
 .calendar-not-this-month {
-    background-color: #999999;
+    background-color: #DDDDDD;
+}
+
+.calendar-holiday {
+    background-color: #FFFFFF;
+    background-position: center;
+    background-size: cover;
+    background-image: url(/static/images/site/holiday.png);
 }
 
 .number-calendar-day {
-    margin-right: 5px;
+    position: absolute;
+    margin-left: 5px;
     
-    align-self: flex-end;
-    text-align: end;
+    justify-self: left;
+    align-self: flex-start;
+    text-align: start;
 
-    width: 15%;
-    z-index: 2;
+    width: 1vw;
 
     color: #777777;
 
@@ -1292,10 +1292,19 @@ table {
 
     align-items: center;
     justify-content: center;
+
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.work {
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 
 .working-hours {
    font-size: 2vh;
+   text-align: end;
 }
 
 .info-shedule-panel {
@@ -1327,7 +1336,6 @@ table {
     column-gap: 1vh;
 
     grid-template-columns: repeat(2, auto);
-    grid-template-rows: repeat(3, auto);
 
     border-bottom: solid 3px #C0C0C0;
 
@@ -1338,38 +1346,33 @@ table {
 }
 
 .circle-shedule {
-    width: 3vh;
-    height: 3vh;
-    border-radius: 3vh;
+    width: 3.3vh;
+    height: 3.3vh;
+    border-radius: 3.3vh;
 }
 
 .circle-shedule-gray { 
-    border: solid 3px #8b8b8b;
+    border: solid 1px #8b8b8b;
 }
 
 .circle-shedule-red {
-    border: solid 3px #C20000;
+    border: solid 1px #C20000;
 }
 
 .circle-shedule-green {
-    border: solid 3px #2EB837;
+    border: solid 1px #2EB837;
 }
 
-.shedule-buttons {
-    display: flex;
-    flex-direction: column;
+.circle-shedule-free {   
+    border: solid 1px #C2FFD3;
+    background: #C2FFD3;
+}
 
+.shedule-button {
     margin-top: auto;
     margin-bottom: 20px;
 
     width: 90%;
-    height: 15%;
-
-    justify-content: space-between;
-}
-
-.shedule-button {
-    width: 100%;
     height: 6vh;
     border: none;
 
@@ -1377,20 +1380,7 @@ table {
 
     font-size: 1vw;
 
-    border-radius: 10px;
-}
-
-.shedule-button-green {
-    background-color: #2EB837;
-    box-shadow: 0px 10px 20px rgba(46, 184, 55, .5);
-}
-
-.shedule-button-green:hover {
-    background-color: #007e08;
-}
-
-.shedule-button-green:active {
-    background-color: #001d02;
+    border-radius: 4px;
 }
 
 .shedule-button-red {
@@ -1406,11 +1396,12 @@ table {
     background-color: #780000;
 }
 
-.square-shedule {
-    width: 3vh;
-    height: 3vh;
-}
+.circle-shedule-holiday {
+    background-color: #FFFFFF;
+    background-position: center;
+    background-size: 220%;
 
-.square-shedule-green {   
-    background-color: #a5da75;
+    background-image: url(/static/images/site/holiday.png);
+
+    filter: saturate(1000%);
 }
