@@ -11,4 +11,5 @@ name_apps = 'alfastaff-shedule'
 
 urlpatterns = [
     path('shedule', shedule, name='shedule'),
+    path('review', review, name='review')
 ]

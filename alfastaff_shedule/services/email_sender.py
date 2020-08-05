@@ -7,22 +7,19 @@ from django.utils.html import format_html
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
 from datetime import datetime
-from email.mime.image import MIMEImage
 from pathlib import Path
 import requests
 
 
-def send_message_about_buy(request: object, user: object, bonus: object) -> object:
-    """Send message about buy product on email admin."""
+def send_message_with_review(request: object, user: object, review: str) -> object:
+    """Send message with review on email admin."""
     current_site = get_current_site(request)
-    mail_subject = 'Покупка товара'
-    bonus_image = Path(bonus.image.name).name
+    mail_subject = 'Отзыв о расписании'
 
-    message = render_to_string('alfastaff-bonuses/buy_message.html', {
+    message = render_to_string('alfastaff-shedule/review_message.html', {
         'user': user,
+        'review': review,
         'domain': current_site.domain,
-        'bonus': bonus,
-        'bonus_image': bonus_image,
         'time': datetime.now().strftime('%d.%m.%Y в %H:%M:%S')
     })
 
@@ -34,9 +31,5 @@ def send_message_about_buy(request: object, user: object, bonus: object) -> obje
     email.attach_alternative(message, "text/html")
     email.mixed_subtype = 'related'
 
-    image = MIMEImage(requests.get(bonus.image.url).content)
-    image.add_header('Content-ID', f"<{bonus_image}>")
-    email.attach(image)
-
     email.send()
-    return JsonResponse({"buy": "ok"})
+    return JsonResponse({"send": "ok"})

@@ -114,9 +114,28 @@
                     <div class="circle-shedule circle-shedule-holiday"></div>
                     <label> - праздник</label>
                 </div>
-                <button class="shedule-button shedule-button-red">Оставить отзыв</button>
+                <button class="shedule-button shedule-button-red" id="send">Оставить отзыв</button>
             </aside>
+
+        </div>
+            <div class="modal">
+            <div class="modal-content">
+                <img class="logo-toggle-modal" src="{% static "images/site/incognita.png" %}">
+                <label id="text"></label>
+                <input type="textarea" placeholder="Отзыв о вашем расписании" id="review-text"/>
+                <span class="close-button">&times;</span>
+                <button id="review">Подтвердить</button>
+            </div>
+        </div>
+
+        <div class="modal modal-answer">
+            <div class="modal-content">
+                <img class="logo-toggle-modal" src="{% static "images/site/incognita.png" %}">
+                <label id="text-answer"></label>
+                <span class="close-button close-button-answer">&times;</span>
+            </div>
         </div>
     </body>
+    <script src="{% static "js/alfastaff-shedule/controller_shedule.js" %}"></script>
     <script src="{% static "js/alfastaff-bonuses/visual_effects.js" %}"></script>
 </html>
