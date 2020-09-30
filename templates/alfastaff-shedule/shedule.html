@@ -15,17 +15,17 @@
     <body class="body-shedule">
         <header class="header">
             <span>
-                <a class="nav-logo" href="{% url 'bonuses' %}">
+                <a class="nav-logo" href="{% url 'products' %}">
                     <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
                 </a>
             </span>
             <span>
-                <a class="nav-logo" href="{% url 'bonuses' %}">
+                <a class="nav-logo" href="{% url 'products' %}">
                     <label class="logo-text-red">Lorem·ipsum</label>
                 </a>
             </span>
 
-            <a class="nav-panel" href="{% url 'bonuses' %}">КАТАЛОГ</a>
+            <a class="nav-panel" href="{% url 'products' %}">КАТАЛОГ</a>
             <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
             <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
             {% if user.profile.role == 1 %}

@@ -19,7 +19,7 @@ urlpatterns = [
     path('edit_password', edit_password, name='edit_password'),
     path('purchases', purchases, name='purchases'),
     path('purchases/<int:page>/<str:sort>', purchases_page, name='purchases_page'),
-    path('products', products, name='bonuses'),
+    path('products', products, name='products'),
     path('products/<int:page>/<str:sort>', products_page, name='products_page'),
     path('buy/<int:id>', buy, name='buy'),
 ]

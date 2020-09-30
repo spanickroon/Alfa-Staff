@@ -20,7 +20,6 @@ class PersonnelLoadDocument(models.Model):
     class Meta:
         """Meta data."""
 
-        db_table = 'Документы нагрузки персонала'
         verbose_name = 'Документ нагрузки персонала'
         verbose_name_plural = 'Документы нагрузки персонала'
         ordering = ["-date_upload"]
