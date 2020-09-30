@@ -11,7 +11,7 @@ class AuthorAdmin(admin.ModelAdmin):
 
     list_filter = (
         'first_name', 'second_name', 'middle_name',
-        'status', 'points', 'role',)
+        'status', 'money', 'role',)
 
     class Meta:
         """Meta data."""

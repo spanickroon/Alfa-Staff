@@ -1,0 +1,14 @@
+{% for product in products %}
+    <article class="product-article">
+        <div class="img-product">
+            <img src="{{ product.image.url }}">
+        </div>
+        <div class="name-product">
+            <label>{{ product.name }}</label>
+        </div>
+        <div class="cost-product">
+            <label>{{ product.cost }}</label>
+        </div>
+        <button class="button-product-buy" id="{{ product.id }}">Купить</button>
+    </article>
+{% endfor %}

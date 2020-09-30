@@ -587,7 +587,7 @@ table {
 	background: url(/static/images/site/no-view-white.svg) 0 0 no-repeat;
 }
 
-.bonuses-container {
+.products-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 1fr);

@@ -42,9 +42,9 @@ class Profile(models.Model):
         verbose_name="Статус",
         choices=STATUS_CHOICES, blank=True, null=True)
 
-    points = models.IntegerField(
+    money = models.IntegerField(
         default=0, blank=True,
-        null=True, verbose_name="Бонусы")
+        null=True, verbose_name="Деньги")
     position = models.CharField(
         default="Не задано", max_length=50,
         verbose_name="Должность",

@@ -1,0 +1,67 @@
+{% extends 'alfastaff-products/start_template.html' %}
+{% load static %}
+
+{% block context %}
+<body class="body-profile">
+    <header class="header">
+        <span>
+            <a class="nav-logo" href="{% url 'products' %}">
+                <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
+            </a>
+        </span>
+        <span>
+            <a class="nav-logo" href="{% url 'products' %}">
+                <label class="logo-text-red">Lorem·ipsum</label>
+            </a>
+        </span>
+
+        <a class="nav-panel" href="{% url 'products' %}">КАТАЛОГ</a>
+        <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
+        <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
+        {% if user.profile.role == 1 %}
+            <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
+        {% endif %}
+        <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
+    </header>
+<div class="back-profile-top">
+    <div class="profile-info-container">
+        <div class="profile-main-info">
+            <div>
+                <label class="profile-fullname">{{ user.profile.second_name }}</label>
+                <label class="profile-fullname">{{ user.profile.first_name }}</label>
+            </div>
+
+            <label class="profile-fullname">{{ user.profile.middle_name }}</label>
+            <label class="profile-contact">{{ user.email }}</label>
+        </div>
+    </div>
+    <div class="profile-bonus-container">
+        <div class="profile-bonus-info">
+            <label class="profile-bonus">БОНУСЫ</label>
+            <label class="profile-bonus-count">{{ user.profile.money }}</label>
+        </div>
+    </div>
+</div>
+<div class="back-profile-bottom">
+    <div class="profile-info-container">
+        <label class="profile-additional-info">
+            Должность: <label class="profile-additional-info-value">{{ user.profile.position }}</label></label>
+        <label class="profile-additional-info">
+            Отдел: <label class="profile-additional-info-value">{{ user.profile.department }}</label></label>
+        <label class="profile-additional-info">
+            Телефон: <label class="profile-additional-info-value">{{ user.profile.number_phone }}</label></label>
+        <label class="profile-additional-info">
+            Статус: <label class="profile-additional-info-value">{{ user.profile.status }}</label></label>
+    </div>
+</div>
+
+<div class="img-profile">
+    <img src="{{ avatar }}">
+</div>
+
+<div class="profile-button-container">
+    <a href="{% url 'edit' %}"><button class="button-edit-profile">Редактировать</button></a>
+    <a href="{% url 'logout' %}"><button class="button-login-register">Выйти</button></a>
+</div>
+</body>
+{% endblock%}

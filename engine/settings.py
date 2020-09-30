@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'storages',
 
     'alfastaff_account.apps.AlfastaffAccountConfig',
-    'alfastaff_bonuses.apps.AlfastaffBonusesConfig',
+    'alfastaff_products.apps.AlfastaffProductsConfig',
     'alfastaff_shedule.apps.AlfastaffSheduleConfig',
 ]
 

@@ -11,5 +11,5 @@ def send_review_processing(request: object) -> object:
         review = request.POST.get('review_text')
 
         return send_message_with_review(request, request.user, review)
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+    except (TypeError, ValueError, OverflowError):
         return JsonResponse({"send": "error"})
