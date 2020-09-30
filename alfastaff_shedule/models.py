@@ -63,6 +63,9 @@ class ScheduleForOneDay(models.Model):
     technical_break_time = models.CharField(
         max_length=30, blank=True,
         verbose_name="Время тех. перерыва", null=True)
+    holiday = models.BooleanField(
+        blank=True,
+        verbose_name="Праздник", null=True)
 
     class Meta:
         """Meta data."""

@@ -8,7 +8,7 @@ from django.conf import settings
 from .views import *
 
 
-name_apps = 'alfastaff-account'
+name_apps = 'alfastaff_account'
 
 
 urlpatterns = [

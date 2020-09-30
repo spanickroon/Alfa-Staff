@@ -1,4 +1,4 @@
-"""This module contain class for application alfastaff-shedule."""
+"""This module contain class for application alfastaff_shedule."""
 
 from django.apps import AppConfig
 

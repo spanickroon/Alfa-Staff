@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'alfastaff_account.apps.AlfastaffAccountConfig',
     'alfastaff_products.apps.AlfastaffProductsConfig',
     'alfastaff_shedule.apps.AlfastaffSheduleConfig',
+    'alfastaff_task_manager.apps.AlfastaffTaskManagerConfig',
 ]
 
 MIDDLEWARE = [

@@ -6,10 +6,9 @@ from django.conf.urls import url
 from .views import *
 
 
-name_apps = 'alfastaff_shedule'
+name_apps = 'alfastaff_task_manager'
 
 
 urlpatterns = [
-    path('shedule', shedule, name='shedule'),
-    path('review', review, name='review')
+
 ]

@@ -15,6 +15,7 @@ urlpatterns = [
     path('', include('alfastaff_account.urls')),
     path('', include('alfastaff_products.urls')),
     path('', include('alfastaff_shedule.urls')),
+    path('', include('alfastaff_task_manager.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
