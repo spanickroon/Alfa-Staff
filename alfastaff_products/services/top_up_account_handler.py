@@ -1,9 +1,10 @@
 """This module contain functions for buy product on catalog."""
 
-from django.shortcuts import redirect
-from django.contrib.auth.models import User
-
 from cloudipsp import Api, Checkout
+from django.contrib.auth.models import User
+from django.shortcuts import redirect
+
+from ..models import Transaction
 
 
 def top_up_account_processing(request: object) -> object:
@@ -27,9 +28,11 @@ def top_up_account_processing(request: object) -> object:
             user.profile.money += sum_num
             user.profile.save()
 
+            transaction = Transaction(user=user, amount=sum_num)
+            transaction.save()
+
             return redirect(url)
         else:
             return redirect(to="edit")
-    except (TypeError, ValueError, OverflowError, User.DoesNotExist) as ex:
-        print(ex)
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
         return redirect(to="edit")

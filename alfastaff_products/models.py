@@ -1,4 +1,4 @@
-"""This module contain ProductCard and Purchase class."""
+"""This module contain ProductCard, Transaction and Purchase class."""
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -73,4 +73,35 @@ class Purchase(models.Model):
                 self.user.profile.first_name,
                 self.user.profile.middle_name,
                 self.name
+            )
+
+
+class Transaction(models.Model):
+    """Transaction class with function output and meta data."""
+
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE,
+        verbose_name="Пользоваетль")
+    amount = models.IntegerField(
+        blank=True, null=True,
+        verbose_name="Сумма")
+    date_replenishment = models.DateField(
+        auto_now=True, blank=True,
+        verbose_name="Дата транзакции", null=True)
+
+    class Meta:
+        """Meta data."""
+
+        verbose_name = 'Транзакция'
+        verbose_name_plural = 'Транзакции'
+        ordering = ["-id"]
+
+    def __str__(self):
+        """Funtion for output info about this transaction object."""
+        return "{0} {1} {2} - {3} - {4}".format(
+                self.user.profile.second_name,
+                self.user.profile.first_name,
+                self.user.profile.middle_name,
+                self.amount,
+                self.date_replenishment,
             )

@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 
-from .models import ProductCard, Purchase
+from .models import ProductCard, Purchase, Transaction
 
 
 @admin.register(ProductCard)
@@ -26,3 +26,10 @@ class AuthorAdmin(admin.ModelAdmin):
                 obj.user.profile.save()
                 obj.balance += obj.cost
         obj.save()
+
+
+@admin.register(Transaction)
+class AuthorAdmin(admin.ModelAdmin):
+    """Transaction class with list of filters."""
+
+    list_filter = ('amount', )
