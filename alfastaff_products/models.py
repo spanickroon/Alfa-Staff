@@ -9,11 +9,11 @@ class ProductCard(models.Model):
 
     name = models.CharField(
         max_length=50, blank=True,
-        verbose_name="Название", null=True)
+        verbose_name='Название', null=True)
     cost = models.IntegerField(
-        blank=True, null=True, verbose_name="Стоимость")
+        blank=True, null=True, verbose_name='Стоимость')
     image = models.ImageField(
-        default="products/product.jpg", upload_to='products',
+        default='images/products/product.jpg', upload_to='images/products',
         null=True, blank=True, verbose_name="Фото")
 
     class Meta:
