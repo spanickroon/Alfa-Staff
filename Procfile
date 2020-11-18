@@ -1,2 +1,1 @@
-web: bin/start-nginx bin/start-pgbouncer python run.py
-worker: bin/start-pgbouncer python manage.py qcluster
+web: python manage.py collectstatic --no-input; gunicorn engine.wsgi --log-file - --log-level debug 
