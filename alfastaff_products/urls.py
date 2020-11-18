@@ -22,6 +22,7 @@ urlpatterns = [
     path('products', products, name='products'),
     path('products/<int:page>/<str:sort>', products_page, name='products_page'),
     path('buy/<int:id>', buy, name='buy'),
+    path('top_up_account/', top_up_account, name='top_up_account'),
 ]
 
 

@@ -12,6 +12,7 @@ from .services.purchases_page_handler import get_purchases
 from .services.products_page_handler import get_products
 from .services.buy_handler import buy_processing
 from .services.count_page_handler import count_page_products, count_page_purchases
+from .services.top_up_account_handler import top_up_account_processing
 
 
 @login_required(login_url='login')
@@ -179,3 +180,13 @@ def buy(request: object, id: int):
     """
     if request.method == "GET":
         return buy_processing(request, id)
+
+
+@login_required(login_url='login')
+def top_up_account(request: object):
+    """top up an account function processes 1 types of request.
+
+    1. POST
+    """
+    if request.method == "POST":
+        return top_up_account_processing(request)

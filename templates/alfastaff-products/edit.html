@@ -6,12 +6,12 @@
     <header class="header">
         <span>
             <a class="nav-logo" href="{% url 'products' %}">
-                <img class="logo-img-red" src="{% static "images/site/incognita.png" %}">
+                <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
             </a>
         </span>
         <span>
             <a class="nav-logo" href="{% url 'products' %}">
-                <label class="logo-text-red">Lorem·ipsum</label>
+                <label class="logo-text-red">Alfa·Staff</label>
             </a>
         </span>
 
@@ -131,6 +131,33 @@
                 <button class="button-edit-profile">Сменить</button>
             </div>
         </form>
+
+        <form method="POST" action="{% url 'top_up_account' %}">
+            {% csrf_token %}
+            <table>
+                <div class="emty-container">
+                </div>
+                <tbody>
+                    <tr>
+                        <th align="left">
+                            <label class="edit-profile-label">Сумма пополнения:</label>
+                        </th>
+                        <th>
+                            <div class="password">
+                                <input class="edit-profile-input" placeholder="USD" maxlength="30" name="sum" id="sum" title="Введите сумму пополнения баланса">
+                            </div>
+                        </th align="left">
+                    </tr>
+                </tbody>
+            </table>
+            {% if error %}
+                <div class="error-msg"><p>Проверьте введенный вами данные.</p></div>
+            {% endif %}
+            <div>
+                <button class="button-edit-profile">Пополнить</button>
+            </div>
+        </form>
+
     </div>
     <a href="{% url 'profile' %}" draggable="false" style="text-decoration: none;"><button class="button-exit-edit">Отмена</button>
     

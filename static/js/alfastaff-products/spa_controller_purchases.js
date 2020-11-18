@@ -9,7 +9,10 @@ function init(){
 
     document.getElementById('sorting_button').addEventListener('click', sort);
 
-    show_first_page();
+    try {
+        show_first_page();
+    } catch (error) {
+    }
 }
 
 /*---------------Show page request---------------*/
