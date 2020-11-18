@@ -16,7 +16,7 @@ function init(ev){
 function show_first_page(){    
     document.getElementById('1').classList.add("this-page")
 
-    document.getElementById('bonuses_container').innerHTML = animation;
+    document.getElementById('products_container').innerHTML = animation;
 
     var request = "products/1/sort_alphabet"
 
