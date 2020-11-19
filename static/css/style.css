@@ -1024,6 +1024,32 @@ table {
     border-radius: 0.5rem;
 }
 
+#review {
+    font-size: 14px;
+
+    grid-column-start: 1;
+    grid-column-end: 3;
+    background-color: #2EB837;
+
+    margin-top: 20%;
+    margin-left: 50%;
+    transform: translate(-50%, -50%);
+
+    height: 50%;
+    width: 50%;
+
+    color: white;
+    border-radius: 10px;
+}
+
+#review:hover {
+    background-color: #007e08;
+}
+
+#review:active {
+    background-color: #015C75;
+}
+
 .close-button {
     justify-self: end;
     align-self: flex-start;
