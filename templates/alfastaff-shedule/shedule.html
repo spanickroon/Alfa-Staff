@@ -33,16 +33,18 @@
             {% endif %}
             <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
         </header>
-        <div class="year-mounth">июнь 2020</div>
+        <div class="year-mounth">{% now "M" %} {% now "Y" %}</div>
 
         <div class="shedule">
             <div class="weeks-day-container">
-                {% for i in 12345|make_list %}
-                    <label class="work-day">{{ i }}</label>
-                {% endfor %}
-                {% for i in 67|make_list %}
-                    <label class="free-day">{{ i }}</label>
-                {% endfor %}
+                    <label class="work-day">Пн</label>
+                    <label class="work-day">Вт</label>
+                    <label class="work-day">Ср</label>
+                    <label class="work-day">Чт</label>
+                    <label class="work-day">Пт</label>
+
+                    <label class="free-day">Сб</label>
+                    <label class="free-day">Вс</label>
             </div>
             <div class="calendar">
                 {% for day in shedule %}
