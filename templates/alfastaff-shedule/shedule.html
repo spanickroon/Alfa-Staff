@@ -45,59 +45,54 @@
                 {% endfor %}
             </div>
             <div class="calendar">
-                <div class="calendar-day calendar-not-this-month">
-                    <label class="number-calendar-day">1</label>
-                </div>
+                {% for day in shedule %}
+                    {% if day == None %}
+                        <div class="calendar-day calendar-not-this-month">
+                            <label class="number-calendar-day"></label>
+                        </div>
+                    {% elif day.day_off %}
+                        <div class="calendar-day calendar-free">
+                            <label class="number-calendar-day">{{ day.number_day }}</label>
+                            <div class="working-hours-container">
+                                <!--<div class="working-hours work">08:30 - 17:30</div>
 
-                {% for i in 2345671234567123456712345671234|make_list %}
-                <div class="calendar-day">
-                    <label class="number-calendar-day">{{ i }}</label>
-                    <div class="working-hours-container">
-                        <div class="working-hours work">08:30 - 17:30</div>
+                                <div class="circle-shedule circle-shedule-red"></div>
+                                <div class="working-hours">12:30 - 13:00</div>
 
-                        <div class="circle-shedule circle-shedule-red"></div>
-                        <div class="working-hours">12:30 - 13:00</div>
+                                <div class="circle-shedule circle-shedule-green"></div>
+                                <div class="working-hours">15:00 - 15:15</div>
+                                <div class="circle-shedule circle-shedule-green"></div>
+                                <div class="working-hours">15:00 - 15:15</div>-->
+                            </div>
+                        </div>
+                    {% elif day.holiday %}
+                        <div class="calendar-day calendar-holiday">
+                            <label class="number-calendar-day">{{ day.number_day }}</label>
+                            <div class="working-hours-container">
+                                <!--<div class="working-hours work">08:30 - 17:30</div>
 
-                        <div class="circle-shedule circle-shedule-green"></div>
-                        <div class="working-hours">15:00 - 15:15</div>
+                                <div class="circle-shedule circle-shedule-red"></div>
+                                <div class="working-hours">12:30 - 13:00</div>
+
+                                <div class="circle-shedule circle-shedule-green"></div>
+                                <div class="working-hours">15:00 - 15:15</div>-->
+                            </div>
+                        </div>
+                    {% else %}
+                    <div class="calendar-day">
+                        <label class="number-calendar-day">{{ day.number_day }}</label>
+                        <div class="working-hours-container">
+                            <div class="working-hours work">{{ day.working_hours }}</div>
+
+                            <div class="circle-shedule circle-shedule-red"></div>
+                            <div class="working-hours">{{ day.lunch_time }}</div>
+
+                            <div class="circle-shedule circle-shedule-green"></div>
+                            <div class="working-hours">{{ day.technical_break_time }}</div>
+                        </div>
                     </div>
-                    
-                </div>
+                    {% endif %}
                 {% endfor %}
-
-                <div class="calendar-day calendar-holiday">
-                    <label class="number-calendar-day">5</label>
-                    <div class="working-hours-container">
-                        <div class="working-hours work">08:30 - 17:30</div>
-
-                        <div class="circle-shedule circle-shedule-red"></div>
-                        <div class="working-hours">12:30 - 13:00</div>
-
-                        <div class="circle-shedule circle-shedule-green"></div>
-                        <div class="working-hours">15:00 - 15:15</div>
-                    </div>
-                    
-                </div>
-
-                <div class="calendar-day calendar-free">
-                    <label class="number-calendar-day">{{ 6 }}</label>
-                    <div class="working-hours-container">
-                        <div class="working-hours work">08:30 - 17:30</div>
-
-                        <div class="circle-shedule circle-shedule-red"></div>
-                        <div class="working-hours">12:30 - 13:00</div>
-
-                        <div class="circle-shedule circle-shedule-green"></div>
-                        <div class="working-hours">15:00 - 15:15</div>
-                        <div class="circle-shedule circle-shedule-green"></div>
-                        <div class="working-hours">15:00 - 15:15</div>
-                    </div>
-                    
-                </div>
-
-                <div class="calendar-day calendar-not-this-month">
-                    <label class="number-calendar-day">5</label>
-                </div>
             </div>
         
             <aside class="info-shedule-panel">

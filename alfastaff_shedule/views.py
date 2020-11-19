@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
 from .services.send_review_handler import send_review_processing
+from .services.shedule_handler import get_shedule_for_user
 
 
 @login_required(login_url='login')
@@ -14,7 +15,9 @@ def shedule(request: object):
         Returns the reset shedule page.
     """
     if request.method == "GET":
-        return render(request, template_name='alfastaff-shedule/shedule.html', context={'user': request.user})
+        shedule = get_shedule_for_user(request)
+        print(shedule)
+        return render(request, template_name='alfastaff-shedule/shedule.html', context={'user': request.user, 'shedule': shedule})
 
 
 

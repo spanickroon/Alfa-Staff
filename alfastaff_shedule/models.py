@@ -1,7 +1,14 @@
 """This module contain with PersonnelLoadDocument and ScheduleForOneDay class."""
 
-from django.db import models
+import pandas as pd
+import csv
+import calendar
+
 from django.contrib.auth.models import User
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from dropbox.files import Metadata
 
 
 class PersonnelLoadDocument(models.Model):
@@ -45,7 +52,16 @@ class ScheduleForOneDay(models.Model):
     MONTH_CHOICES = (
         (1, 'Jun'),
         (2, 'Feb'),
-        (3, 'Mar')
+        (3, 'Mar'),
+        (4, 'Apr'),
+        (5, 'May'),
+        (6, 'Jun'),
+        (7, 'Jul'),
+        (8, 'Aug'),
+        (9, 'Sep'),
+        (10, 'Oct'),
+        (11, 'Nov'),
+        (12, 'Dec')
     )
     month = models.PositiveSmallIntegerField(
         blank=True, choices=MONTH_CHOICES,
@@ -66,6 +82,9 @@ class ScheduleForOneDay(models.Model):
     holiday = models.BooleanField(
         blank=True,
         verbose_name="Праздник", null=True)
+    day_off = models.BooleanField(
+        blank=True,
+        verbose_name="Выходной", null=True)
 
     class Meta:
         """Meta data."""
@@ -84,3 +103,58 @@ class ScheduleForOneDay(models.Model):
                 self.month,
                 self.year,
             )
+
+
+@receiver(post_save, sender=PersonnelLoadDocument)
+def create_shedule_for_staff(sender, instance, **kwargs):
+    """Create shedule for staff after added csv file."""
+    data = pd.read_csv(instance.file_with_table.url)
+
+    for i, row in data.iterrows():
+        user = User.objects.get(email=row['email'])
+
+        try:
+            ScheduleForOneDay.objects.filter(user=user).delete()
+        except Exception:
+            pass
+
+        for index in range(0, int(row['count_day'])):
+            if index + 1 in map(int, row['holiday'].split(',')):
+                holiday = True
+            else:
+                holiday = False
+
+            name_day = calendar.weekday(row['year'], row['month'], index + 1)
+            if name_day == 0:
+                name_day = "mon"
+            elif name_day == 1:
+                name_day = "tue"
+            elif name_day == 2:
+                name_day = "wed"
+            elif name_day == 3:
+                name_day = "thu"
+            elif name_day == 4:
+                name_day = "fri"
+            elif name_day == 5:
+                name_day = "sat"
+            else:
+                name_day = "sun"
+            
+            if name_day == "sun" or name_day == "sat":
+                day_off = True
+            else:
+                day_off = False
+
+            shedule_for_one_day = ScheduleForOneDay(
+                user = user,
+                day_of_week = name_day,
+                year = row['year'],
+                month = row['month'],
+                number_day = index + 1,
+                working_hours = row['working_hours'],
+                lunch_time = row['lunch_time'],
+                technical_break_time = row['technical_break_time'],
+                holiday = holiday,
+                day_off = day_off
+            )
+            shedule_for_one_day.save()
