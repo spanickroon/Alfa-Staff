@@ -23,8 +23,8 @@ def send_message_with_url_for_registration(request: object, user: object) -> Non
         'uid': urlsafe_base64_encode(force_bytes(user.pk)),
         'token': account_activation_token.make_token(user),
     })
-    to_email = user.email
-    email = EmailMessage(mail_subject, message, to=[to_email])
+
+    email = EmailMessage(mail_subject, message, to=[user.email])
     email.content_subtype = 'html'
     email.send()
 

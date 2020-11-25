@@ -11,11 +11,9 @@ class Profile(models.Model):
         User, on_delete=models.CASCADE,
         verbose_name="Пользователь")
     avatar = models.ImageField(
-        default="images/profiles/anon_user.png",
-        verbose_name="Фотография",
-        upload_to='profiles', null=True, blank=True)
-    avatar_binary = models.BinaryField(
-        verbose_name="Фотография байткод", blank=True, editable=False)
+        default='images/profiles/anon_user.png',
+        verbose_name="Аватарка профиля",
+        upload_to='images/profiles', null=True, blank=True)
     first_name = models.CharField(
         default="Имя", max_length=30,
         verbose_name="Имя",
@@ -44,9 +42,9 @@ class Profile(models.Model):
         verbose_name="Статус",
         choices=STATUS_CHOICES, blank=True, null=True)
 
-    points = models.IntegerField(
+    money = models.IntegerField(
         default=0, blank=True,
-        null=True, verbose_name="Бонусы")
+        null=True, verbose_name="Деньги")
     position = models.CharField(
         default="Не задано", max_length=50,
         verbose_name="Должность",
@@ -68,10 +66,15 @@ class Profile(models.Model):
     class Meta:
         """Meta data."""
 
-        db_table = 'Профиль'
         verbose_name = 'Профиль'
-        verbose_name_plural = 'Профиль'
+        verbose_name_plural = 'Профили'
+        ordering = ["user"]
 
     def __str__(self) -> str:
         """Funtion for output info about this profile object."""
-        return self.user.email
+        return "{0} {1} {2} - {3}".format(
+                self.second_name,
+                self.first_name,
+                self.middle_name,
+                self.user.email
+            )

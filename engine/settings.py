@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'storages',
 
     'alfastaff_account.apps.AlfastaffAccountConfig',
-    'alfastaff_bonuses.apps.AlfastaffBonusesConfig',
+    'alfastaff_products.apps.AlfastaffProductsConfig',
     'alfastaff_shedule.apps.AlfastaffSheduleConfig',
+    'alfastaff_task_manager.apps.AlfastaffTaskManagerConfig',
 ]
 
 MIDDLEWARE = [
@@ -133,7 +134,13 @@ MEDIA_URL = 'images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
-]
+        os.path.join(BASE_DIR, 'static')
+    ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.ManifestStaticFilesStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
+
+DROPBOX_APP_KEY = os.environ.get('DROPBOX_APP_KEY')
+DROPBOX_APP_SECRET_KEY = os.environ.get('DROPBOX_APP_SECRET_KEY')
+DROPBOX_OAUTH2_TOKEN = os.environ.get('DROPBOX_OAUTH2_TOKEN')
+DROPBOX_ROOT_PATH = os.environ.get('DROPBOX_ROOT_PATH')

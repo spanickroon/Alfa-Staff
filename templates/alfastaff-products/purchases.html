@@ -1,0 +1,49 @@
+{% extends 'alfastaff-products/start_template.html' %}
+{% load static %}
+
+{% block context %}
+<body class="body-list-purchases">
+    <header class="header">
+        <span>
+            <a class="nav-logo" href="{% url 'products' %}">
+                <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
+            </a>
+        </span>
+        <span>
+            <a class="nav-logo" href="{% url 'products' %}">
+                <label class="logo-text-red">Alfa·Staff</label>
+            </a>
+        </span>
+
+        <a class="nav-panel" href="{% url 'products' %}">КАТАЛОГ</a>
+        <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
+        <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
+        {% if user.profile.role == 1 %}
+            <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
+        {% endif %}
+        <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
+    </header>
+    <button class="sorting-button" id="sorting_button">Сортировать по цене</button>
+
+    <div class="purchase-bar">
+        <label class="purchase-bar__number">№</label>
+        <label class="purchase-bar__name">Название</label>
+        <label>Стоимость</label>
+        <label>Дата</label>
+        <label>Остаток</label>
+        <label>Статус</label>
+    </div>
+
+    <div class="list-purchases-container" id="list_purchases_container">
+    </div>
+
+    <div class="clip-products-container">
+        {% for i in count_page %}
+            <button class="clip-button num" id="{{i}}">
+                {{i}}
+            </button>
+        {% endfor %}
+    </div>
+</body>
+<script src="{% static "js/alfastaff-products/spa_controller_purchases.js" %}"></script>
+{% endblock%}

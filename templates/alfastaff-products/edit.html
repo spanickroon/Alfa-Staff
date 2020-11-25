@@ -1,0 +1,165 @@
+{% extends 'alfastaff-products/start_template.html' %}
+{% load static %}
+
+{% block context %}
+<body class="body-profile">
+    <header class="header">
+        <span>
+            <a class="nav-logo" href="{% url 'products' %}">
+                <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
+            </a>
+        </span>
+        <span>
+            <a class="nav-logo" href="{% url 'products' %}">
+                <label class="logo-text-red">Alfa·Staff</label>
+            </a>
+        </span>
+
+        <a class="nav-panel" href="{% url 'products' %}">КАТАЛОГ</a>
+        <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
+        <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
+        {% if user.profile.role == 1 %}
+            <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
+        {% endif %}
+        <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
+    </header>
+    
+    <div class="back-profile-top"></div>
+    <div class="back-profile-bottom"></div>
+    <div class="edit-profile">
+        <form method="POST" action="{% url 'edit_profile' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="edit-profile-container">
+                <div class="img-edit-profile">
+                    <img src="{{ avatar }}">
+                </div>
+                
+                <div class="change-photo">
+                    <div class="input-edit-photo">
+                        <label>
+                            <input style="display: none;" type="file" name="avatar">
+                            Загрузить фотографию
+                        </label>
+                    </div>
+                   
+                </div>
+            </div>
+            <table>
+                <tbody>
+                    <tr>
+                        <th align="left">
+                            <label class="edit-profile-label">Фамилия:</label>
+                        </th>
+                        <th align="left">
+                            <input class="edit-profile-input" type="text" name="second_name" value="{{ user.profile.second_name }}">
+                        </th>
+                    </tr>
+                    <tr>
+                        <th align="left">
+                            <label class="edit-profile-label">Имя:</label>
+                        </th>
+                        <th align="left">
+                            <input class="edit-profile-input" type="text" name="first_name" value="{{ user.profile.first_name }}">
+                        </th>
+                        </tr>
+                        <tr>
+                            <th align="left">
+                                <label class="edit-profile-label">Отчество:</label>
+                            </th>
+                            <th>
+                                <input class="edit-profile-input" type="text" name="middle_name" value="{{ user.profile.middle_name }}">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th align="left">
+                                <label class="edit-profile-label">Email:</label>
+                            </th>
+                            <th align="left">
+                                <input class="edit-profile-input" type="email" name="email" value="{{ user.email }}" title="Должен иметь вид user@example.com">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th align="left">
+                                <label class="edit-profile-label">Телефон:</label>
+                            </th>
+                            <th align="left">
+                                <input class="edit-profile-input" type="text" name="number_phone" value="{{ user.profile.number_phone }}">
+                            </th>
+                        </tr>
+                </tbody>
+            </table>
+            {% if error_profile %}
+                <div class="error-msg"><p>Проверьте введенный вами данные.</p></div>
+            {% endif %}
+            <button class="button-edit-profile">Сохранить</button>
+        </form>
+
+        <form method="POST" action="{% url 'edit_password' %}">
+            {% csrf_token %}
+            <table>
+                <div class="emty-container">
+                </div>
+                <tbody>
+                    <tr>
+                        <th align="left">
+                            <label class="edit-profile-label">Новый пароль:</label>
+                        </th>
+                        <th>
+                            <div class="password">
+                                <input class="edit-profile-input" placeholder="Пароль" maxlength="30" type="password" name="password1" id="password1" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
+                                <a href="#" class="password-control" onclick="return show_hide_password1(this);"></a>
+                            </div>
+                        </th align="left">
+                    </tr>
+                    <tr>
+                        <th>
+                            <label class="edit-profile-label">Повторите пароль:</label>
+                        </th>
+                        <th align="left">
+                            <div class="password">
+                                <input class="edit-profile-input" placeholder="Повторите пароль" maxlength="30" type="password" name="password2" id="password2" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Должно содержать по крайней мере одно число, одну заглавную и строчную буквы, а также не менее 8 и более символов">
+                                <a href="#" class="password-control" onclick="return show_hide_password2(this);"></a>
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            {% if error %}
+                <div class="error-msg"><p>Проверьте введенный вами пароль.</p></div>
+            {% endif %}
+            <div>
+                <button class="button-edit-profile">Сменить</button>
+            </div>
+        </form>
+
+        <form method="POST" action="{% url 'top_up_account' %}">
+            {% csrf_token %}
+            <table>
+                <div class="emty-container">
+                </div>
+                <tbody>
+                    <tr>
+                        <th align="left">
+                            <label class="edit-profile-label">Сумма пополнения:</label>
+                        </th>
+                        <th>
+                            <div class="password">
+                                <input class="edit-profile-input" placeholder="USD" maxlength="30" name="sum" id="sum" title="Введите сумму пополнения баланса">
+                            </div>
+                        </th align="left">
+                    </tr>
+                </tbody>
+            </table>
+            {% if error %}
+                <div class="error-msg"><p>Проверьте введенный вами данные.</p></div>
+            {% endif %}
+            <div>
+                <button class="button-edit-profile">Пополнить</button>
+            </div>
+        </form>
+
+    </div>
+    <a href="{% url 'profile' %}" draggable="false" style="text-decoration: none;"><button class="button-exit-edit">Отмена</button>
+    
+</body>
+{% endblock%}
