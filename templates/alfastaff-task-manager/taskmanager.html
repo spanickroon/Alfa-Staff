@@ -1,48 +1,17 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>
-            {% block title %}
-                Alfastaff
-            {% endblock %}
-        </title>
-        <link rel="stylesheet" href="{% static "css/style.css" %}">
-        <link rel="icon" href="{% static "images/site/favicon.png" %}" type="image/png">
-    </head>
-    <body class="body-taskmanager">
-        <header class="header">
-            <span>
-                <a class="nav-logo" href="{% url 'products' %}">
-                    <img class="logo-img-red" src="{% static "images/site/alfa-logo-red.svg" %}">
-                </a>
-            </span>
-            <span>
-                <a class="nav-logo" href="{% url 'products' %}">
-                    <label class="logo-text-red">Afla·Staff</label>
-                </a>
-            </span>
 
-            <a class="nav-panel" href="{% url 'products' %}">КАТАЛОГ</a>
-            <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
-            <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
-            {% if user.profile.role == 1 %}
-                <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
-            {% endif %}
-            <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>
-        </header>
-        <div class="list-tasks">
-            <p class="task-date">Задачи на 22.22.2222</p>
-            {% for i in 123|make_list %}
-            <div class="task">
-                <p>Отправить документы на почту директора</p>
-                <img src="{% static "images/site/status-processing.svg" %}">
-            </div>
-            {% endfor %}
-        </div>
-    </body>
-    <script src="{% static "js/alfastaff-shedule/controller_shedule.js" %}"></script>
-    <script src="{% static "js/alfastaff-products/visual_effects.js" %}"></script>
-</html>
+<div class="list-tasks">
+    <p class="task-date">Задачи на {{ date }}</p>
+    {% for task in tasks %}
+    <div class="task">
+        <p>{{ task.description }}</p>
+        {% if task.status == 1 %}
+            <img src="{% static "images/site/status-ok.svg" %}">
+        {% elif task.status == 2 %}
+            <img src="{% static "images/site/status-canceled.svg" %}">
+        {% else %}
+            <img src="{% static "images/site/status-processing.svg" %}">
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
