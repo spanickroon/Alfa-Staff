@@ -1,5 +1,9 @@
 /*---------------function init---------------*/
 function init(){
+    document.querySelectorAll('.open_tasks').forEach((link)=>{
+        link.addEventListener('click', open_tasks);
+    })
+
     document.getElementById('send').addEventListener('click', send);
 }
 
@@ -29,6 +33,26 @@ function review(ev){
         } else {
             toggleModalAnswer('Возникла ошибка, сообщите о ней администратору.')
         }
+    })
+    .catch(() => console.log('error'));
+}
+
+/*---------------Open tasks request---------------*/
+function open_tasks(ev){
+    fetch("taskmanager",
+    {
+        method: "POST",
+        body: "number_day=" + ev.target.id,
+        headers: {"content-type": "application/x-www-form-urlencoded", "X-CSRFToken": getCookie('csrftoken') },
+    })
+    .then( response => {
+        if (response.status !== 200) {
+            return Promise.reject();
+        }
+        return response.text()
+    })
+    .then( render_html => {
+        document.getElementById('tasks_list').innerHTML = render_html;
     })
     .catch(() => console.log('error'));
 }

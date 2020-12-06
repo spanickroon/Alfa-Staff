@@ -18,7 +18,7 @@
         <a class="nav-panel" href="{% url 'products' %}">КАТАЛОГ</a>
         <a class="nav-panel" href="{% url 'shedule' %}">РАСПИСАНИЕ</a>
         <a class="nav-panel" href="{% url 'purchases' %}">ИСТОРИЯ ПОКУПОК</a>
-        {% if user.profile.role == 1 %}Без назначения
+        {% if user.profile.role == 1 %}
             <a class="nav-panel nav-admin" href="admin/">АДМИН ПАНЕЛЬ</a>
         {% endif %}
         <a class="nav-panel nav-profile" href="{% url 'profile' %}">ПРОФИЛЬ</a>

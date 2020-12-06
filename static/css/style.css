@@ -74,6 +74,13 @@ table {
     background-attachment: fixed;
 }
 
+.body-taskmanager {
+    background-image: url(/static/images/site/back_shedule.png);
+    background-color: #C0C0C0;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .header-login-register {
     display: flex;
     align-items: center;
@@ -1429,4 +1436,67 @@ table {
     background-image: url(/static/images/site/holiday.png);
 
     filter: saturate(1000%);
+}
+
+.list-tasks {
+    display: flex;
+    flex-direction: column;
+
+    margin-top: 140px;
+
+    margin-left: 300px;
+    margin-right: 300px;
+
+    width: auto;
+    height: auto;
+
+    font-size: 16pt;
+    background-color: white;
+
+    border-radius: 10px 10px 10px 10px;
+}
+
+.task-date {
+    font-size: 22pt;
+    font-weight: 400;
+    text-align: center;
+}
+
+.task {
+    display: grid;
+    grid-template-columns: 90% 10%;
+    justify-items: center;
+    align-items: center;
+
+    margin-left: 35px;
+    margin-right: 35px;
+    margin-bottom: 15px;
+   
+    font-size: 16pt;
+    height: 120px;
+
+    border: none;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #E5E5E5;
+}
+
+.task:hover {
+    background-color: #777777;
+}
+
+.open_tasks {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    color: #999999;
+    background-color: #FFFFFF;
+
+    border: none;
+}
+
+.open_tasks:hover {
+    color: #015C75;
 }

@@ -1,0 +1,17 @@
+{% load static %}
+
+<div class="list-tasks">
+    <p class="task-date">Задачи на {{ date }}</p>
+    {% for task in tasks %}
+    <div class="task">
+        <p>{{ task.description }}</p>
+        {% if task.status == 1 %}
+            <img src="{% static "images/site/status-ok.svg" %}">
+        {% elif task.status == 2 %}
+            <img src="{% static "images/site/status-canceled.svg" %}">
+        {% else %}
+            <img src="{% static "images/site/status-processing.svg" %}">
+        {% endif %}
+    </div>
+    {% endfor %}
+</div>
