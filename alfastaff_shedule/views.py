@@ -16,9 +16,8 @@ def shedule(request: object):
     """
     if request.method == "GET":
         shedule = get_shedule_for_user(request)
-        print(shedule)
+        # print(shedule)
         return render(request, template_name='alfastaff-shedule/shedule.html', context={'user': request.user, 'shedule': shedule})
-
 
 
 @login_required(login_url='login')
