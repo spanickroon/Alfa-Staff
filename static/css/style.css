@@ -1483,3 +1483,20 @@ table {
 .task:hover {
     background-color: #777777;
 }
+
+.open_tasks {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 400;
+
+    color: #999999;
+    background-color: #FFFFFF;
+
+    border: none;
+}
+
+.open_tasks:hover {
+    color: #015C75;
+}
