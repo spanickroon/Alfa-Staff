@@ -19,7 +19,6 @@ def shedule(request: object):
         return render(request, template_name='alfastaff-shedule/shedule.html', context={'user': request.user, 'shedule': shedule})
 
 
-
 @login_required(login_url='login')
 def review(request: object):
     """Review function.
