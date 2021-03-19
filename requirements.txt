@@ -8,7 +8,7 @@ pytz==2020.1
 psycopg2-binary==2.8.5
 sqlparse==0.3.1
 whitenoise==5.1.0
-Pillow==7.1.2
+Pillow==8.1.1
 six==1.15.0
 django-storages==1.7.1
 uwsgi==2.0.19.1
